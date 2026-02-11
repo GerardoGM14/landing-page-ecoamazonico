@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PeruMap from '../components/PeruMap';
+import { Image } from 'astro:assets';
+import logoImg from '../assets/logo_ecoamazonico.png';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -8,11 +10,64 @@ import PeruMap from '../components/PeruMap';
 
 <Layout>
 	<main class="bg-gray-50 min-h-screen font-sans text-gray-800">
+		<!-- Top Bar -->
+		<div class="bg-[#272623] text-gray-300 text-xs md:text-sm py-2 hidden md:block">
+			<div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+				<div class="flex items-center gap-6">
+					<div class="flex items-center gap-2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
+						<span>+51 945 775 810</span>
+					</div>
+					<div class="flex items-center gap-2">	
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+						<span>Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso | Paucarbamba, Amarilis, Huánuco</span>
+					</div>
+					<div class="flex items-center gap-2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+						<span>ecoamazonicoperusrl@gmail.com</span>
+					</div>
+				</div>
+				<div class="flex items-center gap-4">
+					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="Facebook">
+						<svg width="10" height="18" viewBox="0 0 10 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+							<path d="M9.34105 7.78582L9.11687 9.58099C9.07895 9.88086 8.82429 10.1064 8.52222 10.1064H5.60653V17.612C5.29904 17.6397 4.98749 17.6538 4.67256 17.6538C3.96819 17.6538 3.28075 17.5836 2.61633 17.4499V10.1064H0.373859C0.167966 10.1064 0 9.93827 0 9.73227V7.48595C0 7.27996 0.167966 7.11179 0.373859 7.11179H2.61633V3.74297C2.61633 1.67563 4.2899 0 6.35492 0H8.97126C9.17715 0 9.34512 0.16817 9.34512 0.374162V2.62049C9.34512 2.82648 9.17715 2.99465 8.97126 2.99465H7.10196C6.27636 2.99465 5.60721 3.66463 5.60721 4.49197V7.11246H8.74708C9.10739 7.11246 9.38575 7.42854 9.34173 7.78649L9.34105 7.78582Z"/>
+						</svg>
+						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+							Facebook
+							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+						</div>
+					</a>
+					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="TikTok">
+						<svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+							<path d="M10.6524 12.7841V5.17503C10.6524 5.17503 11.5355 6.60502 14.7277 6.69237C14.8979 6.69701 15.0387 6.56096 15.0387 6.39555V4.24515C15.0387 4.08514 14.9075 3.95838 14.7428 3.9491C12.2667 3.81306 11.0908 1.96798 10.9754 0.27595C10.9651 0.119037 10.8234 0 10.6619 0H8.13733C7.96945 0 7.8326 0.132178 7.8326 0.296047V12.3922C7.8326 13.7063 6.79906 14.8495 5.44806 14.9114C3.90371 14.9825 2.64819 13.6947 2.83914 12.1727C2.9744 11.0975 3.86234 10.2171 4.96669 10.0679C5.18629 10.0386 5.40032 10.0362 5.60798 10.0587C5.79178 10.0787 5.95329 9.9458 5.95329 9.76647V7.61066C5.95329 7.45761 5.83315 7.32466 5.67561 7.31538C5.35895 7.29528 5.03432 7.30224 4.70493 7.33857C2.26946 7.60756 0.303425 9.52221 0.0337022 11.889C-0.321951 15.0111 2.18433 17.6538 5.32632 17.6538C8.26782 17.6538 10.6524 15.3373 10.6524 12.4796"/>
+						</svg>
+						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+							TikTok
+							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+						</div>
+					</a>
+					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="Instagram">
+						<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+							<path d="M13.3926 0H4.26121C1.90827 0 0 1.90827 0 4.26121V13.3926C0 15.7456 1.90827 17.6538 4.26121 17.6538H13.3926C15.7456 17.6538 17.6538 15.7456 17.6538 13.3926V4.26121C17.6538 1.90827 15.7456 0 13.3926 0ZM16.1318 13.0877C16.1318 14.7681 14.7681 16.1318 13.0877 16.1318H4.56528C2.88485 16.1318 1.5212 14.7681 1.5212 13.0877V4.56528C1.5212 2.88485 2.88485 1.5212 4.56528 1.5212H13.0877C14.7681 1.5212 16.1318 2.88485 16.1318 4.56528V13.0877Z"/>
+							<path d="M8.83553 4.26134C6.31573 4.26134 4.27025 6.30683 4.27025 8.82663C4.27025 11.3464 6.31573 13.3919 8.83553 13.3919C11.3553 13.3919 13.4008 11.3464 13.4008 8.82663C13.4008 6.30683 11.3553 4.26134 8.83553 4.26134ZM8.83553 11.8707C7.15849 11.8707 5.79145 10.5037 5.79145 8.82663C5.79145 7.14958 7.15849 5.78254 8.83553 5.78254C10.5126 5.78254 11.8796 7.14958 11.8796 8.82663C11.8796 10.5037 10.5126 11.8707 8.83553 11.8707Z"/>
+							<path d="M13.7055 4.86998C14.2097 4.86998 14.6185 4.46119 14.6185 3.95692C14.6185 3.45266 14.2097 3.04387 13.7055 3.04387C13.2012 3.04387 12.7924 3.45266 12.7924 3.95692C12.7924 4.46119 13.2012 4.86998 13.7055 4.86998Z"/>
+						</svg>
+						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+							Instagram
+							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
 		<!-- Header -->
 		<header class="bg-white shadow-sm sticky top-0 z-50">
 			<div class="container mx-auto px-4 py-4 flex justify-between items-center">
 				<div class="flex items-center space-x-2">
-					<span class="text-2xl font-bold text-green-700">EcoAmazónico</span>
+					<a href="#inicio" class="flex items-center gap-2">
+						<Image src={logoImg} alt="Logo EcoAmazónico" class="h-12 w-auto object-contain" />
+					</a>
 				</div>
 				<nav class="hidden md:flex space-x-8">
 					<a href="#inicio" class="text-gray-600 hover:text-green-600 font-medium">Inicio</a>
