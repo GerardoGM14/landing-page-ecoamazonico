@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<main class="bg-gray-50 min-h-screen font-sans text-gray-800">
+		<!-- Header -->
+		<header class="bg-white shadow-sm sticky top-0 z-50">
+			<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+				<div class="flex items-center space-x-2">
+					<span class="text-2xl font-bold text-green-700">EcoAmazónico</span>
+				</div>
+				<nav class="hidden md:flex space-x-8">
+					<a href="#inicio" class="text-gray-600 hover:text-green-600 font-medium">Inicio</a>
+					<a href="#servicios" class="text-gray-600 hover:text-green-600 font-medium">Servicios</a>
+					<a href="#nosotros" class="text-gray-600 hover:text-green-600 font-medium">Nosotros</a>
+					<a href="#contacto" class="text-gray-600 hover:text-green-600 font-medium">Contacto</a>
+				</nav>
+				<a href="#contacto" class="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition duration-300">
+					Contáctanos
+				</a>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<section id="inicio" class="relative bg-green-900 text-white py-24 md:py-32">
+			<div class="absolute inset-0 bg-black opacity-40"></div>
+			<div class="container mx-auto px-4 relative z-10 text-center">
+				<h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+					Descubre la Magia de la Amazonía
+				</h1>
+				<p class="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto">
+					Experiencias únicas en contacto con la naturaleza, turismo sostenible y conservación.
+				</p>
+				<div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+					<a href="#servicios" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-green-600 transition duration-300">
+						Ver Paquetes
+					</a>
+					<a href="#nosotros" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-900 transition duration-300">
+						Conócenos
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section id="servicios" class="py-20 bg-white">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
+					<p class="text-xl text-gray-600 max-w-2xl mx-auto">Ofrecemos experiencias inolvidables respetando el medio ambiente.</p>
+				</div>
+				
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<!-- Card 1 -->
+					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
+						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-gray-900">Ecoturismo</h3>
+						<p class="text-gray-600">Rutas guiadas por expertos locales para conocer la flora y fauna de la región sin impactar el ecosistema.</p>
+					</div>
+
+					<!-- Card 2 -->
+					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
+						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-gray-900">Hospedaje Ecológico</h3>
+						<p class="text-gray-600">Cabañas construidas con materiales sostenibles, integradas perfectamente en el entorno natural.</p>
+					</div>
+
+					<!-- Card 3 -->
+					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
+						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-gray-900">Actividades Culturales</h3>
+						<p class="text-gray-600">Conoce las tradiciones y costumbres de las comunidades locales a través de talleres y convivencias.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer id="contacto" class="bg-gray-900 text-white py-12">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+					<div class="col-span-1 md:col-span-2">
+						<h3 class="text-2xl font-bold mb-4 text-green-400">EcoAmazónico</h3>
+						<p class="text-gray-400 max-w-sm">Comprometidos con la conservación de la Amazonía y el turismo responsable.</p>
+					</div>
+					<div>
+						<h4 class="text-lg font-bold mb-4 text-white">Enlaces Rápidos</h4>
+						<ul class="space-y-2">
+							<li><a href="#inicio" class="text-gray-400 hover:text-green-400 transition">Inicio</a></li>
+							<li><a href="#servicios" class="text-gray-400 hover:text-green-400 transition">Servicios</a></li>
+							<li><a href="#nosotros" class="text-gray-400 hover:text-green-400 transition">Nosotros</a></li>
+						</ul>
+					</div>
+					<div>
+						<h4 class="text-lg font-bold mb-4 text-white">Contacto</h4>
+						<ul class="space-y-2">
+							<li class="text-gray-400">info@ecoamazonico.com</li>
+							<li class="text-gray-400">+51 999 999 999</li>
+							<li class="text-gray-400">Amazonas, Perú</li>
+						</ul>
+					</div>
+				</div>
+				<div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+					<p>&copy; {new Date().getFullYear()} EcoAmazónico. Todos los derechos reservados.</p>
+				</div>
+			</div>
+		</footer>
+	</main>
+</Layout>
