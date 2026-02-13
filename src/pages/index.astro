@@ -1,16 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PeruMap from '../components/PeruMap';
+import PeruMap from '../components/PeruMap.tsx';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
+import aboutBg from '../assets/hero_background.jpg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const services = [
+  {
+    title: "Formulación y evaluación de proyectos",
+    shortDesc: "Desarrollo integral de proyectos agrícolas, forestales y de infraestructura.",
+    fullDesc: "Brindamos servicios especializados en la formulación y evaluación de proyectos en diversos sectores: Agrícolas, Agropecuarios, Forestales, Ambientales, Infraestructuras y otros. Nuestro enfoque garantiza la viabilidad técnica, económica y ambiental de cada iniciativa.",
+    icon: "clipboard"
+  },
+  {
+    title: "Estudios, Investigación y análisis",
+    shortDesc: "Investigación científica y análisis técnico en múltiples disciplinas.",
+    fullDesc: "Realizamos estudios exhaustivos en áreas agropecuaria, forestal, ambiental, social, educación y salud. Incluye análisis e interpretación de calidad de agua, análisis de macroinvertebrados, bioindicadores y análisis hidrobiológicos.",
+    icon: "search"
+  },
+  {
+    title: "Extensión y Capacitación",
+    shortDesc: "Transferencia de conocimientos y fortalecimiento de capacidades.",
+    fullDesc: "Programas de capacitación en sectores agrícolas, pecuarios, forestales, ambientales, salud y educación. Implementamos metodologías como Escuelas de Campo (ECAs) y aprendizaje de campesino a campesino.",
+    icon: "users"
+  },
+  {
+    title: "Proveedores",
+    shortDesc: "Suministro de bienes e insumos para diversos sectores.",
+    fullDesc: "Abastecimiento de insumos y bienes agrícolas, forestales, y para sectores de salud, educación y minería. Especialistas en la producción y comercialización de semillas certificadas.",
+    icon: "truck"
+  },
+  {
+    title: "Alquileres",
+    shortDesc: "Renta de vehículos y equipos especializados.",
+    fullDesc: "Servicio de alquiler de vehículos y equipos de monitoreo ambiental, garantizando herramientas de alta calidad para la ejecución de sus proyectos y operaciones de campo.",
+    icon: "key"
+  }
+];
 ---
 
 <Layout>
 	<main class="bg-gray-50 min-h-screen font-sans text-gray-800">
+		<!-- Sticky Header Wrapper -->
+		<div class="sticky top-0 z-[60] w-full -mb-20">
 		<!-- Top Bar -->
 		<div class="bg-[#272623] text-gray-300 text-xs md:text-sm py-2 block">
 			<div class="container mx-auto px-4 flex justify-between items-center md:gap-4">
@@ -87,7 +120,7 @@ import heroBg from '../assets/hero_background_v2.jpg';
 		</div>
 
 		<!-- Header -->
-		<header id="main-header" class="sticky top-0 z-50 w-full transition-all duration-300 -mb-20">
+		<header id="main-header" class="w-full transition-all duration-300">
 			<div class="container mx-auto px-4 py-4 flex justify-between items-center relative">
 				<div class="flex items-center space-x-2 z-50">
 					<a href="#inicio" class="flex items-center gap-2">
@@ -99,9 +132,10 @@ import heroBg from '../assets/hero_background_v2.jpg';
 				<nav class="hidden md:flex items-center space-x-8">
 					<div class="flex space-x-8">
 						<a href="#inicio" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Inicio</a>
+						<a href="#nosotros" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Nosotros</a>
 						<a href="#destinos" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Destinos</a>
 						<a href="#servicios" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Servicios</a>
-						<a href="#nosotros" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Nosotros</a>
+						<a href="#certificaciones" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Certificaciones</a>
 						<a href="#contacto" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Contacto</a>
 					</div>
 					<a href="#contacto" class="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition duration-300 shadow-lg">
@@ -119,9 +153,10 @@ import heroBg from '../assets/hero_background_v2.jpg';
 				<!-- Mobile Menu Overlay -->
 				<div id="mobile-menu" class="fixed inset-0 bg-green-900/95 backdrop-blur-md z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-center items-center gap-8 md:hidden">
 					<a href="#inicio" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Inicio</a>
+					<a href="#nosotros" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Nosotros</a>
 					<a href="#destinos" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Destinos</a>
 					<a href="#servicios" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Servicios</a>
-					<a href="#nosotros" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Nosotros</a>
+					<a href="#certificaciones" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Certificaciones</a>
 					<a href="#contacto" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Contacto</a>
 					<a href="#contacto" class="bg-white text-green-900 px-8 py-3 rounded-full text-xl font-bold hover:bg-green-100 transition duration-300 shadow-lg mt-4 mobile-nav-link">
 						Contáctanos
@@ -129,9 +164,10 @@ import heroBg from '../assets/hero_background_v2.jpg';
 				</div>
 			</div>
 		</header>
+		</div>
 
 		<!-- Hero Section -->
-		<section id="inicio" class="relative min-h-screen flex items-end pt-32 pb-16 md:pb-32 overflow-hidden">
+		<section id="inicio" class="relative min-h-[95dvh] md:min-h-screen flex items-end pt-20 pb-4 md:pb-32 overflow-hidden">
 			<!-- Background Image -->
 			<div class="absolute inset-0 z-0">
 				<Image src={heroBg} alt="Amazon Rainforest" class="w-full h-full object-cover" />
@@ -139,7 +175,7 @@ import heroBg from '../assets/hero_background_v2.jpg';
 			</div>
 
 			<div class="container mx-auto px-4 relative z-10">
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-end">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-end">
 					<div class="text-left">
 						<h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
 							Descubre la Magia de la Amazonía
@@ -159,7 +195,7 @@ import heroBg from '../assets/hero_background_v2.jpg';
 					</div>
 					
 					<!-- Right Side Features (Visual Style) -->
-					<div class="flex flex-col gap-4 md:gap-8 justify-center items-start md:items-end relative mt-8 md:mt-0">
+					<div class="flex flex-col gap-4 md:gap-8 justify-center items-start md:items-end relative mt-4 md:mt-0">
 						<!-- Decorative Curve Overlay -->
 						<div class="absolute top-1/2 -right-full w-[200%] h-[200%] bg-green-900/90 rounded-full -translate-y-1/2 pointer-events-none blur-3xl opacity-20 hidden md:block"></div>
 						
@@ -204,6 +240,85 @@ import heroBg from '../assets/hero_background_v2.jpg';
 			</div>
 		</section>
 
+		<!-- Nosotros Section -->
+		<section id="nosotros" class="py-20 bg-white overflow-hidden">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+					<!-- Left Content -->
+					<div>
+						<span class="bg-green-700 text-white px-3 py-1 text-sm font-bold uppercase tracking-wider mb-6 inline-block rounded-sm">Sobre Nosotros</span>
+						<h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+							Más de 20 años comprometidos con la <span class="text-green-700">seguridad</span>, la <span class="text-green-700">calidad</span> y <span class="text-green-700">confianza</span>
+						</h2>
+						<p class="text-gray-600 mb-10 text-lg leading-relaxed">
+							Eco Amazónico Perú SRL es una empresa nacional que cuenta con profesionales de amplia experiencia y altos grados académicos para la gestión de proyectos de ingeniería. Nuestro desempeño laboral está dirigido tanto al sector público como privado, contando con personal altamente capacitado.
+						</p>
+						
+						<div class="space-y-8">
+							<!-- Mision -->
+							<div class="flex gap-4">
+								<div class="shrink-0">
+									<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700 border border-green-100">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+									</div>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold text-gray-900 mb-2">Misión</h3>
+									<p class="text-gray-600">
+										Agregar valor de calidad a empresas y organizaciones, brindando soluciones de gerencia, estrategias y gestión de desarrollo económico sostenible.
+									</p>
+								</div>
+							</div>
+							
+							<!-- Vision -->
+							<div class="flex gap-4">
+								<div class="shrink-0">
+									<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700 border border-green-100">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+									</div>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold text-gray-900 mb-2">Visión</h3>
+									<p class="text-gray-600">
+										Ser líderes en la gestión de proyectos de desarrollo sostenible, investigación e innovación tecnológica, con inclusión y gran responsabilidad social y ambiental.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Images -->
+					<div class="grid grid-cols-2 gap-4 relative">
+						<div class="col-span-2">
+							<Image src={aboutBg} alt="Equipo EcoAmazónico" class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
+						</div>
+						<div>
+							<Image src={heroBg} alt="Trabajo en campo" class="w-full h-40 md:h-56 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
+						</div>
+						<div>
+							<Image src={aboutBg} alt="Maquinaria" class="w-full h-40 md:h-56 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
+						</div>
+						<!-- Decorative Elements -->
+						<div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-50 rounded-full blur-3xl opacity-50"></div>
+					</div>
+				</div>
+
+				<!-- Team Summary (Compact) -->
+				<div class="mt-20 border-t border-gray-100 pt-16">
+					<div class="text-center max-w-4xl mx-auto">
+						<h3 class="text-2xl font-bold text-gray-900 mb-6">Nuestro Equipo Técnico</h3>
+						<p class="text-gray-600 mb-8">
+							Contamos con un equipo multidisciplinario de expertos con especialidad técnica de universidades de prestigio, cubriendo temáticas como investigación, tecnología, medio ambiente, desarrollo territorial y más.
+						</p>
+						<div class="inline-block bg-gray-50 px-8 py-4 rounded-xl border border-green-100">
+							<p class="font-bold text-gray-900 text-lg">Gerente: Max John Zavala Solórzano</p>
+							<p class="text-green-700 font-medium">Doctor en Ingeniería Ambiental</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Map Section -->
 		<section id="destinos" class="py-20 bg-green-50">
 			<div class="container mx-auto px-4">
@@ -217,46 +332,197 @@ import heroBg from '../assets/hero_background_v2.jpg';
 			</div>
 		</section>
 
-		<!-- Features Section -->
-		<section id="servicios" class="py-20 bg-white">
+		<!-- Services Section -->
+		<section id="servicios" class="py-20 bg-gray-50">
+			<div class="container mx-auto px-4">
+				<!-- Header -->
+				<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+					<div class="max-w-2xl">
+						<span class="bg-green-700 text-white px-4 py-1 rounded-sm text-sm font-bold uppercase tracking-wide mb-4 inline-block">Nuestros Servicios</span>
+						<h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+							Soluciones <span class="text-green-700">seguras</span> y <span class="text-green-700">eficientes</span> para la industria, el ambiente y la comunidad.
+						</h2>
+					</div>
+					<a href="#contacto" class="bg-green-800 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition duration-300 flex items-center gap-2 shadow-lg shrink-0">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
+						Solicitar información
+					</a>
+				</div>
+
+				<!-- Cards Grid -->
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{services.map((service, index) => (
+						<div class="bg-white rounded-xl border border-gray-200 flex flex-col h-full group hover:border-green-300 transition-colors duration-300">
+							<div class="relative h-48">
+								<div class="absolute inset-0 overflow-hidden rounded-t-xl">
+									<Image src={heroBg} alt={service.title} class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+									<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+								</div>
+								<div class="absolute -bottom-6 left-6 bg-green-700 p-3 rounded-full text-white border-4 border-white z-10 flex items-center justify-center">
+									{service.icon === 'clipboard' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>}
+									{service.icon === 'search' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>}
+									{service.icon === 'users' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>}
+									{service.icon === 'truck' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>}
+									{service.icon === 'key' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>}
+								</div>
+							</div>
+							<div class="pt-10 pb-6 px-6 flex-grow flex flex-col">
+								<h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+								<p class="text-gray-600 text-sm mb-6 line-clamp-3 flex-grow">
+									{service.shortDesc}
+								</p>
+								<button 
+									class="text-green-700 font-bold text-sm flex items-center gap-2 hover:text-green-900 transition-colors group/btn open-modal-btn"
+									data-title={service.title}
+									data-desc={service.fullDesc}
+								>
+									Más detalles 
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Service Modal -->
+			<div id="service-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+				<!-- Background backdrop -->
+				<div class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+
+				<div class="fixed inset-0 z-10 overflow-y-auto">
+					<div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+						<!-- Modal panel -->
+						<div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" id="modal-panel">
+							<div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+								<div class="sm:flex sm:items-start">
+									<div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10 text-green-600">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+										</svg>
+									</div>
+									<div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+										<h3 class="text-xl font-bold leading-6 text-gray-900" id="modal-title">Service Title</h3>
+										<div class="mt-4">
+											<p class="text-sm text-gray-600" id="modal-desc">
+												Service description goes here.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+								<button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto close-modal-btn">
+									Cerrar
+								</button>
+								<a href="#contacto" class="inline-flex w-full justify-center rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 sm:mr-3 sm:w-auto close-modal-btn">
+									Cotizar ahora
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				// Modal Logic
+				const modal = document.getElementById('service-modal');
+				const backdrop = document.getElementById('modal-backdrop');
+				const panel = document.getElementById('modal-panel');
+				const modalTitle = document.getElementById('modal-title');
+				const modalDesc = document.getElementById('modal-desc');
+				const openBtns = document.querySelectorAll('.open-modal-btn');
+				const closeBtns = document.querySelectorAll('.close-modal-btn');
+
+				function openModal(title: string, desc: string) {
+					if (!modal || !modalTitle || !modalDesc || !backdrop || !panel) return;
+					
+					modalTitle.textContent = title;
+					modalDesc.textContent = desc;
+					
+					modal.classList.remove('hidden');
+					// Small delay to allow display:block to apply before opacity transition
+					setTimeout(() => {
+						backdrop.classList.remove('opacity-0');
+						panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+						panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
+					}, 10);
+				}
+
+				function closeModal() {
+					if (!modal || !backdrop || !panel) return;
+
+					backdrop.classList.add('opacity-0');
+					panel.classList.remove('opacity-100', 'translate-y-0', 'sm:scale-100');
+					panel.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+					
+					setTimeout(() => {
+						modal.classList.add('hidden');
+					}, 300);
+				}
+
+				openBtns.forEach(btn => {
+					btn.addEventListener('click', () => {
+						const title = btn.getAttribute('data-title');
+						const desc = btn.getAttribute('data-desc');
+						if (title && desc) openModal(title, desc);
+					});
+				});
+
+				closeBtns.forEach(btn => {
+					btn.addEventListener('click', closeModal);
+				});
+
+				// Close on backdrop click
+				modal?.addEventListener('click', (e) => {
+					if (e.target === backdrop || (e.target as Element).closest('#modal-backdrop')) {
+						closeModal();
+					}
+				});
+
+				// Close on Escape key
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+						closeModal();
+					}
+				});
+			</script>
+		</section>
+
+		<!-- Certificaciones Section -->
+		<section id="certificaciones" class="py-20 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
-					<p class="text-xl text-gray-600 max-w-2xl mx-auto">Ofrecemos experiencias inolvidables respetando el medio ambiente.</p>
+					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Certificaciones</h2>
 				</div>
-				
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-					<!-- Card 1 -->
-					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
-						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-							</svg>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div class="bg-white border border-green-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+						<div class="flex items-start gap-4">
+							<div class="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+							</div>
+							<div>
+								<h3 class="font-bold text-lg mb-2 text-gray-900">SENACE</h3>
+								<p class="text-gray-600 text-sm">
+									Registro Nacional de Consultores Ambientales en el Servicio Nacional de Certificación Ambiental para las Inversiones Sostenibles (Registro N° 431-2019-AGR). Autorizada para la elaboración de estudios ambientales de los proyectos de inversión.
+								</p>
+							</div>
 						</div>
-						<h3 class="text-xl font-bold mb-3 text-gray-900">Ecoturismo</h3>
-						<p class="text-gray-600">Rutas guiadas por expertos locales para conocer la flora y fauna de la región sin impactar el ecosistema.</p>
 					</div>
-
-					<!-- Card 2 -->
-					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
-						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-							</svg>
+					<div class="bg-white border border-green-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+						<div class="flex items-start gap-4">
+							<div class="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+							</div>
+							<div>
+								<h3 class="font-bold text-lg mb-2 text-gray-900">INIA</h3>
+								<p class="text-gray-600 text-sm">
+									Certificación del Instituto de Innovación Agraria para la comercialización y producción de semillas, de conformidad a la Ley General de Semillas (Ley No 27262), modificado por el Decreto Ley 1080 y su Reglamento General (Decreto Supremo No 026 -2008-AG).
+								</p>
+							</div>
 						</div>
-						<h3 class="text-xl font-bold mb-3 text-gray-900">Hospedaje Ecológico</h3>
-						<p class="text-gray-600">Cabañas construidas con materiales sostenibles, integradas perfectamente en el entorno natural.</p>
-					</div>
-
-					<!-- Card 3 -->
-					<div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
-						<div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-							</svg>
-						</div>
-						<h3 class="text-xl font-bold mb-3 text-gray-900">Actividades Culturales</h3>
-						<p class="text-gray-600">Conoce las tradiciones y costumbres de las comunidades locales a través de talleres y convivencias.</p>
 					</div>
 				</div>
 			</div>
@@ -274,16 +540,18 @@ import heroBg from '../assets/hero_background_v2.jpg';
 						<h4 class="text-lg font-bold mb-4 text-white">Enlaces Rápidos</h4>
 						<ul class="space-y-2">
 							<li><a href="#inicio" class="text-gray-400 hover:text-green-400 transition">Inicio</a></li>
-							<li><a href="#servicios" class="text-gray-400 hover:text-green-400 transition">Servicios</a></li>
 							<li><a href="#nosotros" class="text-gray-400 hover:text-green-400 transition">Nosotros</a></li>
+							<li><a href="#destinos" class="text-gray-400 hover:text-green-400 transition">Destinos</a></li>
+							<li><a href="#servicios" class="text-gray-400 hover:text-green-400 transition">Servicios</a></li>
+							<li><a href="#certificaciones" class="text-gray-400 hover:text-green-400 transition">Certificaciones</a></li>
 						</ul>
 					</div>
 					<div>
 						<h4 class="text-lg font-bold mb-4 text-white">Contacto</h4>
 						<ul class="space-y-2">
-							<li class="text-gray-400">info@ecoamazonico.com</li>
-							<li class="text-gray-400">+51 999 999 999</li>
-							<li class="text-gray-400">Amazonas, Perú</li>
+							<li class="text-gray-400">ecoamazonicoperusrl@gmail.com</li>
+							<li class="text-gray-400">945 775 810</li>
+							<li class="text-gray-400">Jr. Abancay 201, 2do piso Paucarbamba, Amarilis, Huánuco</li>
 						</ul>
 					</div>
 				</div>
