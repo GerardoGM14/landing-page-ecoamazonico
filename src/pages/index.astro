@@ -4,7 +4,6 @@ import PeruMap from '../components/PeruMap.tsx';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
-import aboutBg from '../assets/hero_background.jpg';
 
 const services = [
   {
@@ -47,70 +46,70 @@ const services = [
 		<!-- Top Bar -->
 		<div class="bg-[#272623] text-gray-300 text-xs md:text-sm py-2 block">
 			<div class="container mx-auto px-4 flex justify-between items-center md:gap-4">
-				<div class="contents md:flex md:items-center md:gap-6">
-					<div class="group relative flex items-center gap-2 cursor-pointer">
+				<div class="contents md:flex md:items-center md:justify-between md:flex-1 md:mr-4">
+					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
 						<span class="hidden md:block">+51 945 775 810</span>
 						<!-- Tooltip for Mobile -->
-						<div class="absolute top-full left-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
+						<div class="tooltip-content absolute top-full left-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
 							+51 945 775 810
 							<div class="absolute -top-1 left-2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer">	
+					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 						<span class="hidden md:block">Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso</span>
 						<!-- Tooltip for Mobile -->
-						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
+						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
 							Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer">	
+					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 						<span class="hidden md:block">Paucarbamba, Amarilis, Huánuco</span>
 						<!-- Tooltip for Mobile -->
-						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
+						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
 							Paucarbamba, Amarilis, Huánuco
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer">
+					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
 						<span class="hidden md:block">ecoamazonicoperusrl@gmail.com</span>
 						<!-- Tooltip for Mobile -->
-						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
+						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
 							ecoamazonicoperusrl@gmail.com
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</div>
 				</div>
-				<div class="contents md:flex md:items-center md:gap-4">
-					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="Facebook">
+				<div class="contents md:flex md:items-center md:gap-4 md:shrink-0">
+					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="Facebook">
 						<svg width="10" height="18" viewBox="0 0 10 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M9.34105 7.78582L9.11687 9.58099C9.07895 9.88086 8.82429 10.1064 8.52222 10.1064H5.60653V17.612C5.29904 17.6397 4.98749 17.6538 4.67256 17.6538C3.96819 17.6538 3.28075 17.5836 2.61633 17.4499V10.1064H0.373859C0.167966 10.1064 0 9.93827 0 9.73227V7.48595C0 7.27996 0.167966 7.11179 0.373859 7.11179H2.61633V3.74297C2.61633 1.67563 4.2899 0 6.35492 0H8.97126C9.17715 0 9.34512 0.16817 9.34512 0.374162V2.62049C9.34512 2.82648 9.17715 2.99465 8.97126 2.99465H7.10196C6.27636 2.99465 5.60721 3.66463 5.60721 4.49197V7.11246H8.74708C9.10739 7.11246 9.38575 7.42854 9.34173 7.78649L9.34105 7.78582Z"/>
 						</svg>
-						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
 							Facebook
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</a>
-					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="TikTok">
+					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="TikTok">
 						<svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M10.6524 12.7841V5.17503C10.6524 5.17503 11.5355 6.60502 14.7277 6.69237C14.8979 6.69701 15.0387 6.56096 15.0387 6.39555V4.24515C15.0387 4.08514 14.9075 3.95838 14.7428 3.9491C12.2667 3.81306 11.0908 1.96798 10.9754 0.27595C10.9651 0.119037 10.8234 0 10.6619 0H8.13733C7.96945 0 7.8326 0.132178 7.8326 0.296047V12.3922C7.8326 13.7063 6.79906 14.8495 5.44806 14.9114C3.90371 14.9825 2.64819 13.6947 2.83914 12.1727C2.9744 11.0975 3.86234 10.2171 4.96669 10.0679C5.18629 10.0386 5.40032 10.0362 5.60798 10.0587C5.79178 10.0787 5.95329 9.9458 5.95329 9.76647V7.61066C5.95329 7.45761 5.83315 7.32466 5.67561 7.31538C5.35895 7.29528 5.03432 7.30224 4.70493 7.33857C2.26946 7.60756 0.303425 9.52221 0.0337022 11.889C-0.321951 15.0111 2.18433 17.6538 5.32632 17.6538C8.26782 17.6538 10.6524 15.3373 10.6524 12.4796"/>
 						</svg>
-						<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
 							TikTok
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</a>
-					<a href="#" class="group relative hover:text-green-500 transition-colors" aria-label="Instagram">
+					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="Instagram">
 						<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M13.3926 0H4.26121C1.90827 0 0 1.90827 0 4.26121V13.3926C0 15.7456 1.90827 17.6538 4.26121 17.6538H13.3926C15.7456 17.6538 17.6538 15.7456 17.6538 13.3926V4.26121C17.6538 1.90827 15.7456 0 13.3926 0ZM16.1318 13.0877C16.1318 14.7681 14.7681 16.1318 13.0877 16.1318H4.56528C2.88485 16.1318 1.5212 14.7681 1.5212 13.0877V4.56528C1.5212 2.88485 2.88485 1.5212 4.56528 1.5212H13.0877C14.7681 1.5212 16.1318 2.88485 16.1318 4.56528V13.0877Z"/>
 							<path d="M8.83553 4.26134C6.31573 4.26134 4.27025 6.30683 4.27025 8.82663C4.27025 11.3464 6.31573 13.3919 8.83553 13.3919C11.3553 13.3919 13.4008 11.3464 13.4008 8.82663C13.4008 6.30683 11.3553 4.26134 8.83553 4.26134ZM8.83553 11.8707C7.15849 11.8707 5.79145 10.5037 5.79145 8.82663C5.79145 7.14958 7.15849 5.78254 8.83553 5.78254C10.5126 5.78254 11.8796 7.14958 11.8796 8.82663C11.8796 10.5037 10.5126 11.8707 8.83553 11.8707Z"/>
 							<path d="M13.7055 4.86998C14.2097 4.86998 14.6185 4.46119 14.6185 3.95692C14.6185 3.45266 14.2097 3.04387 13.7055 3.04387C13.2012 3.04387 12.7924 3.45266 12.7924 3.95692C12.7924 4.46119 13.2012 4.86998 13.7055 4.86998Z"/>
 						</svg>
-						<div class="absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
+						<div class="tooltip-content absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
 							Instagram
 							<div class="absolute -top-1 right-2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
@@ -123,7 +122,7 @@ const services = [
 		<header id="main-header" class="w-full transition-all duration-300">
 			<div class="container mx-auto px-4 py-4 flex justify-between items-center relative">
 				<div class="flex items-center space-x-2 z-50">
-					<a href="#inicio" class="flex items-center gap-2">
+					<a href="/" class="flex items-center gap-2">
 						<Image id="header-logo" src={logoImg} alt="Logo EcoAmazónico" class="h-12 w-auto object-contain brightness-0 invert transition-all duration-300" />
 					</a>
 				</div>
@@ -134,7 +133,7 @@ const services = [
 						<a href="#inicio" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Inicio</a>
 						<a href="#nosotros" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Nosotros</a>
 						<a href="#destinos" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Destinos</a>
-						<a href="#servicios" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Servicios</a>
+						<a href="/servicios" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Servicios</a>
 						<a href="#certificaciones" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Certificaciones</a>
 						<a href="#contacto" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Contacto</a>
 					</div>
@@ -155,7 +154,7 @@ const services = [
 					<a href="#inicio" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Inicio</a>
 					<a href="#nosotros" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Nosotros</a>
 					<a href="#destinos" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Destinos</a>
-					<a href="#servicios" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Servicios</a>
+					<a href="/servicios" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Servicios</a>
 					<a href="#certificaciones" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Certificaciones</a>
 					<a href="#contacto" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Contacto</a>
 					<a href="#contacto" class="bg-white text-green-900 px-8 py-3 rounded-full text-xl font-bold hover:bg-green-100 transition duration-300 shadow-lg mt-4 mobile-nav-link">
@@ -241,78 +240,70 @@ const services = [
 		</section>
 
 		<!-- Nosotros Section -->
-		<section id="nosotros" class="py-20 bg-white overflow-hidden">
+		<section id="nosotros" class="py-16 bg-white overflow-hidden">
 			<div class="container mx-auto px-4">
-				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-					<!-- Left Content -->
-					<div>
-						<span class="bg-green-700 text-white px-3 py-1 text-sm font-bold uppercase tracking-wider mb-6 inline-block rounded-sm">Sobre Nosotros</span>
-						<h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-							Más de 20 años comprometidos con la <span class="text-green-700">seguridad</span>, la <span class="text-green-700">calidad</span> y <span class="text-green-700">confianza</span>
-						</h2>
-						<p class="text-gray-600 mb-10 text-lg leading-relaxed">
-							Eco Amazónico Perú SRL es una empresa nacional que cuenta con profesionales de amplia experiencia y altos grados académicos para la gestión de proyectos de ingeniería. Nuestro desempeño laboral está dirigido tanto al sector público como privado, contando con personal altamente capacitado.
-						</p>
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+					<!-- Left Column: Text Content -->
+					<div class="space-y-4 lg:pr-16">
+						<div>
+							<span class="bg-green-700 text-white px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">Sobre Nosotros</span>
+							<h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+								18 años comprometidos con la <span class="text-green-700">seguridad</span>, la <span class="text-green-700">calidad</span> y <span class="text-green-700">confianza</span>
+							</h2>
+						</div>
 						
-						<div class="space-y-8">
-							<!-- Mision -->
-							<div class="flex gap-4">
-								<div class="shrink-0">
-									<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700 border border-green-100">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-									</div>
-								</div>
-								<div>
-									<h3 class="text-xl font-bold text-gray-900 mb-2">Misión</h3>
-									<p class="text-gray-600">
-										Agregar valor de calidad a empresas y organizaciones, brindando soluciones de gerencia, estrategias y gestión de desarrollo económico sostenible.
-									</p>
-								</div>
-							</div>
-							
-							<!-- Vision -->
-							<div class="flex gap-4">
-								<div class="shrink-0">
-									<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700 border border-green-100">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-									</div>
-								</div>
-								<div>
-									<h3 class="text-xl font-bold text-gray-900 mb-2">Visión</h3>
-									<p class="text-gray-600">
-										Ser líderes en la gestión de proyectos de desarrollo sostenible, investigación e innovación tecnológica, con inclusión y gran responsabilidad social y ambiental.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Right Images -->
-					<div class="grid grid-cols-2 gap-4 relative">
-						<div class="col-span-2">
-							<Image src={aboutBg} alt="Equipo EcoAmazónico" class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
-						</div>
-						<div>
-							<Image src={heroBg} alt="Trabajo en campo" class="w-full h-40 md:h-56 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
-						</div>
-						<div>
-							<Image src={aboutBg} alt="Maquinaria" class="w-full h-40 md:h-56 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
-						</div>
-						<!-- Decorative Elements -->
-						<div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-50 rounded-full blur-3xl opacity-50"></div>
-					</div>
-				</div>
-
-				<!-- Team Summary (Compact) -->
-				<div class="mt-20 border-t border-gray-100 pt-16">
-					<div class="text-center max-w-4xl mx-auto">
-						<h3 class="text-2xl font-bold text-gray-900 mb-6">Nuestro Equipo Técnico</h3>
-						<p class="text-gray-600 mb-8">
-							Contamos con un equipo multidisciplinario de expertos con especialidad técnica de universidades de prestigio, cubriendo temáticas como investigación, tecnología, medio ambiente, desarrollo territorial y más.
+						<p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
+							Somos una empresa altamente competitiva con más de diecisiete años de experiencia en el transporte y manejo de residuos sólidos, mantenimiento de embarcaciones y servicios generales. Nuestro desempeño laboral está dirigido tanto en plantas industriales como en flota, para lo cual contamos con personal altamente capacitado y preparado para todos los trabajos.
 						</p>
-						<div class="inline-block bg-gray-50 px-8 py-4 rounded-xl border border-green-100">
-							<p class="font-bold text-gray-900 text-lg">Gerente: Max John Zavala Solórzano</p>
-							<p class="text-green-700 font-medium">Doctor en Ingeniería Ambiental</p>
+
+						<div class="space-y-3 pt-6">
+							<!-- Misión -->
+							<div class="flex gap-3">
+								<div class="flex-shrink-0">
+									<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-700 border border-green-100">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+										</svg>
+									</div>
+								</div>
+								<div>
+									<h3 class="text-lg font-bold text-gray-900 mb-1">Misión</h3>
+									<p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
+										Brindar soluciones integrales y eficientes en la gestión, recolección y transporte de residuos sólidos, saneamiento ambiental, mantenimiento y servicios especializados para embarcaciones pesqueras, garantizando altos estándares de calidad, seguridad, puntualidad y cumplimiento normativo, contribuyendo a la continuidad operativa y al cuidado del medio ambiente.
+									</p>
+								</div>
+							</div>
+
+							<!-- Visión -->
+							<div class="flex gap-3">
+								<div class="flex-shrink-0">
+									<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-700 border border-green-100">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+										</svg>
+									</div>
+								</div>
+								<div>
+									<h3 class="text-lg font-bold text-gray-900 mb-1">Visión</h3>
+									<p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
+										Ser la empresa líder en el mercado, brindando servicios profesionales que permitan a nuestros clientes satisfacer sus necesidades, generando bienestar y prosperidad para nuestros trabajadores.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Column: Image Grid -->
+					<div class="grid grid-cols-2 gap-2 h-full">
+						<div class="col-span-2 h-64 md:h-80 rounded-3xl overflow-hidden relative group">
+							<Image src={heroBg} alt="Equipo EcoAmazónico" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+							<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+						</div>
+						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
+							<Image src={heroBg} alt="Servicios Industriales" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+						</div>
+						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
+							 <Image src={heroBg} alt="Mantenimiento" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
 						</div>
 					</div>
 				</div>
@@ -529,33 +520,58 @@ const services = [
 		</section>
 
 		<!-- Footer -->
-		<footer id="contacto" class="bg-gray-900 text-white py-12">
+		<footer id="contacto" class="bg-[#272623] text-white py-8 font-sans border-t border-gray-800">
 			<div class="container mx-auto px-4">
-				<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-					<div class="col-span-1 md:col-span-2">
-						<h3 class="text-2xl font-bold mb-4 text-green-400">EcoAmazónico</h3>
-						<p class="text-gray-400 max-w-sm">Comprometidos con la conservación de la Amazonía y el turismo responsable.</p>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+					<!-- Column 1: Brand, Social & Contact -->
+					<div class="space-y-4 text-center md:text-left">
+						<a href="/" class="inline-block">
+							<Image src={logoImg} alt="Logo EcoAmazónico" class="h-16 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+						</a>
+						<p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+							Empresa de servicios industriales y ambientales. Más de 18 años de experiencia al servicio del país.
+						</p>
+						
+						<!-- Quick Contact (Merged) -->
+						<div class="pt-2 border-t border-gray-800 space-y-3">
+							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+								<span class="text-sm font-medium">+51 945 775 810</span>
+							</div>
+							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+								<span class="text-sm font-medium">ecoamazonicoperusrl@gmail.com</span>
+							</div>
+						</div>
 					</div>
-					<div>
-						<h4 class="text-lg font-bold mb-4 text-white">Enlaces Rápidos</h4>
-						<ul class="space-y-2">
-							<li><a href="#inicio" class="text-gray-400 hover:text-green-400 transition">Inicio</a></li>
-							<li><a href="#nosotros" class="text-gray-400 hover:text-green-400 transition">Nosotros</a></li>
-							<li><a href="#destinos" class="text-gray-400 hover:text-green-400 transition">Destinos</a></li>
-							<li><a href="#servicios" class="text-gray-400 hover:text-green-400 transition">Servicios</a></li>
-							<li><a href="#certificaciones" class="text-gray-400 hover:text-green-400 transition">Certificaciones</a></li>
-						</ul>
+
+					<!-- Column 2: Huánuco Location -->
+					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
+						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+							<h3 class="text-white font-bold text-lg">Huánuco</h3>
+						</div>
+						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.567087807757!2d-76.2427849241639!3d-9.936353690165977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91a7c2e25c04010b%3A0x62a129377478052a!2sJr.%20Abancay%20201%2C%20Hu%C3%A1nuco%2010001!5e0!3m2!1sen!2spe!4v1709920000000!5m2!1sen!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full object-cover"></iframe>
+						</div>
+						<p class="text-gray-400 text-sm text-center md:text-left">Jr. Abancay 201, 2do piso Paucarbamba, Amarilis</p>
 					</div>
-					<div>
-						<h4 class="text-lg font-bold mb-4 text-white">Contacto</h4>
-						<ul class="space-y-2">
-							<li class="text-gray-400">ecoamazonicoperusrl@gmail.com</li>
-							<li class="text-gray-400">945 775 810</li>
-							<li class="text-gray-400">Jr. Abancay 201, 2do piso Paucarbamba, Amarilis, Huánuco</li>
-						</ul>
+
+					<!-- Column 3: Lima Location -->
+					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
+						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+							<h3 class="text-white font-bold text-lg">Lima</h3>
+						</div>
+						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
+							<iframe src="https://maps.google.com/maps?q=Av.+Insurgentes+594+San+Miguel+Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full object-cover"></iframe>
+						</div>
+						<p class="text-gray-400 text-sm text-center md:text-left">Av. Insurgentes 594 San Miguel</p>
 					</div>
 				</div>
-				<div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+				
+				<!-- Copyright -->
+				<div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-600 text-sm">
 					<p>&copy; {new Date().getFullYear()} EcoAmazónico. Todos los derechos reservados.</p>
 				</div>
 			</div>
@@ -645,5 +661,48 @@ const services = [
 		window.addEventListener('scroll', updateHeader);
 		// Run on load in case we start scrolled down
 		updateHeader();
+
+		// Tooltip logic for mobile
+		const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+		
+		tooltipTriggers.forEach(trigger => {
+			trigger.addEventListener('click', (e) => {
+				// Only prevent default if it's an anchor with href="#" (to avoid jumping)
+				if (trigger.tagName === 'A' && trigger.getAttribute('href') === '#') {
+					e.preventDefault();
+				}
+				e.stopPropagation();
+
+				// Close all other tooltips
+				tooltipTriggers.forEach(t => {
+					if (t !== trigger) {
+						const otherTooltip = t.querySelector('.tooltip-content');
+						otherTooltip?.classList.remove('opacity-100');
+						otherTooltip?.classList.add('opacity-0');
+					}
+				});
+
+				// Toggle current
+				const tooltip = trigger.querySelector('.tooltip-content');
+				if (tooltip) {
+					if (tooltip.classList.contains('opacity-100')) {
+						tooltip.classList.remove('opacity-100');
+						tooltip.classList.add('opacity-0');
+					} else {
+						tooltip.classList.remove('opacity-0');
+						tooltip.classList.add('opacity-100');
+					}
+				}
+			});
+		});
+
+		// Close tooltips when clicking outside
+		document.addEventListener('click', () => {
+			tooltipTriggers.forEach(t => {
+				const tooltip = t.querySelector('.tooltip-content');
+				tooltip?.classList.remove('opacity-100');
+				tooltip?.classList.add('opacity-0');
+			});
+		});
 	</script>
 </Layout>

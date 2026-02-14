@@ -4,3 +4,8 @@
   --font-sans: 'Inter', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 140px;
+}
