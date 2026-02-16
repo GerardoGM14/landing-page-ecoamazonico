@@ -6,6 +6,7 @@
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "firebase deploy",
     "astro": "astro"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@types/react-simple-maps": "^3.0.6"
+    "@types/react-simple-maps": "^3.0.6",
+    "firebase-tools": "^15.6.0"
   }
 }
