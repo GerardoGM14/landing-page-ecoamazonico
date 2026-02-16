@@ -4,6 +4,9 @@ import PeruMap from '../components/PeruMap.tsx';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
+import heroBgV1 from '../assets/hero_background.jpg';
+import ElegantCarousel from '../components/ElegantCarousel.tsx';
+import TypewriterText from '../components/TypewriterText.tsx';
 
 const services = [
   {
@@ -48,7 +51,7 @@ const services = [
 			<div class="container mx-auto px-4 flex justify-between items-center md:gap-4">
 				<div class="contents md:flex md:items-center md:justify-between md:flex-1 md:mr-4">
 					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
 						<span class="hidden md:block">+51 945 775 810</span>
 						<!-- Tooltip for Mobile -->
 						<div class="tooltip-content absolute top-full left-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
@@ -57,7 +60,7 @@ const services = [
 						</div>
 					</div>
 					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 						<span class="hidden md:block">Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso</span>
 						<!-- Tooltip for Mobile -->
 						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
@@ -66,7 +69,7 @@ const services = [
 						</div>
 					</div>
 					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 						<span class="hidden md:block">Paucarbamba, Amarilis, Huánuco</span>
 						<!-- Tooltip for Mobile -->
 						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
@@ -75,7 +78,7 @@ const services = [
 						</div>
 					</div>
 					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
 						<span class="hidden md:block">ecoamazonicoperusrl@gmail.com</span>
 						<!-- Tooltip for Mobile -->
 						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
@@ -85,7 +88,7 @@ const services = [
 					</div>
 				</div>
 				<div class="contents md:flex md:items-center md:gap-4 md:shrink-0">
-					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="Facebook">
+					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="Facebook">
 						<svg width="10" height="18" viewBox="0 0 10 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M9.34105 7.78582L9.11687 9.58099C9.07895 9.88086 8.82429 10.1064 8.52222 10.1064H5.60653V17.612C5.29904 17.6397 4.98749 17.6538 4.67256 17.6538C3.96819 17.6538 3.28075 17.5836 2.61633 17.4499V10.1064H0.373859C0.167966 10.1064 0 9.93827 0 9.73227V7.48595C0 7.27996 0.167966 7.11179 0.373859 7.11179H2.61633V3.74297C2.61633 1.67563 4.2899 0 6.35492 0H8.97126C9.17715 0 9.34512 0.16817 9.34512 0.374162V2.62049C9.34512 2.82648 9.17715 2.99465 8.97126 2.99465H7.10196C6.27636 2.99465 5.60721 3.66463 5.60721 4.49197V7.11246H8.74708C9.10739 7.11246 9.38575 7.42854 9.34173 7.78649L9.34105 7.78582Z"/>
 						</svg>
@@ -94,7 +97,7 @@ const services = [
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</a>
-					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="TikTok">
+					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="TikTok">
 						<svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M10.6524 12.7841V5.17503C10.6524 5.17503 11.5355 6.60502 14.7277 6.69237C14.8979 6.69701 15.0387 6.56096 15.0387 6.39555V4.24515C15.0387 4.08514 14.9075 3.95838 14.7428 3.9491C12.2667 3.81306 11.0908 1.96798 10.9754 0.27595C10.9651 0.119037 10.8234 0 10.6619 0H8.13733C7.96945 0 7.8326 0.132178 7.8326 0.296047V12.3922C7.8326 13.7063 6.79906 14.8495 5.44806 14.9114C3.90371 14.9825 2.64819 13.6947 2.83914 12.1727C2.9744 11.0975 3.86234 10.2171 4.96669 10.0679C5.18629 10.0386 5.40032 10.0362 5.60798 10.0587C5.79178 10.0787 5.95329 9.9458 5.95329 9.76647V7.61066C5.95329 7.45761 5.83315 7.32466 5.67561 7.31538C5.35895 7.29528 5.03432 7.30224 4.70493 7.33857C2.26946 7.60756 0.303425 9.52221 0.0337022 11.889C-0.321951 15.0111 2.18433 17.6538 5.32632 17.6538C8.26782 17.6538 10.6524 15.3373 10.6524 12.4796"/>
 						</svg>
@@ -103,7 +106,7 @@ const services = [
 							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
 						</div>
 					</a>
-					<a href="#" class="group relative hover:text-green-500 transition-colors tooltip-trigger" aria-label="Instagram">
+					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="Instagram">
 						<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
 							<path d="M13.3926 0H4.26121C1.90827 0 0 1.90827 0 4.26121V13.3926C0 15.7456 1.90827 17.6538 4.26121 17.6538H13.3926C15.7456 17.6538 17.6538 15.7456 17.6538 13.3926V4.26121C17.6538 1.90827 15.7456 0 13.3926 0ZM16.1318 13.0877C16.1318 14.7681 14.7681 16.1318 13.0877 16.1318H4.56528C2.88485 16.1318 1.5212 14.7681 1.5212 13.0877V4.56528C1.5212 2.88485 2.88485 1.5212 4.56528 1.5212H13.0877C14.7681 1.5212 16.1318 2.88485 16.1318 4.56528V13.0877Z"/>
 							<path d="M8.83553 4.26134C6.31573 4.26134 4.27025 6.30683 4.27025 8.82663C4.27025 11.3464 6.31573 13.3919 8.83553 13.3919C11.3553 13.3919 13.4008 11.3464 13.4008 8.82663C13.4008 6.30683 11.3553 4.26134 8.83553 4.26134ZM8.83553 11.8707C7.15849 11.8707 5.79145 10.5037 5.79145 8.82663C5.79145 7.14958 7.15849 5.78254 8.83553 5.78254C10.5126 5.78254 11.8796 7.14958 11.8796 8.82663C11.8796 10.5037 10.5126 11.8707 8.83553 11.8707Z"/>
@@ -130,14 +133,14 @@ const services = [
 				<!-- Desktop Navigation -->
 				<nav class="hidden md:flex items-center space-x-8">
 					<div class="flex space-x-8">
-						<a href="#inicio" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Inicio</a>
-						<a href="#nosotros" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Nosotros</a>
-						<a href="#destinos" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Destinos</a>
-						<a href="/servicios" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Servicios</a>
-						<a href="#certificaciones" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Certificaciones</a>
-						<a href="#contacto" class="nav-link text-white hover:text-green-400 font-medium transition-colors shadow-sm">Contacto</a>
+						<a href="#inicio" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Inicio</a>
+						<a href="#nosotros" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Nosotros</a>
+						<a href="#destinos" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Destinos</a>
+						<a href="/servicios" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Servicios</a>
+						<a href="#certificaciones" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Certificaciones</a>
+						<a href="#contacto" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Contacto</a>
 					</div>
-					<a href="#contacto" class="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition duration-300 shadow-lg">
+					<a href="#contacto" class="bg-eco-lime text-green-950 px-5 py-2 rounded-full font-medium hover:bg-white hover:text-green-900 transition duration-300">
 						Contáctanos
 					</a>
 				</nav>
@@ -150,14 +153,14 @@ const services = [
 				</button>
 
 				<!-- Mobile Menu Overlay -->
-				<div id="mobile-menu" class="fixed inset-0 bg-green-900/95 backdrop-blur-md z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-center items-center gap-8 md:hidden">
-					<a href="#inicio" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Inicio</a>
-					<a href="#nosotros" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Nosotros</a>
-					<a href="#destinos" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Destinos</a>
-					<a href="/servicios" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Servicios</a>
-					<a href="#certificaciones" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Certificaciones</a>
-					<a href="#contacto" class="mobile-nav-link text-2xl text-white font-bold hover:text-green-400 transition-colors">Contacto</a>
-					<a href="#contacto" class="bg-white text-green-900 px-8 py-3 rounded-full text-xl font-bold hover:bg-green-100 transition duration-300 shadow-lg mt-4 mobile-nav-link">
+				<div id="mobile-menu" class="fixed inset-0 bg-green-950/95 backdrop-blur-md z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-center items-center gap-8 md:hidden">
+					<a href="#inicio" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Inicio</a>
+					<a href="#nosotros" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Nosotros</a>
+					<a href="#destinos" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Destinos</a>
+					<a href="/servicios" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Servicios</a>
+					<a href="#certificaciones" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Certificaciones</a>
+					<a href="#contacto" class="mobile-nav-link text-2xl text-white font-bold hover:text-eco-lime transition-colors">Contacto</a>
+					<a href="#contacto" class="bg-white text-green-950 px-8 py-3 rounded-full text-xl font-bold hover:bg-eco-lime hover:text-green-950 transition duration-300 shadow-lg mt-4 mobile-nav-link">
 						Contáctanos
 					</a>
 				</div>
@@ -183,10 +186,10 @@ const services = [
 							Experiencias únicas en contacto con la naturaleza, turismo sostenible y conservación.
 						</p>
 						<div class="flex flex-col sm:flex-row gap-4">
-							<a href="#destinos" class="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-green-700 transition duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/30">
+							<a href="#destinos" class="bg-eco-lime text-green-950 px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-900 transition duration-300 flex items-center justify-center gap-2">
 								<span>Explorar Mapa</span>
 							</a>
-							<a href="#nosotros" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-900 transition duration-300 flex items-center justify-center gap-2 shadow-lg">
+							<a href="#nosotros" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-950 transition duration-300 flex items-center justify-center gap-2 shadow-lg">
 								<span>Conócenos</span>
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
 							</a>
@@ -196,11 +199,11 @@ const services = [
 					<!-- Right Side Features (Visual Style) -->
 					<div class="flex flex-col gap-4 md:gap-8 justify-center items-start md:items-end relative mt-4 md:mt-0">
 						<!-- Decorative Curve Overlay -->
-						<div class="absolute top-1/2 -right-full w-[200%] h-[200%] bg-green-900/90 rounded-full -translate-y-1/2 pointer-events-none blur-3xl opacity-20 hidden md:block"></div>
+						<div class="absolute top-1/2 -right-full w-[200%] h-[200%] bg-green-950/90 rounded-full -translate-y-1/2 pointer-events-none blur-3xl opacity-20 hidden md:block"></div>
 						
 						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-green-600/20 transition-colors shrink-0">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
 							</div>
 							<div>
 								<h3 class="font-bold text-base md:text-lg">Guías Expertos</h3>
@@ -209,8 +212,8 @@ const services = [
 						</div>
 						
 						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-green-600/20 transition-colors shrink-0">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
 							</div>
 							<div>
 								<h3 class="font-bold text-base md:text-lg">Seguridad Garantizada</h3>
@@ -219,8 +222,8 @@ const services = [
 						</div>
 						
 						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-green-600/20 transition-colors shrink-0">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
 							</div>
 							<div>
 								<h3 class="font-bold text-base md:text-lg">Turismo Sostenible</h3>
@@ -233,7 +236,7 @@ const services = [
 			
 			<!-- Bottom Curve Shape -->
 			<div class="absolute bottom-0 right-0 w-1/3 h-full pointer-events-none z-0 hidden lg:block">
-				<svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full text-green-900/80 fill-current opacity-60">
+				<svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full text-green-950/80 fill-current opacity-60">
 					<path d="M100,0 C60,20 20,60 0,100 L100,100 Z" />
 				</svg>
 			</div>
@@ -246,9 +249,9 @@ const services = [
 					<!-- Left Column: Text Content -->
 					<div class="space-y-4 lg:pr-16">
 						<div>
-							<span class="bg-green-700 text-white px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">Sobre Nosotros</span>
-							<h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-								18 años comprometidos con la <span class="text-green-700">seguridad</span>, la <span class="text-green-700">calidad</span> y <span class="text-green-700">confianza</span>
+							<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">Sobre Nosotros</span>
+							<h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight flex flex-wrap items-center gap-2">
+								18 años comprometidos con la <TypewriterText client:visible words={["seguridad", "calidad", "confianza"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" />
 							</h2>
 						</div>
 						
@@ -260,7 +263,7 @@ const services = [
 							<!-- Misión -->
 							<div class="flex gap-3">
 								<div class="flex-shrink-0">
-									<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-700 border border-green-100">
+									<div class="w-10 h-10 rounded-full bg-eco-lime/10 flex items-center justify-center text-green-950 border border-eco-lime/20">
 										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
 										</svg>
@@ -269,7 +272,7 @@ const services = [
 								<div>
 									<h3 class="text-lg font-bold text-gray-900 mb-1">Misión</h3>
 									<p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
-										Brindar soluciones integrales y eficientes en la gestión, recolección y transporte de residuos sólidos, saneamiento ambiental, mantenimiento y servicios especializados para embarcaciones pesqueras, garantizando altos estándares de calidad, seguridad, puntualidad y cumplimiento normativo, contribuyendo a la continuidad operativa y al cuidado del medio ambiente.
+										Agregar valor de calidad a empresas, gobiernos locales y regionales y organizaciones sociales, brindando soluciones y capacidades de gerencia, estrategias y gestión de desarrollo económico innovativo y sostenible.
 									</p>
 								</div>
 							</div>
@@ -277,7 +280,7 @@ const services = [
 							<!-- Visión -->
 							<div class="flex gap-3">
 								<div class="flex-shrink-0">
-									<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-700 border border-green-100">
+									<div class="w-10 h-10 rounded-full bg-eco-lime/10 flex items-center justify-center text-green-950 border border-eco-lime/20">
 										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
 										</svg>
@@ -286,7 +289,7 @@ const services = [
 								<div>
 									<h3 class="text-lg font-bold text-gray-900 mb-1">Visión</h3>
 									<p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
-										Ser la empresa líder en el mercado, brindando servicios profesionales que permitan a nuestros clientes satisfacer sus necesidades, generando bienestar y prosperidad para nuestros trabajadores.
+										Ser líderes en la gestión de proyectos de desarrollo sostenible, investigación e innovación tecnológica, con inclusión y gran responsabilidad social y ambiental, en el ámbito regional, nacional e internacional.
 									</p>
 								</div>
 							</div>
@@ -310,8 +313,89 @@ const services = [
 			</div>
 		</section>
 
+		<!-- Detailed Info Section (Dark) -->
+		<section class="py-20 bg-[#1a1a1a] text-gray-300 overflow-hidden">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<!-- Left Column: Carousel -->
+					<div class="relative h-[650px] rounded-3xl overflow-hidden shadow-2xl group order-2 lg:order-1">
+						<ElegantCarousel client:load images={[heroBg.src, heroBgV1.src, heroBg.src, heroBgV1.src]} />
+					</div>
+
+					<!-- Right Column: Text Content -->
+					<div class="order-1 lg:order-2">
+						<div class="space-y-6">
+							<div>
+								<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">¿Por qué elegirnos?</span>
+								<h2 class="text-2xl md:text-3xl font-bold text-white leading-tight">
+									Soluciones integrales con <TypewriterText client:visible words={["responsabilidad ambiental", "innovación sostenible", "compromiso social", "excelencia técnica", "visión de futuro"]} className="text-eco-lime" />
+								</h2>
+							</div>
+
+							<p class="text-gray-400 text-sm md:text-base leading-relaxed text-justify">
+								ECO AMAZONICO PERU SRL. cuenta con un equipo multidisciplinario de expertos con especialidad técnica de universidades de prestigio con alto grado académico, con más de 20 años de experiencia en investigación, tecnología e innovación.
+							</p>
+
+							<div class="space-y-6 pt-4">
+								<!-- Item 1 -->
+								<div class="flex gap-4">
+									<div class="flex-shrink-0">
+										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+											</svg>
+										</div>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold text-white mb-1">Estudios Ambientales</h3>
+										<p class="text-sm text-gray-400 leading-relaxed text-justify">
+											Elaboración de Instrumentos de Gestión Ambiental (IGAs), EVAP, monitoreo de calidad de efluentes (PTAR) y Planes de Manejo de Residuos sólidos.
+										</p>
+									</div>
+								</div>
+
+								<!-- Item 2 -->
+								<div class="flex gap-4">
+									<div class="flex-shrink-0">
+										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+											</svg>
+										</div>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold text-white mb-1">Capacitaciones Especializadas</h3>
+										<p class="text-sm text-gray-400 leading-relaxed text-justify">
+											Mitigación ambiental, mejoramiento de cadenas productivas (cacao, plátano), Buenas Prácticas Agrícolas y formación de facilitadores de ECAs.
+										</p>
+									</div>
+								</div>
+
+								<!-- Item 3 -->
+								<div class="flex gap-4">
+									<div class="flex-shrink-0">
+										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+											</svg>
+										</div>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold text-white mb-1">Proveeduría y Logística</h3>
+										<p class="text-sm text-gray-400 leading-relaxed text-justify">
+											Suministro de semillas, fertilizantes e insumos agropecuarios. Alquiler de equipos de evaluación, monitoreo ambiental y movilidad.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Map Section -->
-		<section id="destinos" class="py-20 bg-green-50">
+		<section id="destinos" class="py-20 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<div class="text-center mb-12">
 					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explora nuestros Destinos</h2>
@@ -329,12 +413,12 @@ const services = [
 				<!-- Header -->
 				<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
 					<div class="max-w-2xl">
-						<span class="bg-green-700 text-white px-4 py-1 rounded-sm text-sm font-bold uppercase tracking-wide mb-4 inline-block">Nuestros Servicios</span>
-						<h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-							Soluciones <span class="text-green-700">seguras</span> y <span class="text-green-700">eficientes</span> para la industria, el ambiente y la comunidad.
+						<span class="bg-eco-lime text-green-950 px-4 py-1 rounded-sm text-sm font-bold uppercase tracking-wide mb-4 inline-block">Nuestros Servicios</span>
+						<h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+							Soluciones <TypewriterText client:visible words={["seguras", "confiables", "robustas", "garantizadas", "certificadas"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" /> y <TypewriterText client:visible words={["eficientes", "rápidas", "optimizadas", "innovadoras", "rentables"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" /> para la industria, el ambiente y la comunidad.
 						</h2>
 					</div>
-					<a href="#contacto" class="bg-green-800 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transition duration-300 flex items-center gap-2 shadow-lg shrink-0">
+					<a href="#contacto" class="bg-eco-lime text-green-950 px-6 py-3 rounded-full font-bold hover:bg-white hover:text-green-900 transition duration-300 flex items-center gap-2 shrink-0">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
 						Solicitar información
 					</a>
@@ -343,13 +427,13 @@ const services = [
 				<!-- Cards Grid -->
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{services.map((service, index) => (
-						<div class="bg-white rounded-xl border border-gray-200 flex flex-col h-full group hover:border-green-300 transition-colors duration-300">
+						<div class="bg-white rounded-xl border border-gray-200 flex flex-col h-full group hover:border-eco-lime transition-colors duration-300">
 							<div class="relative h-48">
 								<div class="absolute inset-0 overflow-hidden rounded-t-xl">
 									<Image src={heroBg} alt={service.title} class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
 									<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
 								</div>
-								<div class="absolute -bottom-6 left-6 bg-green-700 p-3 rounded-full text-white border-4 border-white z-10 flex items-center justify-center">
+								<div class="absolute -bottom-6 left-6 bg-eco-lime p-3 rounded-full text-green-950 border-4 border-white z-10 flex items-center justify-center">
 									{service.icon === 'clipboard' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>}
 									{service.icon === 'search' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>}
 									{service.icon === 'users' && <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>}
@@ -363,7 +447,7 @@ const services = [
 									{service.shortDesc}
 								</p>
 								<button 
-									class="text-green-700 font-bold text-sm flex items-center gap-2 hover:text-green-900 transition-colors group/btn open-modal-btn"
+									class="text-green-900 font-bold text-sm flex items-center gap-2 hover:text-eco-lime transition-colors group/btn open-modal-btn"
 									data-title={service.title}
 									data-desc={service.fullDesc}
 								>
@@ -389,7 +473,7 @@ const services = [
 						<div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" id="modal-panel">
 							<div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
 								<div class="sm:flex sm:items-start">
-									<div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10 text-green-600">
+									<div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-eco-lime/10 sm:mx-0 sm:h-10 sm:w-10 text-green-950">
 										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 										</svg>
@@ -408,7 +492,7 @@ const services = [
 								<button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto close-modal-btn">
 									Cerrar
 								</button>
-								<a href="#contacto" class="inline-flex w-full justify-center rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 sm:mr-3 sm:w-auto close-modal-btn">
+								<a href="#contacto" class="inline-flex w-full justify-center rounded-md bg-eco-lime text-green-950 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-eco-lime/80 sm:mr-3 sm:w-auto close-modal-btn">
 									Cotizar ahora
 								</a>
 							</div>
@@ -489,9 +573,9 @@ const services = [
 					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Certificaciones</h2>
 				</div>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-					<div class="bg-white border border-green-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+					<div class="bg-white border border-eco-lime/20 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
 						<div class="flex items-start gap-4">
-							<div class="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+							<div class="bg-eco-lime/10 p-3 rounded-full text-green-950 shrink-0">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 							</div>
 							<div>
@@ -502,9 +586,9 @@ const services = [
 							</div>
 						</div>
 					</div>
-					<div class="bg-white border border-green-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+					<div class="bg-white border border-eco-lime/20 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
 						<div class="flex items-start gap-4">
-							<div class="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+							<div class="bg-eco-lime/10 p-3 rounded-full text-green-950 shrink-0">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 							</div>
 							<div>
@@ -535,11 +619,11 @@ const services = [
 						<!-- Quick Contact (Merged) -->
 						<div class="pt-2 border-t border-gray-800 space-y-3">
 							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
 								<span class="text-sm font-medium">+51 945 775 810</span>
 							</div>
 							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
 								<span class="text-sm font-medium">ecoamazonicoperusrl@gmail.com</span>
 							</div>
 						</div>
@@ -548,7 +632,7 @@ const services = [
 					<!-- Column 2: Huánuco Location -->
 					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
 						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
 							<h3 class="text-white font-bold text-lg">Huánuco</h3>
 						</div>
 						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
@@ -560,7 +644,7 @@ const services = [
 					<!-- Column 3: Lima Location -->
 					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
 						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
 							<h3 class="text-white font-bold text-lg">Lima</h3>
 						</div>
 						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
@@ -600,8 +684,8 @@ const services = [
 				
 				// Links: dark text
 				navLinks.forEach(link => {
-					link.classList.remove('text-white', 'shadow-sm', 'hover:text-green-400');
-					link.classList.add('text-gray-800', 'hover:text-green-600');
+					link.classList.remove('text-white', 'shadow-sm');
+					link.classList.add('text-gray-800');
 				});
 
 				// Mobile Menu Button: dark text (unless menu is open, then it might need to stay white if overlay is dark)
@@ -620,8 +704,8 @@ const services = [
 				
 				// Links: white text
 				navLinks.forEach(link => {
-					link.classList.add('text-white', 'shadow-sm', 'hover:text-green-400');
-					link.classList.remove('text-gray-800', 'hover:text-green-600');
+					link.classList.add('text-white', 'shadow-sm');
+					link.classList.remove('text-gray-800');
 				});
 
 				// Mobile Menu Button: white text

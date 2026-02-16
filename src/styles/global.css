@@ -3,6 +3,7 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
+  --color-eco-lime: #C4EA10;
 }
 
 html {

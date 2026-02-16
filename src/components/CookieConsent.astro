@@ -1,0 +1,87 @@
+---
+---
+
+<!-- Backdrop Overlay -->
+<div id="cookie-backdrop" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500 ease-in-out" aria-hidden="true"></div>
+
+<!-- Sticky Bottom Cookie Bar -->
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 z-[110] transform translate-y-full transition-transform duration-500 ease-in-out">
+  <div class="bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 md:p-6">
+    <div class="container mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+      
+      <div class="flex-1 flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
+        <div class="flex-shrink-0 bg-eco-lime/10 p-2 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+            <path d="M8.5 8.5v.01"/>
+            <path d="M16 15.5v.01"/>
+            <path d="M12 12v.01"/>
+            <path d="M11 17v.01"/>
+            <path d="M7 14v.01"/>
+          </svg>
+        </div>
+        <div class="space-y-1">
+          <h3 class="font-bold text-gray-900 text-base">Política de Cookies</h3>
+          <p class="text-gray-600 text-sm leading-relaxed max-w-2xl">
+            Utilizamos cookies propias y de terceros para mejorar su experiencia de navegación y analizar el uso de nuestra web. Al continuar navegando, acepta su uso.
+          </p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <button id="reject-cookies" class="flex-1 md:flex-none bg-gray-100 text-gray-700 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors border border-gray-200 whitespace-nowrap">
+          Rechazar
+        </button>
+        <button id="accept-cookies" class="flex-1 md:flex-none bg-eco-lime text-green-950 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-eco-lime/80 transition-colors whitespace-nowrap">
+          Aceptar todo
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cookie Consent Logic
+  const consentBar = document.getElementById('cookie-consent');
+  const backdrop = document.getElementById('cookie-backdrop');
+  const acceptBtn = document.getElementById('accept-cookies');
+  const rejectBtn = document.getElementById('reject-cookies');
+  
+  const CONSENT_KEY = 'ecoamazonico_cookie_consent';
+  
+  function showBanner() {
+    if (consentBar && backdrop) {
+      // Show backdrop
+      backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      // Slide up bar
+      consentBar.classList.remove('translate-y-full');
+    }
+  }
+  
+  function hideBanner() {
+    if (consentBar && backdrop) {
+      // Hide backdrop
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+      // Slide down bar
+      consentBar.classList.add('translate-y-full');
+    }
+  }
+  
+  function setConsent(value: string) {
+    localStorage.setItem(CONSENT_KEY, value);
+    hideBanner();
+  }
+  
+  // Check if user has already made a choice
+  const existingConsent = localStorage.getItem(CONSENT_KEY);
+  
+  if (!existingConsent) {
+    // Small delay for smooth entry
+    setTimeout(showBanner, 500);
+  }
+  
+  // Event Listeners
+  acceptBtn?.addEventListener('click', () => setConsent('accepted'));
+  rejectBtn?.addEventListener('click', () => setConsent('rejected'));
+</script>

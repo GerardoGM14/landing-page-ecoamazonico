@@ -26,7 +26,7 @@ const PeruMap = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full min-h-[500px] bg-gray-50 rounded-xl shadow-inner p-4">
-      <h3 className="text-2xl font-bold text-green-800 mb-4">Mapa de Regiones del Perú</h3>
+      <h3 className="text-2xl font-bold text-green-950 mb-4">Mapa de Regiones del Perú</h3>
       <p className="text-gray-600 mb-6">Haz clic en una región para explorar más.</p>
       
       <div className="w-full max-w-4xl border border-gray-200 rounded-lg overflow-hidden bg-blue-50 relative">
@@ -63,14 +63,14 @@ const PeruMap = () => {
                         outline: "none",
                       },
                       hover: {
-                        fill: "#4ade80", // green-400
+                        fill: "#C4EA10", // eco-lime
                         stroke: "#FFFFFF",
                         strokeWidth: 0.75,
                         outline: "none",
                         cursor: "pointer"
                       },
                       pressed: {
-                        fill: "#16a34a", // green-600
+                        fill: "#a3c20d", // darker eco-lime
                         stroke: "#FFFFFF",
                         strokeWidth: 1,
                         outline: "none",
