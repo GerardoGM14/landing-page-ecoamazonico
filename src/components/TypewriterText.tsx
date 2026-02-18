@@ -6,6 +6,8 @@ interface TypewriterTextProps {
   deletingSpeed?: number;
   pauseDuration?: number;
   className?: string;
+  speed?: number; // Alias for typingSpeed
+  cursorClassName?: string;
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({
@@ -14,10 +16,24 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   deletingSpeed = 75,
   pauseDuration = 2000,
   className = "",
+  speed,
+  cursorClassName = "",
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [cursorVisible, setCursorVisible] = useState(true);
+
+  // Use speed prop if provided, otherwise default to typingSpeed
+  const actualTypingSpeed = speed || typingSpeed;
+
+  // Blinking cursor effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setCursorVisible((prev) => !prev);
+    }, 530);
+    return () => clearInterval(cursorInterval);
+  }, []);
 
   useEffect(() => {
     const handleTyping = () => {
@@ -28,9 +44,6 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
       } else {
         setCurrentText(fullText.substring(0, currentText.length + 1));
       }
-
-      // Logic for speed changes and state transitions would be handled by the timeout duration in the next render cycle
-      // But here we are inside the callback.
     };
 
     let timer: ReturnType<typeof setTimeout>;
@@ -38,6 +51,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
 
     if (!isDeleting && currentText === fullText) {
       // Finished typing, pause before deleting
+      // If it's the last word and we don't want to loop (optional logic), but here we loop
       timer = setTimeout(() => setIsDeleting(true), pauseDuration);
     } else if (isDeleting && currentText === '') {
       // Finished deleting, move to next word
@@ -51,16 +65,16 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
         } else {
           setCurrentText(fullText.substring(0, currentText.length + 1));
         }
-      }, isDeleting ? deletingSpeed : typingSpeed);
+      }, isDeleting ? deletingSpeed : actualTypingSpeed);
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentText, isDeleting, currentWordIndex, words, actualTypingSpeed, deletingSpeed, pauseDuration]);
 
   return (
     <span className={`${className} inline-flex items-center`}>
       {currentText}
-      <span className="animate-pulse ml-0.5">|</span>
+      <span className={`ml-0.5 ${cursorVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100 ${cursorClassName}`}>|</span>
     </span>
   );
 };
