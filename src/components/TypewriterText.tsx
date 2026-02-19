@@ -8,6 +8,7 @@ interface TypewriterTextProps {
   className?: string;
   speed?: number; // Alias for typingSpeed
   cursorClassName?: string;
+  loop?: boolean; // New prop to control looping
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({
@@ -18,11 +19,13 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   className = "",
   speed,
   cursorClassName = "",
+  loop = true, // Default to true for backward compatibility
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [isFinished, setIsFinished] = useState(false); // Track if typing is finished (for non-looping)
 
   // Use speed prop if provided, otherwise default to typingSpeed
   const actualTypingSpeed = speed || typingSpeed;
@@ -36,6 +39,8 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   }, []);
 
   useEffect(() => {
+    if (isFinished) return; // Stop if finished
+
     const handleTyping = () => {
       const fullText = words[currentWordIndex];
       
@@ -50,9 +55,13 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     const fullText = words[currentWordIndex];
 
     if (!isDeleting && currentText === fullText) {
-      // Finished typing, pause before deleting
-      // If it's the last word and we don't want to loop (optional logic), but here we loop
-      timer = setTimeout(() => setIsDeleting(true), pauseDuration);
+      // Finished typing current word
+      if (!loop && currentWordIndex === words.length - 1) {
+          setIsFinished(true); // Mark as finished if it's the last word and loop is false
+      } else {
+          // Pause before deleting
+          timer = setTimeout(() => setIsDeleting(true), pauseDuration);
+      }
     } else if (isDeleting && currentText === '') {
       // Finished deleting, move to next word
       setIsDeleting(false);
@@ -69,12 +78,12 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex, words, actualTypingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentText, isDeleting, currentWordIndex, words, actualTypingSpeed, deletingSpeed, pauseDuration, loop, isFinished]);
 
   return (
     <span className={`${className} inline-flex items-center`}>
       {currentText}
-      <span className={`ml-0.5 ${cursorVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100 ${cursorClassName}`}>|</span>
+      <span className={`ml-0.5 ${cursorVisible && !isFinished ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100 ${cursorClassName}`}>|</span>
     </span>
   );
 };

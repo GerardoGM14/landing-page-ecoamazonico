@@ -34,14 +34,16 @@ const PeruMap = ({ highlightedRegions = [] }: PeruMapProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div className="flex flex-col items-center justify-start w-full h-full -mt-24 md:-mt-32">
       <div className="w-full relative">
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{
-            scale: 2000,
-            center: [-75, -9.5]
+            scale: 2200,
+            center: [-75, -10.5] // Adjusted center to move map up significantly
           }}
+          width={800}
+          height={1100}
           className="w-full h-auto"
         >
             <Geographies geography={geoUrl}>

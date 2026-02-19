@@ -258,7 +258,7 @@ const services = [
 					<!-- Left Column: Text Content -->
 					<div class="space-y-4 lg:pr-16">
 						<div>
-							<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">Sobre Nosotros</span>
+							<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm font-bold uppercase tracking-wide inline-block mb-2">Sobre Nosotros</span>
 							<h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight flex flex-wrap items-center gap-2">
 								20 años comprometidos con la <TypewriterText client:visible words={["seguridad", "calidad", "confianza"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" />
 							</h2>
@@ -335,7 +335,7 @@ const services = [
 					<div class="order-1 lg:order-2">
 						<div class="space-y-6">
 							<div>
-								<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-2">¿Por qué elegirnos?</span>
+								<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm font-bold uppercase tracking-wide inline-block mb-2">¿Por qué elegirnos?</span>
 								<h2 class="text-2xl md:text-3xl font-bold text-white leading-tight">
 									Soluciones integrales con <TypewriterText client:visible words={["responsabilidad ambiental", "innovación sostenible", "compromiso social", "excelencia técnica", "visión de futuro"]} className="text-eco-lime" />
 								</h2>
@@ -404,7 +404,7 @@ const services = [
 		</section>
 
 		<!-- Services Section -->
-		<section id="servicios" class="py-20 bg-gray-50">
+		<section id="servicios" class="pt-20 pb-10 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<!-- Header -->
 				<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -562,21 +562,26 @@ const services = [
 			</script>
 		</section>
 
+		<!-- Divider -->
+		<div class="container mx-auto px-4">
+			<div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-2 opacity-50"></div>
+		</div>
+
 		<!-- Experiencia Section -->
-		<section id="experiencia" class="py-12 md:py-20 bg-gray-50">
+		<section id="experiencia" class="py-10 md:py-12 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 					<div class="text-left">
-						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-4">
+						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm font-bold uppercase tracking-wide inline-block mb-4">
 							NUESTRA EXPERIENCIA
 						</span>
 						<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
-							<TypewriterText client:visible words={["Experiencia y Cobertura Nacional"]} className="bg-eco-lime text-green-950 px-2 py-1 rounded-sm" speed={100} cursorClassName="text-green-950" />
+							Experiencia y <TypewriterText client:visible words={["Cobertura Nacional", "Calidad Garantizada", "Profesionalismo"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" speed={100} cursorClassName="text-white" />
 						</h2>
 						<div class="text-lg text-gray-700 leading-relaxed">
 							<TypewriterText client:visible words={[
-								"Eco Amazónico Perú SRL, es una empresa nacional que cuenta con profesionales con mucha experiencia, de especialidad de prestigio y de altos grados académicos a nivel nacional y región amazónica, para la gestión de proyectos de ingeniería.\n\nHa elaborado estudios ambientales; como, elaboración de Instrumentos de Gestión Ambiental – IGAs, Estudio de Evaluación Preliminar – EVAP (instrumento de evaluación ambiental), monitoreo de calidad de efluentes del sistema de plantas de tratamiento de aguas residuales (PTAR), Plan de Manejo de Residuos sólidos.\n\nDesarrolla capacitaciones en la temática de: mitigación ambiental en canales de irrigación, mejoramiento de la cadena productiva del cacao y plátanos, Buenas Prácticas Agrícolas en cacao, sistemas de producción y conservación de suelos, capacitación y formación en facilitadores de ECAs, otros.\n\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de trasporte.\n.\n\nSoluciones robustas | y optimizadas | para la industria, el ambiente y la comunidad"
-							]} className="block min-h-[200px]" speed={20} cursorClassName="text-eco-lime" />
+								"Eco Amazónico Perú SRL, es una empresa nacional que cuenta con profesionales con mucha experiencia, de especialidad de prestigio y de altos grados académicos a nivel nacional y región amazónica, para la gestión de proyectos de ingeniería.\n\nHa elaborado estudios ambientales; como, elaboración de Instrumentos de Gestión Ambiental – IGAs, Estudio de Evaluación Preliminar – EVAP (instrumento de evaluación ambiental), monitoreo de calidad de efluentes del sistema de plantas de tratamiento de aguas residuales (PTAR), Plan de Manejo de Residuos sólidos.\n\nDesarrolla capacitaciones en la temática de: mitigación ambiental en canales de irrigación, mejoramiento de la cadena productiva del cacao y plátanos, Buenas Prácticas Agrícolas en cacao, sistemas de producción y conservación de suelos, capacitación y formación en facilitadores de ECAs, otros.\n\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de transporte."
+							]} className="block min-h-[200px]" speed={20} cursorClassName="text-eco-lime" loop={false} />
 						</div>
 
 						<!-- Stats / Metrics Section -->
@@ -615,6 +620,11 @@ const services = [
 			</div>
 		</section>
 
+		<!-- Divider -->
+		<div class="container mx-auto px-4">
+			<div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-2 opacity-50"></div>
+		</div>
+
 		<!-- Certificaciones Section -->
 		<section id="certificaciones" class="relative py-12 md:py-16 bg-gray-900 overflow-hidden">
 			<!-- Background Image -->
@@ -627,7 +637,7 @@ const services = [
 				<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 					<!-- Left Content (Main) -->
 					<div class="lg:col-span-8">
-						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-4">
+						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm font-bold uppercase tracking-wide inline-block mb-4">
 							CERTIFICADOS QUE NOS RESPALDAN
 						</span>
 						<h2 class="text-2xl md:text-3xl font-bold text-white mb-12 leading-tight max-w-2xl">
