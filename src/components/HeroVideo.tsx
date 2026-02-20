@@ -91,8 +91,8 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ poster, videos, maxDuration = 15 
 
   if (videos.length === 0) {
      return (
-        <div className="absolute inset-0 z-0">
-          <img src={poster} alt="Hero Background" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 z-0 bg-black">
+          {/* Fallback si no hay videos: Fondo negro o podríamos no renderizar nada */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
         </div>
       );
@@ -100,12 +100,14 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ poster, videos, maxDuration = 15 
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-      {/* Poster Base (Fallback) */}
+      {/* Poster Base (Fallback) - Eliminado/Oculto para que no se vea la imagen estática */}
+      {/* 
       <img 
         src={poster} 
         alt="Hero Background" 
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isLoaded ? 'opacity-0' : 'opacity-100'}`} 
       />
+      */}
 
       {/* Renderizar TODOS los videos (Estrategia más segura para pocos videos) */}
       {videos.map((src, index) => (

@@ -20,8 +20,30 @@ import CookieConsent from '../components/CookieConsent.astro';
 		<title>EcoAmazónico - Landing Page</title>
 	</head>
 	<body>
+		<!-- Loader -->
+		<div id="page-loader" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md flex items-center justify-center transition-opacity duration-700 ease-out">
+			<div class="w-12 h-12 border-4 border-white/20 border-t-eco-lime rounded-full animate-spin"></div>
+		</div>
+
 		<slot />
 		<CookieConsent />
+
+		<script>
+			// Ocultar loader cuando todo esté cargado
+			window.addEventListener('load', () => {
+				const loader = document.getElementById('page-loader');
+				if (loader) {
+					// Pequeño delay para asegurar que se vea fluido
+					setTimeout(() => {
+						loader.style.opacity = '0';
+						// Remover del DOM después de la transición
+						setTimeout(() => {
+							loader.style.display = 'none';
+						}, 700);
+					}, 500);
+				}
+			});
+		</script>
 	</body>
 </html>
 

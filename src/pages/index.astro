@@ -5,6 +5,10 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
 import heroBgV1 from '../assets/hero_background.jpg';
+import carousel1 from '../assets/carousel_nosotros_1.jpg';
+import carousel2 from '../assets/carousel_nosotros_2.jpg';
+import carousel3 from '../assets/carousel_nosotros_3.jpg';
+import carousel4 from '../assets/carousel_nosotros_4.jpg';
 import certBg from '../assets/fondo_bkg.png';
 import iconInia from '../assets/icon_inia.png';
 import iconSenace from '../assets/icon_senase.png';
@@ -335,7 +339,7 @@ const services = [
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 					<!-- Left Column: Carousel -->
 					<div class="relative h-[650px] rounded-3xl overflow-hidden shadow-2xl group order-2 lg:order-1">
-						<ElegantCarousel client:load images={[heroBg.src, heroBgV1.src, heroBg.src, heroBgV1.src]} />
+						<ElegantCarousel client:load images={[carousel1.src, carousel2.src, carousel3.src, carousel4.src]} />
 					</div>
 
 					<!-- Right Column: Text Content -->

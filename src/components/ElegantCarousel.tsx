@@ -33,7 +33,7 @@ const ElegantCarousel: React.FC<CarouselProps> = ({ images, autoPlayInterval = 5
           <img
             src={image}
             alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[2000ms]"
+            className={`w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[2000ms] ${index === 1 ? 'object-[99%_center]' : 'object-center'}`}
           />
           {/* Overlay gradient for better text readability if needed later, or just aesthetic */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
