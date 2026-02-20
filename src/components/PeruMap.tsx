@@ -39,8 +39,8 @@ const PeruMap = ({ highlightedRegions = [] }: PeruMapProps) => {
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{
-            scale: 2200,
-            center: [-75, -10.5] // Adjusted center to move map up significantly
+            scale: 1800,
+            center: [-75, -9.5] // Zoom reduced
           }}
           width={800}
           height={1100}
