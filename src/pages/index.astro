@@ -62,85 +62,8 @@ const services = [
 
 <Layout>
 	<main class="bg-gray-50 min-h-screen font-sans text-gray-800">
-		<!-- Sticky Header Wrapper -->
-		<div class="sticky top-0 z-[60] w-full -mb-20">
-		<!-- Top Bar -->
-		<div class="bg-[#272623] text-gray-300 text-xs md:text-sm py-2 block">
-			<div class="container mx-auto px-4 flex justify-between items-center md:gap-4">
-				<div class="contents md:flex md:items-center md:justify-between md:flex-1 md:mr-4">
-					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path></svg>
-						<span class="hidden md:block">+51 945 775 810</span>
-						<!-- Tooltip for Mobile -->
-						<div class="tooltip-content absolute top-full left-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
-							+51 945 775 810
-							<div class="absolute -top-1 left-2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-						<span class="hidden md:block">Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso</span>
-						<!-- Tooltip for Mobile -->
-						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
-							Av. Insurgentes 594 San Miguel - Lima | Jr. Abancay 201, 2do piso
-							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">	
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-						<span class="hidden md:block">Paucarbamba, Amarilis, Huánuco</span>
-						<!-- Tooltip for Mobile -->
-						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none z-[60] shadow-lg md:hidden w-max max-w-[200px] text-center">
-							Paucarbamba, Amarilis, Huánuco
-							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</div>
-					<div class="group relative flex items-center gap-2 cursor-pointer tooltip-trigger">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-						<span class="hidden md:block">ecoamazonicoperusrl@gmail.com</span>
-						<!-- Tooltip for Mobile -->
-						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg md:hidden">
-							ecoamazonicoperusrl@gmail.com
-							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</div>
-				</div>
-				<div class="contents md:flex md:items-center md:gap-4 md:shrink-0">
-					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="Facebook">
-						<svg width="10" height="18" viewBox="0 0 10 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
-							<path d="M9.34105 7.78582L9.11687 9.58099C9.07895 9.88086 8.82429 10.1064 8.52222 10.1064H5.60653V17.612C5.29904 17.6397 4.98749 17.6538 4.67256 17.6538C3.96819 17.6538 3.28075 17.5836 2.61633 17.4499V10.1064H0.373859C0.167966 10.1064 0 9.93827 0 9.73227V7.48595C0 7.27996 0.167966 7.11179 0.373859 7.11179H2.61633V3.74297C2.61633 1.67563 4.2899 0 6.35492 0H8.97126C9.17715 0 9.34512 0.16817 9.34512 0.374162V2.62049C9.34512 2.82648 9.17715 2.99465 8.97126 2.99465H7.10196C6.27636 2.99465 5.60721 3.66463 5.60721 4.49197V7.11246H8.74708C9.10739 7.11246 9.38575 7.42854 9.34173 7.78649L9.34105 7.78582Z"/>
-						</svg>
-						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
-							Facebook
-							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</a>
-					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="TikTok">
-						<svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
-							<path d="M10.6524 12.7841V5.17503C10.6524 5.17503 11.5355 6.60502 14.7277 6.69237C14.8979 6.69701 15.0387 6.56096 15.0387 6.39555V4.24515C15.0387 4.08514 14.9075 3.95838 14.7428 3.9491C12.2667 3.81306 11.0908 1.96798 10.9754 0.27595C10.9651 0.119037 10.8234 0 10.6619 0H8.13733C7.96945 0 7.8326 0.132178 7.8326 0.296047V12.3922C7.8326 13.7063 6.79906 14.8495 5.44806 14.9114C3.90371 14.9825 2.64819 13.6947 2.83914 12.1727C2.9744 11.0975 3.86234 10.2171 4.96669 10.0679C5.18629 10.0386 5.40032 10.0362 5.60798 10.0587C5.79178 10.0787 5.95329 9.9458 5.95329 9.76647V7.61066C5.95329 7.45761 5.83315 7.32466 5.67561 7.31538C5.35895 7.29528 5.03432 7.30224 4.70493 7.33857C2.26946 7.60756 0.303425 9.52221 0.0337022 11.889C-0.321951 15.0111 2.18433 17.6538 5.32632 17.6538C8.26782 17.6538 10.6524 15.3373 10.6524 12.4796"/>
-						</svg>
-						<div class="tooltip-content absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
-							TikTok
-							<div class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</a>
-					<a href="#" class="group relative hover:text-eco-lime transition-colors tooltip-trigger" aria-label="Instagram">
-						<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
-							<path d="M13.3926 0H4.26121C1.90827 0 0 1.90827 0 4.26121V13.3926C0 15.7456 1.90827 17.6538 4.26121 17.6538H13.3926C15.7456 17.6538 17.6538 15.7456 17.6538 13.3926V4.26121C17.6538 1.90827 15.7456 0 13.3926 0ZM16.1318 13.0877C16.1318 14.7681 14.7681 16.1318 13.0877 16.1318H4.56528C2.88485 16.1318 1.5212 14.7681 1.5212 13.0877V4.56528C1.5212 2.88485 2.88485 1.5212 4.56528 1.5212H13.0877C14.7681 1.5212 16.1318 2.88485 16.1318 4.56528V13.0877Z"/>
-							<path d="M8.83553 4.26134C6.31573 4.26134 4.27025 6.30683 4.27025 8.82663C4.27025 11.3464 6.31573 13.3919 8.83553 13.3919C11.3553 13.3919 13.4008 11.3464 13.4008 8.82663C13.4008 6.30683 11.3553 4.26134 8.83553 4.26134ZM8.83553 11.8707C7.15849 11.8707 5.79145 10.5037 5.79145 8.82663C5.79145 7.14958 7.15849 5.78254 8.83553 5.78254C10.5126 5.78254 11.8796 7.14958 11.8796 8.82663C11.8796 10.5037 10.5126 11.8707 8.83553 11.8707Z"/>
-							<path d="M13.7055 4.86998C14.2097 4.86998 14.6185 4.46119 14.6185 3.95692C14.6185 3.45266 14.2097 3.04387 13.7055 3.04387C13.2012 3.04387 12.7924 3.45266 12.7924 3.95692C12.7924 4.46119 13.2012 4.86998 13.7055 4.86998Z"/>
-						</svg>
-						<div class="tooltip-content absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-[60] shadow-lg">
-							Instagram
-							<div class="absolute -top-1 right-2 border-4 border-transparent border-b-gray-900"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-
 		<!-- Header -->
-		<header id="main-header" class="w-full transition-all duration-300">
+		<header id="main-header" class="fixed top-0 w-full transition-all duration-300 z-50">
 			<div class="container mx-auto px-4 py-4 flex justify-between items-center relative">
 				<div class="flex items-center space-x-2 z-50">
 					<a href="/" class="flex items-center gap-2">
@@ -184,7 +107,6 @@ const services = [
 				</div>
 			</div>
 		</header>
-		</div>
 
 		<!-- Hero Section -->
 		<section id="inicio" class="relative min-h-[95dvh] md:min-h-screen flex items-end pt-20 pb-4 md:pb-32 overflow-hidden">
@@ -219,56 +141,12 @@ const services = [
 						</div>
 					</div>
 					
-					<!-- Right Side Features (Visual Style) -->
-					<div class="flex flex-col gap-4 md:gap-8 justify-center items-start md:items-end relative mt-4 md:mt-0">
-						<!-- Decorative Curve Overlay -->
-						<div class="absolute top-1/2 -right-full w-[200%] h-[200%] bg-green-950/90 rounded-full -translate-y-1/2 pointer-events-none blur-3xl opacity-20 hidden md:block"></div>
-						
-						<!-- Item 1: Estudios Ambientales -->
-						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
-								<!-- Icon: Clipboard/Document -->
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-							</div>
-							<div>
-								<h3 class="font-bold text-base md:text-lg">Estudios Ambientales</h3>
-								<p class="text-xs md:text-sm text-gray-300">IGAs, EVAP, monitoreo y manejo de residuos.</p>
-							</div>
-						</div>
-						
-						<!-- Item 2: Capacitaciones -->
-						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
-								<!-- Icon: Users/Presentation -->
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-							</div>
-							<div>
-								<h3 class="font-bold text-base md:text-lg">Capacitaciones</h3>
-								<p class="text-xs md:text-sm text-gray-300">Mitigación, producción y buenas prácticas.</p>
-							</div>
-						</div>
-						
-						<!-- Item 3: Proveeduría -->
-						<div class="flex items-center gap-4 text-white relative z-10 group flex-row md:flex-row-reverse text-left md:text-right w-full md:w-auto">
-							<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm group-hover:bg-eco-lime/20 transition-colors shrink-0">
-								<!-- Icon: Truck -->
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 text-eco-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" /></svg>
-							</div>
-							<div>
-								<h3 class="font-bold text-base md:text-lg">Proveeduría y Logística</h3>
-								<p class="text-xs md:text-sm text-gray-300">Insumos, equipos y transporte.</p>
-							</div>
-						</div>
-					</div>
+					<!-- Right Side Features removed -->
+					<div class="hidden"></div>
 				</div>
 			</div>
 			
-			<!-- Bottom Curve Shape -->
-			<div class="absolute bottom-0 right-0 w-1/3 h-full pointer-events-none z-0 hidden lg:block">
-				<svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full text-green-950/80 fill-current opacity-60">
-					<path d="M100,0 C60,20 20,60 0,100 L100,100 Z" />
-				</svg>
-			</div>
+
 		</section>
 
 		<!-- Nosotros Section -->
@@ -378,7 +256,7 @@ const services = [
 									<div>
 										<h3 class="text-lg font-bold text-white mb-1">Estudios Ambientales</h3>
 										<p class="text-sm text-gray-400 leading-relaxed text-justify">
-											Elaboración de Instrumentos de Gestión Ambiental (IGAs), EVAP, monitoreo de calidad de efluentes (PTAR) y Planes de Manejo de Residuos sólidos.
+											Elaboración de Instrumentos de Gestión Ambiental, evaluación y monitoreo de la calidad de agua, suelo y aire, Planes de Manejo Ambiental, servicios ecosistémicos y otros.
 										</p>
 									</div>
 								</div>
@@ -395,7 +273,7 @@ const services = [
 									<div>
 										<h3 class="text-lg font-bold text-white mb-1">Capacitaciones Especializadas</h3>
 										<p class="text-sm text-gray-400 leading-relaxed text-justify">
-											Mitigación ambiental, mejoramiento de cadenas productivas (cacao, plátano), Buenas Prácticas Agrícolas y formación de facilitadores de ECAs.
+											Manejo Integrado de Plagas, gestión del suelo, innovación y resiliencia climática de cultivos amazónicos y altoandinos, Buenas Prácticas Agrícolas, formación de facilitadores y promotores, otros.
 										</p>
 									</div>
 								</div>
@@ -412,7 +290,7 @@ const services = [
 									<div>
 										<h3 class="text-lg font-bold text-white mb-1">Proveeduría y Logística</h3>
 										<p class="text-sm text-gray-400 leading-relaxed text-justify">
-											Suministro de semillas, fertilizantes e insumos agropecuarios. Alquiler de equipos de evaluación, monitoreo ambiental y movilidad.
+											Suministro de semillas, plantones, fertilizantes e insumos agropecuarios, venta de equipos, herramientas y materiales de construcción, alquiler de equipos de evaluación, monitoreo ambiental y movilidad y otros.
 										</p>
 									</div>
 								</div>
@@ -588,39 +466,53 @@ const services = [
 		</div>
 
 		<!-- Experiencia Section -->
-		<section id="experiencia" class="py-10 md:py-12 bg-gray-50">
+		<section id="experiencia" class="pt-10 pb-0 md:pt-12 md:pb-0 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 					<div class="text-left">
 						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm font-bold uppercase tracking-wide inline-block mb-4">
 							NUESTRA EXPERIENCIA
 						</span>
-						<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+						<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
 							Experiencia y <TypewriterText client:visible words={["Cobertura Nacional", "Calidad Garantizada", "Profesionalismo"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" speed={100} cursorClassName="text-white" />
 						</h2>
 						<div class="text-lg text-gray-700 leading-relaxed">
 							<TypewriterText client:visible words={[
-								"Eco Amazónico Perú SRL, es una empresa nacional que cuenta con profesionales con mucha experiencia, de especialidad de prestigio y de altos grados académicos a nivel nacional y región amazónica, para la gestión de proyectos de ingeniería.\n\nHa elaborado estudios ambientales; como, elaboración de Instrumentos de Gestión Ambiental – IGAs, Estudio de Evaluación Preliminar – EVAP (instrumento de evaluación ambiental), monitoreo de calidad de efluentes del sistema de plantas de tratamiento de aguas residuales (PTAR), Plan de Manejo de Residuos sólidos.\n\nDesarrolla capacitaciones en la temática de: mitigación ambiental en canales de irrigación, mejoramiento de la cadena productiva del cacao y plátanos, Buenas Prácticas Agrícolas en cacao, sistemas de producción y conservación de suelos, capacitación y formación en facilitadores de ECAs, otros.\n\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de transporte."
+								"Eco Amazónico Perú SRL, es una empresa nacional que ha realizado servicios en la gestión de proyectos de desarrollo rural y alternativo, investigación, soluciones tecnológicas resilientes e innovadoras en las temáticas agropecuario, forestal, ambiental, organización de productores, fortalecimiento de capacidades técnicas y organizativas, gestión integral de residuos sólidos, economía circular y otros, en las regiones de Ucayali, San Martin, Huánuco, Junín, Pasco, Lima y otros, trabajando con instituciones del estado, gobiernos regionales y locales, empresas privados y universidades para innovar la competitividad productividad.\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de transporte."
 							]} className="block min-h-[200px]" speed={20} cursorClassName="text-eco-lime" loop={false} />
 						</div>
 
 						<!-- Stats / Metrics Section -->
-						<div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-200">
-							<div class="text-center md:text-left">
-								<h4 class="text-3xl font-bold text-eco-lime">+10</h4>
-								<p class="text-xs md:text-sm text-gray-600 font-medium uppercase tracking-wide mt-1">Años de<br/>Experiencia</p>
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-gray-200">
+							<!-- Metric 1 -->
+							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+								</div>
+								<h4 class="text-3xl font-bold text-gray-900 mb-1">+10</h4>
+								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Años de<br/>Experiencia</p>
 							</div>
-							<div class="text-center md:text-left">
-								<h4 class="text-3xl font-bold text-eco-lime">Nacional</h4>
-								<p class="text-xs md:text-sm text-gray-600 font-medium uppercase tracking-wide mt-1">Cobertura<br/>Total</p>
+							
+							<!-- Metric 2 -->
+							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+								</div>
+								<h4 class="text-3xl font-bold text-gray-900 mb-1">Nacional</h4>
+								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Cobertura<br/>Total</p>
 							</div>
-							<div class="text-center md:text-left">
-								<h4 class="text-3xl font-bold text-eco-lime">+50</h4>
-								<p class="text-xs md:text-sm text-gray-600 font-medium uppercase tracking-wide mt-1">Proyectos<br/>Ejecutados</p>
+							
+							<!-- Metric 3 -->
+							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+								</div>
+								<h4 class="text-3xl font-bold text-gray-900 mb-1">+50</h4>
+								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Proyectos<br/>Ejecutados</p>
 							</div>
 						</div>
 					</div>
-					<div class="flex justify-center w-full h-full relative">
+					<div class="flex justify-center w-full h-full relative -mb-12 md:-mb-16">
 						<!-- Map Legend -->
 						<div class="absolute top-0 right-0 z-10 bg-white/90 backdrop-blur-sm p-3 rounded-md shadow-sm border border-gray-100 max-w-[200px]">
 							<div class="flex items-center gap-2 mb-2">
@@ -646,7 +538,7 @@ const services = [
 		</div>
 
 		<!-- Certificaciones Section -->
-		<section id="certificaciones" class="relative pt-8 md:pt-12 pb-12 md:pb-16 bg-gray-900 overflow-hidden">
+		<section id="certificaciones" class="relative pt-10 md:pt-14 pb-12 md:pb-16 bg-gray-900 overflow-hidden">
 			<!-- Background Image -->
 			<div class="absolute inset-0 z-0">
 				<Image src={certBg} alt="Fondo Certificaciones" class="w-full h-full object-cover opacity-60" />
@@ -704,7 +596,7 @@ const services = [
 									<path id="curve" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
 									<text font-size="10.5" font-weight="bold" letter-spacing="1.5">
 										<textPath href="#curve">
-											100% GARANTÍA • CALIDAD • CONFIANZA •
+											• GARANTÍA • CALIDAD • CONFIANZA
 										</textPath>
 									</text>
 								</svg>
@@ -723,7 +615,7 @@ const services = [
 		</section>
 
 		<!-- Footer -->
-		<footer id="contacto" class="bg-[#272623] text-white py-8 font-sans border-t border-gray-800">
+		<footer id="contacto" class="bg-[#272623] text-white py-8 font-sans">
 			<div class="container mx-auto px-4">
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 					<!-- Column 1: Brand, Social & Contact -->
@@ -731,28 +623,58 @@ const services = [
 						<a href="/" class="inline-block">
 							<Image src={logoImg} alt="Logo EcoAmazónico" class="h-16 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
 						</a>
-						<p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-							Empresa de servicios industriales y ambientales. Más de 18 años de experiencia al servicio del país.
-						</p>
-						
+					
 						<!-- Quick Contact (Merged) -->
-						<div class="pt-2 border-t border-gray-800 space-y-3">
-							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-								<span class="text-sm font-medium">+51 945 775 810</span>
+						<div class="space-y-6">
+							<div>
+								<p class="text-sm text-white-500 font-semibold tracking-wider mb-2">Teléfono</p>
+								<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+									<span class="text-sm font-medium">+51 945 775 810</span>
+								</div>
 							</div>
-							<div class="flex items-center gap-3 justify-center md:justify-start text-gray-400">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-								<span class="text-sm font-medium">ecoamazonicoperusrl@gmail.com</span>
+							
+							<div>
+								<p class="text-sm text-white-500 font-semibold tracking-wider mb-2">Correo</p>
+								<div class="flex flex-col w-fit mx-auto md:mx-0">
+									<div class="flex items-center gap-3 text-gray-400">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+										<span class="text-sm font-medium">ecoamazonicoperusrl@gmail.com</span>
+									</div>
+								</div>
+							</div>
+								
+							<div>
+								<p class="text-sm text-white-500 font-semibold tracking-wider mb-3 mt-2">Nuestro Contacto</p>
+								<!-- Social Media Icons -->
+								<div class="flex items-center justify-start gap-10">
+									<a href="#" class="text-gray-400 hover:text-eco-lime transition-colors" aria-label="Facebook">
+										<svg class="h-6 w-auto" fill="currentColor" viewBox="0 0 10 18" xmlns="http://www.w3.org/2000/svg">
+											<path d="M9.34105 7.78582L9.11687 9.58099C9.07895 9.88086 8.82429 10.1064 8.52222 10.1064H5.60653V17.612C5.29904 17.6397 4.98749 17.6538 4.67256 17.6538C3.96819 17.6538 3.28075 17.5836 2.61633 17.4499V10.1064H0.373859C0.167966 10.1064 0 9.93827 0 9.73227V7.48595C0 7.27996 0.167966 7.11179 0.373859 7.11179H2.61633V3.74297C2.61633 1.67563 4.2899 0 6.35492 0H8.97126C9.17715 0 9.34512 0.16817 9.34512 0.374162V2.62049C9.34512 2.82648 9.17715 2.99465 8.97126 2.99465H7.10196C6.27636 2.99465 5.60721 3.66463 5.60721 4.49197V7.11246H8.74708C9.10739 7.11246 9.38575 7.42854 9.34173 7.78649L9.34105 7.78582Z" fill="currentColor"/>
+										</svg>
+									</a>
+									<a href="#" class="text-gray-400 hover:text-eco-lime transition-colors" aria-label="TikTok">
+										<svg class="h-6 w-auto" fill="currentColor" viewBox="0 0 16 18" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10.6524 12.7841V5.17503C10.6524 5.17503 11.5355 6.60502 14.7277 6.69237C14.8979 6.69701 15.0387 6.56096 15.0387 6.39555V4.24515C15.0387 4.08514 14.9075 3.95838 14.7428 3.9491C12.2667 3.81306 11.0908 1.96798 10.9754 0.27595C10.9651 0.119037 10.8234 0 10.6619 0H8.13733C7.96945 0 7.8326 0.132178 7.8326 0.296047V12.3922C7.8326 13.7063 6.79906 14.8495 5.44806 14.9114C3.90371 14.9825 2.64819 13.6947 2.83914 12.1727C2.9744 11.0975 3.86234 10.2171 4.96669 10.0679C5.18629 10.0386 5.40032 10.0362 5.60798 10.0587C5.79178 10.0787 5.95329 9.9458 5.95329 9.76647V7.61066C5.95329 7.45761 5.83315 7.32466 5.67561 7.31538C5.35895 7.29528 5.03432 7.30224 4.70493 7.33857C2.26946 7.60756 0.303425 9.52221 0.0337022 11.889C-0.321951 15.0111 2.18433 17.6538 5.32632 17.6538C8.26782 17.6538 10.6524 15.3373 10.6524 12.4796" fill="currentColor"/>
+										</svg>
+									</a>
+									<a href="#" class="text-gray-400 hover:text-eco-lime transition-colors" aria-label="Instagram">
+										<svg class="h-6 w-auto" fill="currentColor" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+											<path d="M13.3926 0H4.26121C1.90827 0 0 1.90827 0 4.26121V13.3926C0 15.7456 1.90827 17.6538 4.26121 17.6538H13.3926C15.7456 17.6538 17.6538 15.7456 17.6538 13.3926V4.26121C17.6538 1.90827 15.7456 0 13.3926 0ZM16.1318 13.0877C16.1318 14.7681 14.7681 16.1318 13.0877 16.1318H4.56528C2.88485 16.1318 1.5212 14.7681 1.5212 13.0877V4.56528C1.5212 2.88485 2.88485 1.5212 4.56528 1.5212H13.0877C14.7681 1.5212 16.1318 2.88485 16.1318 4.56528V13.0877Z" fill="currentColor"/>
+											<path d="M8.83553 4.26134C6.31573 4.26134 4.27025 6.30683 4.27025 8.82663C4.27025 11.3464 6.31573 13.3919 8.83553 13.3919C11.3553 13.3919 13.4008 11.3464 13.4008 8.82663C13.4008 6.30683 11.3553 4.26134 8.83553 4.26134ZM8.83553 11.8707C7.15849 11.8707 5.79145 10.5037 5.79145 8.82663C5.79145 7.14958 7.15849 5.78254 8.83553 5.78254C10.5126 5.78254 11.8796 7.14958 11.8796 8.82663C11.8796 10.5037 10.5126 11.8707 8.83553 11.8707Z" fill="currentColor"/>
+											<path d="M13.7055 4.86998C14.2097 4.86998 14.6185 4.46119 14.6185 3.95692C14.6185 3.45266 14.2097 3.04387 13.7055 3.04387C13.2012 3.04387 12.7924 3.45266 12.7924 3.95692C12.7924 4.46119 13.2012 4.86998 13.7055 4.86998Z" fill="currentColor"/>
+										</svg>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
 
 					<!-- Column 2: Huánuco Location -->
-					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
+					<div class="space-y-4 h-full">
 						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-							<h3 class="text-white font-bold text-lg">Huánuco</h3>
+							<h3 class="text-white font-bold text-lg">Sede Junín - Huánuco</h3>
 						</div>
 						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.567087807757!2d-76.2427849241639!3d-9.936353690165977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91a7c2e25c04010b%3A0x62a129377478052a!2sJr.%20Abancay%20201%2C%20Hu%C3%A1nuco%2010001!5e0!3m2!1sen!2spe!4v1709920000000!5m2!1sen!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full object-cover"></iframe>
@@ -761,10 +683,10 @@ const services = [
 					</div>
 
 					<!-- Column 3: Lima Location -->
-					<div class="space-y-4 border-t md:border-t-0 md:border-l border-gray-800 pt-8 md:pt-0 md:pl-8 h-full">
+					<div class="space-y-4 h-full">
 						<div class="flex items-center gap-2 justify-center md:justify-start mb-2">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-eco-lime shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-							<h3 class="text-white font-bold text-lg">Lima</h3>
+							<h3 class="text-white font-bold text-lg">Sede Central - Lima</h3>
 						</div>
 						<div class="rounded-xl overflow-hidden h-40 bg-gray-800 relative border border-gray-700 shadow-lg">
 							<iframe src="https://maps.google.com/maps?q=Av.+Insurgentes+594+San+Miguel+Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full object-cover"></iframe>
@@ -774,7 +696,7 @@ const services = [
 				</div>
 				
 				<!-- Copyright -->
-				<div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-600 text-sm">
+				<div class="text-center text-gray-600 text-sm mt-4">
 					<p>&copy; {new Date().getFullYear()} EcoAmazónico. Todos los derechos reservados.</p>
 				</div>
 			</div>

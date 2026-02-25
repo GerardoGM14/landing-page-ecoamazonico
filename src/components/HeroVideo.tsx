@@ -131,7 +131,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ poster, videos, maxDuration = 15 
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 z-20 pointer-events-none"></div>
     </div>
   );
 };
