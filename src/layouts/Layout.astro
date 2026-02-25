@@ -28,7 +28,7 @@ import whatsappIcon from '../assets/icono_whatsapp.svg';
 		</div>
 
 		<slot />
-		<WhatsAppButton client:load iconSrc={whatsappIcon.src || whatsappIcon} />
+		<WhatsAppButton client:load iconSrc={typeof whatsappIcon === 'string' ? whatsappIcon : whatsappIcon.src} />
 		<CookieConsent />
 
 		<script>
