@@ -7,6 +7,8 @@ import '@fontsource/poppins/700.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
 import CookieConsent from '../components/CookieConsent.astro';
+import WhatsAppButton from '../components/WhatsAppButton';
+import whatsappIcon from '../assets/icono_whatsapp.svg';
 ---
 
 <!doctype html>
@@ -26,6 +28,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 		</div>
 
 		<slot />
+		<WhatsAppButton client:load iconSrc={whatsappIcon.src || whatsappIcon} />
 		<CookieConsent />
 
 		<script>
