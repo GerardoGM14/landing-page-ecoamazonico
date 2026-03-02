@@ -10,7 +10,7 @@ import carousel2 from '../assets/carousel_nosotros_2.jpg';
 import carousel3 from '../assets/carousel_nosotros_3.jpg';
 import carousel4 from '../assets/carousel_nosotros_4.jpg';
 import serv1 from '../assets/servicio_1.jpg';
-import serv2 from '../assets/servicio_2.jpg';
+import serv2 from '../assets/servicio_2.webp';
 import serv3 from '../assets/servicio_3.jpg';
 import serv4 from '../assets/servicio_4.jpg';
 import serv5 from '../assets/servicio_5.jpg';
@@ -20,6 +20,11 @@ import iconSenace from '../assets/icon_senase.png';
 import ElegantCarousel from '../components/ElegantCarousel.tsx';
 import TypewriterText from '../components/TypewriterText.tsx';
 import HeroVideo from '../components/HeroVideo.tsx';
+
+// Imágenes para la sección Sobre Nosotros
+import about1 from '../assets/about_1.jpg';
+import about2 from '../assets/about_2.jpg';
+import about3 from '../assets/about_3.jpg';
 
 const services = [
   {
@@ -115,9 +120,9 @@ const services = [
 				client:only="react" 
 				poster={heroBg.src} 
 				videos={[
-					"/video_hero_1.mp4",
-					"/video_hero_2.mp4",
-					"/video_hero_3.mp4"
+					"/selva-video.mp4",
+					"/sierra-video.mp4",
+					"/costa-video.mp4"
 				]} 
 				maxDuration={15}
 			/>
@@ -208,14 +213,14 @@ const services = [
 					<!-- Right Column: Image Grid -->
 					<div class="grid grid-cols-2 gap-2 h-full">
 						<div class="col-span-2 h-64 md:h-80 rounded-3xl overflow-hidden relative group">
-							<Image src={heroBg} alt="Equipo EcoAmazónico" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+							<Image src={about1} alt="Equipo EcoAmazónico" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
 							<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
 						</div>
 						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
-							<Image src={heroBg} alt="Servicios Industriales" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+							<Image src={about2} alt="Servicios Industriales" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
 						</div>
 						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
-							 <Image src={heroBg} alt="Mantenimiento" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+							 <Image src={about3} alt="Mantenimiento" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
 						</div>
 					</div>
 				</div>
