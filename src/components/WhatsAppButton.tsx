@@ -15,6 +15,23 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ iconSrc }) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const handleOpenChat = (event: CustomEvent<{ message: string }>) => {
+      // Ensure button is visible (even if not scrolled down enough, we force it)
+      setIsVisible(true);
+      setIsOpen(true);
+      if (event.detail && event.detail.message) {
+        setFormData(prev => ({ ...prev, message: event.detail.message }));
+      }
+    };
+
+    window.addEventListener('open-whatsapp-chat', handleOpenChat as EventListener);
+    
+    return () => {
+      window.removeEventListener('open-whatsapp-chat', handleOpenChat as EventListener);
+    };
+  }, []);
+
+  useEffect(() => {
     const toggleVisibility = () => {
       // Show button after scrolling past the hero section (approx 800px or window height)
       if (window.scrollY > window.innerHeight * 0.8) {

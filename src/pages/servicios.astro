@@ -4,19 +4,51 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
 import heroBgV1 from '../assets/hero_background.jpg';
+import serv1_1 from '../assets/servicio_1.jpg';
+import serv1_2 from '../assets/carousel_nosotros_1.jpg';
+import serv1_3 from '../assets/carousel_nosotros_2.jpg';
+
+import serv2_1 from '../assets/servicio_2.webp';
+import serv2_2 from '../assets/carousel_nosotros_3.jpg';
+import serv2_3 from '../assets/carousel_nosotros_4.jpg';
+
+import serv3_1 from '../assets/servicio_3.jpg';
+import serv3_2 from '../assets/about_1.jpg';
+import serv3_3 from '../assets/about_2.jpg';
+
+import serv4_1 from '../assets/servicio_4.jpg';
+import serv4_2 from '../assets/about_3.jpg';
+import serv4_3 from '../assets/hero_background.jpg';
+
+import serv5_1 from '../assets/alquiler_1.jpg';
+import serv5_2 from '../assets/alquiler_2.jpg';
+import serv5_3 from '../assets/fondo_bkg.png';
+
 import { services } from '../data/services.js';
 import InteractiveServices from '../components/InteractiveServices';
 
 const servicesWithImages = services.map((service, index) => {
-	// Logic to assign different images to each service to demonstrate independence
-	// This is temporary until we have specific images for each service
+	// Assign specific images for each service
 	let serviceImages = [];
-	if (index % 3 === 0) {
-		serviceImages = [heroBg.src, heroBgV1.src];
-	} else if (index % 3 === 1) {
-		serviceImages = [heroBgV1.src, heroBg.src, heroBgV1.src];
-	} else {
-		serviceImages = [heroBg.src, heroBgV1.src, heroBg.src];
+	
+	switch(index) {
+		case 0: // Formulación y evaluación de proyectos
+			serviceImages = [serv1_1.src, serv1_2.src];
+			break;
+		case 1: // Estudios, Investigación y análisis
+			serviceImages = [serv2_1.src, serv2_2.src];
+			break;
+		case 2: // Extensión y Capacitación
+			serviceImages = [serv3_1.src, serv3_2.src];
+			break;
+		case 3: // Proveedores
+			serviceImages = [serv4_1.src, serv4_2.src];
+			break;
+		case 4: // Alquileres
+			serviceImages = [serv5_1.src, serv5_2.src];
+			break;
+		default:
+			serviceImages = [heroBg.src, heroBgV1.src];
 	}
 	
 	return {
@@ -78,7 +110,17 @@ const servicesWithImages = services.map((service, index) => {
 		<!-- Page Header -->
 		<div class="relative bg-green-950 py-32 md:py-48 flex items-center justify-center overflow-hidden">
 			<div class="absolute inset-0 z-0">
-				<Image src={heroBg} alt="Servicios Background" class="w-full h-full object-cover opacity-30" />
+				<video 
+					autoplay 
+					loop 
+					muted 
+					playsinline 
+					class="w-full h-full object-cover opacity-40 object-center"
+					style="object-position: center 100%"
+				>
+					<source src="/nuestros-servicios.mp4" type="video/mp4" />
+					Your browser does not support the video tag.
+				</video>
 			</div>
 			<div class="relative z-10 text-center px-4">
 				<h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Nuestros Servicios</h1>

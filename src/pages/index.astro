@@ -86,7 +86,7 @@ const services = [
 						<a href="#certificaciones" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Certificaciones</a>
 						<a href="#contacto" class="nav-link text-white hover:text-eco-lime font-medium transition-colors shadow-sm">Contacto</a>
 					</div>
-					<a href="#contacto" class="bg-eco-lime text-green-950 px-5 py-2 rounded-full font-medium hover:bg-white hover:text-green-900 transition duration-300">
+					<a href="#contacto" class="bg-eco-lime text-green-950 px-5 py-2 rounded-full fon3t-medium hover:bg-white hover:text-green-900 transition duration-300">
 						Contáctanos
 					</a>
 				</nav>
@@ -393,7 +393,7 @@ const services = [
 								<button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto close-modal-btn">
 									Cerrar
 								</button>
-								<a href="#contacto" class="inline-flex w-full justify-center rounded-md bg-eco-lime text-green-950 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-eco-lime/80 sm:mr-3 sm:w-auto close-modal-btn">
+								<a href="#" id="modal-quote-btn" target="_blank" rel="noopener noreferrer" class="inline-flex w-full justify-center rounded-md bg-eco-lime text-green-950 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-eco-lime/80 sm:mr-3 sm:w-auto">
 									Cotizar ahora
 								</a>
 							</div>
@@ -409,6 +409,7 @@ const services = [
 				const panel = document.getElementById('modal-panel');
 				const modalTitle = document.getElementById('modal-title');
 				const modalDesc = document.getElementById('modal-desc');
+				const quoteBtn = document.getElementById('modal-quote-btn') as HTMLAnchorElement;
 				const openBtns = document.querySelectorAll('.open-modal-btn');
 				const closeBtns = document.querySelectorAll('.close-modal-btn');
 
@@ -417,6 +418,16 @@ const services = [
 					
 					modalTitle.textContent = title;
 					modalDesc.textContent = desc;
+
+					// Update WhatsApp Link Logic
+					if (quoteBtn) {
+						// Store the service title in a data attribute for the click handler
+						quoteBtn.dataset.serviceTitle = title;
+						// Remove href to prevent default navigation (we'll handle it in JS)
+						quoteBtn.removeAttribute('href');
+						quoteBtn.removeAttribute('target');
+						quoteBtn.style.cursor = 'pointer';
+					}
 					
 					modal.classList.remove('hidden');
 					// Small delay to allow display:block to apply before opacity transition
@@ -450,6 +461,32 @@ const services = [
 				closeBtns.forEach(btn => {
 					btn.addEventListener('click', closeModal);
 				});
+
+				// Handle Quote Button Click
+				if (quoteBtn) {
+					quoteBtn.addEventListener('click', (e) => {
+						e.preventDefault();
+						const title = quoteBtn.dataset.serviceTitle || '';
+						
+						// 1. Close Modal
+						closeModal();
+						
+						// 2. Scroll to bottom (smoothly)
+						window.scrollTo({
+							top: document.body.scrollHeight,
+							behavior: 'smooth'
+						});
+
+						// 3. Open WhatsApp Chat with pre-filled message after a short delay (to allow scroll to start)
+						setTimeout(() => {
+							const message = `Hola, quisiera más información y cotizar el servicio de: ${title}`;
+							const event = new CustomEvent('open-whatsapp-chat', { 
+								detail: { message } 
+							});
+							window.dispatchEvent(event);
+						}, 800); // Wait for scroll to be mostly done
+					});
+				}
 
 				// Close on backdrop click
 				modal?.addEventListener('click', (e) => {

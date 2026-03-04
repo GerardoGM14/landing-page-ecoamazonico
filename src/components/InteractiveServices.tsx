@@ -148,17 +148,19 @@ const InteractiveServices: React.FC<InteractiveServicesProps> = ({ services, def
             >
               <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 h-full flex flex-col">
                 <div className="relative h-56 md:h-64 flex-shrink-0 overflow-hidden group">
-                  {serviceImages.map((img, imgIndex) => (
+                  {getServiceImages(service).map((img, imgIndex) => (
                     <img 
                       key={imgIndex}
                       src={img} 
                       alt={`${service.title} - imagen ${imgIndex + 1}`}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                        imgIndex === currentImageIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-                      }`}
-                    />
+                       className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out transform ${
+                          currentImageIndex === imgIndex 
+                            ? service.title === "Alquileres" ? 'opacity-100 scale-100 object-contain bg-gray-900' : 'opacity-100 scale-105'
+                            : 'opacity-0 scale-100'
+                        }`}
+                     />
                   ))}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none"></div>
                   <div className="absolute bottom-4 left-6 text-white z-10 pr-6">
                     <h3 className="text-2xl md:text-3xl font-bold drop-shadow-lg leading-tight">{service.title}</h3>
                   </div>
