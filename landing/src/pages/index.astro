@@ -16,7 +16,8 @@ import HeroContent from '../components/HeroContent.tsx';
 import HeroVideoLive from '../components/HeroVideoLive.tsx';
 import NosotrosSection from '../components/NosotrosSection.tsx';
 import PorQueElegirnosSection from '../components/PorQueElegirnosSection.tsx';
-import type { Service, HeroContent as HeroContentType, NosotrosContent, PorQueElegirnosContent } from '../lib/types.ts';
+import ExperienciaSection from '../components/ExperienciaSection.tsx';
+import type { Service, HeroContent as HeroContentType, NosotrosContent, PorQueElegirnosContent, ExperienciaContent } from '../lib/types.ts';
 
 const SEED_BUCKET = 'https://storage.googleapis.com/eco-as.firebasestorage.app/site/seed';
 
@@ -27,6 +28,18 @@ const heroFallback: HeroContentType = {
   ctaSecondary: { label: 'Conócenos', href: '#nosotros' },
   videos: ['/selva-video.mp4', '/sierra-video.mp4', '/costa-video.mp4'],
   posterUrl: `${SEED_BUCKET}/hero_background_v2.jpg`,
+};
+
+const experienciaFallback: ExperienciaContent = {
+  badge: 'NUESTRA EXPERIENCIA',
+  titlePrefix: 'Experiencia y',
+  typewriterWords: ['Cobertura Nacional', 'Calidad Garantizada', 'Profesionalismo'],
+  paragraphFull: 'Eco Amazónico Perú SRL, es una empresa nacional que ha realizado servicios en la gestión de proyectos de desarrollo rural y alternativo, investigación, soluciones tecnológicas resilientes e innovadoras en las temáticas agropecuario, forestal, ambiental, organización de productores, fortalecimiento de capacidades técnicas y organizativas, gestión integral de residuos sólidos, economía circular y otros, en las regiones de Ucayali, San Martin, Huánuco, Junín, Pasco, Lima y otros, trabajando con instituciones del estado, gobiernos regionales y locales, empresas privados y universidades para innovar la competitividad productividad.\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de transporte.',
+  stats: [
+    { value: '+10', label: 'Años de\nExperiencia', icon: 'calendar' },
+    { value: 'Nacional', label: 'Cobertura\nTotal', icon: 'map-pin' },
+    { value: '+50', label: 'Proyectos\nEjecutados', icon: 'briefcase' },
+  ],
 };
 
 const porQueElegirnosFallback: PorQueElegirnosContent = {
@@ -167,49 +180,7 @@ const servicesFallback: Service[] = [
 		<section id="experiencia" class="pt-10 pb-0 md:pt-12 md:pb-0 bg-gray-50">
 			<div class="container mx-auto px-4">
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-					<div class="text-left">
-						<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm md:text-base font-bold uppercase tracking-wide inline-block mb-4">
-							NUESTRA EXPERIENCIA
-						</span>
-						<h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
-							Experiencia y <TypewriterText client:visible words={["Cobertura Nacional", "Calidad Garantizada", "Profesionalismo"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" speed={100} cursorClassName="text-white" />
-						</h2>
-						<div class="text-base md:text-lg text-gray-700 leading-relaxed">
-							<TypewriterText client:visible words={[
-								"Eco Amazónico Perú SRL, es una empresa nacional que ha realizado servicios en la gestión de proyectos de desarrollo rural y alternativo, investigación, soluciones tecnológicas resilientes e innovadoras en las temáticas agropecuario, forestal, ambiental, organización de productores, fortalecimiento de capacidades técnicas y organizativas, gestión integral de residuos sólidos, economía circular y otros, en las regiones de Ucayali, San Martin, Huánuco, Junín, Pasco, Lima y otros, trabajando con instituciones del estado, gobiernos regionales y locales, empresas privados y universidades para innovar la competitividad productividad.\nEco Amazónico Perú SRL, es proveedor de semillas, fertilizantes, insumos y otros para la producción agropecuaria; así mismo, alquila equipos de evaluación y monitoreo ambiental, como movilidad de transporte."
-							]} className="block min-h-[200px]" speed={20} cursorClassName="text-eco-lime" loop={false} />
-						</div>
-
-						<!-- Stats / Metrics Section -->
-						<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 pt-8 border-t border-gray-200">
-							<!-- Metric 1 -->
-							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
-								</div>
-								<h4 class="text-3xl font-bold text-gray-900 mb-1">+10</h4>
-								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Años de<br/>Experiencia</p>
-							</div>
-							
-							<!-- Metric 2 -->
-							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-								</div>
-								<h4 class="text-3xl font-bold text-gray-900 mb-1">Nacional</h4>
-								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Cobertura<br/>Total</p>
-							</div>
-							
-							<!-- Metric 3 -->
-							<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-								<div class="w-12 h-12 bg-eco-lime/20 rounded-full flex items-center justify-center mb-4 text-green-800 group-hover:bg-eco-lime group-hover:text-white transition-colors duration-300">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-								</div>
-								<h4 class="text-3xl font-bold text-gray-900 mb-1">+50</h4>
-								<p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Proyectos<br/>Ejecutados</p>
-							</div>
-						</div>
-					</div>
+					<ExperienciaSection client:load fallback={experienciaFallback} />
 					<div class="flex justify-center w-full h-full relative -mb-12 md:-mb-16">
 						<!-- Map Legend -->
 						<div class="absolute top-0 right-0 z-10 bg-white/90 backdrop-blur-sm p-3 rounded-md shadow-sm border border-gray-100 max-w-[200px]">

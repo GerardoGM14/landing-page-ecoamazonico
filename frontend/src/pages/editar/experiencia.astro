@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import ExperienciaEditor from '../../components/editors/ExperienciaEditor.tsx';
+---
+<AdminLayout title="Editar Experiencia · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="experiencia"
+    eyebrow="Página de inicio"
+    title="Editor de Experiencia"
+  >
+    <ExperienciaEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>

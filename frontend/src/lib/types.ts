@@ -41,6 +41,29 @@ export const PQ_ICONS: Array<{ value: string; label: string }> = [
   { value: 'leaf', label: 'Hoja' },
 ];
 
+export interface ExperienciaStat {
+  value: string;
+  label: string;
+  icon: string;
+}
+
+export interface ExperienciaContent {
+  badge: string;
+  titlePrefix: string;
+  typewriterWords: string[];
+  paragraphFull: string;
+  stats: ExperienciaStat[];
+}
+
+export const STAT_ICONS: Array<{ value: string; label: string }> = [
+  { value: 'calendar', label: 'Calendario' },
+  { value: 'map-pin', label: 'Pin de mapa' },
+  { value: 'briefcase', label: 'Maletín' },
+  { value: 'award', label: 'Medalla' },
+  { value: 'users', label: 'Personas' },
+  { value: 'globe', label: 'Globo' },
+];
+
 export interface Service {
   id: string;
   order: number;
