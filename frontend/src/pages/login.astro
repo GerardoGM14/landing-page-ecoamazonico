@@ -3,39 +3,95 @@ import AdminLayout from '../layouts/AdminLayout.astro';
 import LoginForm from '../components/LoginForm.tsx';
 ---
 <AdminLayout title="Iniciar sesión · EcoAmazónico Admin">
-  <main class="relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden bg-green-950">
-    <!-- Decorative gradient background -->
-    <div class="absolute inset-0 z-0">
-      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-eco-lime/10 blur-3xl"></div>
-      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-eco-lime/5 blur-3xl"></div>
-      <div class="absolute inset-0 bg-gradient-to-br from-green-950 via-green-950 to-[#0a1a0a]"></div>
-    </div>
+  <main class="min-h-screen grid grid-cols-1 lg:grid-cols-5 bg-white">
+    <!-- LEFT — Branding panel -->
+    <aside class="hidden lg:flex lg:col-span-2 relative bg-black text-white flex-col justify-between p-12 xl:p-16 overflow-hidden">
+      <!-- Subtle grid texture -->
+      <div
+        class="absolute inset-0 opacity-[0.06] pointer-events-none"
+        style="background-image: linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px); background-size: 48px 48px;"
+      ></div>
 
-    <div class="relative z-10 w-full max-w-md">
-      <div class="text-center mb-8">
+      <!-- Lime corner accent -->
+      <div class="absolute top-0 left-0 h-1 w-32 bg-eco-lime"></div>
+
+      <!-- Top: brand -->
+      <div class="relative z-10 flex items-center gap-3">
         <img
           src="/logo_ecoamazonico.png"
           alt="EcoAmazónico"
-          class="h-16 w-auto object-contain mx-auto mb-4 brightness-0 invert"
+          class="h-9 w-auto object-contain brightness-0 invert"
         />
-        <span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide inline-block mb-3">
-          Panel de Administración
+        <div class="h-6 w-px bg-white/20"></div>
+        <span class="text-[11px] uppercase tracking-[0.18em] text-gray-400 font-medium">
+          Panel interno
         </span>
-        <h1 class="text-2xl md:text-3xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">
-          Bienvenido de nuevo
-        </h1>
-        <p class="text-gray-400 text-sm mt-2">
-          Inicia sesión para gestionar el contenido de la landing
+      </div>
+
+      <!-- Middle: statement -->
+      <div class="relative z-10 max-w-md">
+        <h2
+          class="text-4xl xl:text-5xl font-bold leading-[1.1] tracking-tight"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Gestiona el contenido<br />
+          de tu landing con<br />
+          <span class="relative inline-block">
+            <span class="relative z-10">precisión</span>
+            <span class="absolute left-0 right-0 bottom-1 h-3 bg-eco-lime/80 -z-0"></span>
+          </span>.
+        </h2>
+        <p class="mt-6 text-gray-400 text-base leading-relaxed">
+          Edita textos, reemplaza imágenes y publica cambios al instante, sin
+          tocar una línea de código.
         </p>
       </div>
 
-      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
-        <LoginForm client:only="react" />
+      <!-- Bottom: footer -->
+      <div class="relative z-10 flex items-end justify-between text-[11px] uppercase tracking-[0.18em] text-gray-500">
+        <span>&copy; {new Date().getFullYear()} EcoAmazónico Perú SRL</span>
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-eco-lime animate-pulse"></span>
+          Acceso restringido
+        </span>
       </div>
+    </aside>
 
-      <p class="text-center text-gray-500 text-xs mt-6">
-        &copy; {new Date().getFullYear()} EcoAmazónico · Acceso restringido
-      </p>
-    </div>
+    <!-- RIGHT — Form panel -->
+    <section class="lg:col-span-3 flex items-center justify-center px-6 py-12 lg:px-12">
+      <div class="w-full max-w-sm">
+        <!-- Mobile brand (only when aside is hidden) -->
+        <div class="lg:hidden mb-10 flex items-center gap-3">
+          <img
+            src="/logo_ecoamazonico.png"
+            alt="EcoAmazónico"
+            class="h-8 w-auto object-contain"
+          />
+          <div class="h-5 w-px bg-gray-300"></div>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium">
+            Panel interno
+          </span>
+        </div>
+
+        <div class="mb-10">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-3">
+            Iniciar sesión
+          </p>
+          <h1
+            class="text-3xl md:text-4xl font-bold text-black leading-tight tracking-tight"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Bienvenido<br />de nuevo.
+          </h1>
+        </div>
+
+        <LoginForm client:only="react" />
+
+        <p class="mt-10 text-xs text-gray-400">
+          Solo cuentas autorizadas pueden ingresar. Si necesitas acceso,
+          contacta al administrador del proyecto.
+        </p>
+      </div>
+    </section>
   </main>
 </AdminLayout>

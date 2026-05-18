@@ -73,23 +73,26 @@ export default function LoginForm() {
 
   if (auth.status === 'loading' || auth.status === 'authenticated') {
     return (
-      <div className="grid place-items-center py-16">
-        <div className="h-8 w-8 rounded-full border-2 border-white/20 border-t-eco-lime animate-spin" />
+      <div className="grid place-items-center py-12">
+        <div className="h-6 w-6 rounded-full border-2 border-gray-200 border-t-black animate-spin" />
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
       {auth.status === 'unauthorized' && (
-        <div className="rounded-lg bg-red-500/10 border border-red-500/30 text-red-200 px-4 py-3 text-sm">
+        <div className="rounded-md bg-red-50 border-l-2 border-red-500 px-4 py-3 text-sm text-red-900">
           Tu cuenta ({auth.user.email}) no tiene permisos. Inicia sesión con
           una cuenta autorizada.
         </div>
       )}
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+        <label
+          htmlFor="email"
+          className="block text-[11px] uppercase tracking-[0.15em] text-gray-500 font-medium mb-2"
+        >
           Correo electrónico
         </label>
         <input
@@ -101,49 +104,42 @@ export default function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={submitting}
           placeholder="tu@correo.com"
-          className="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-eco-lime focus:ring-2 focus:ring-eco-lime/30 transition disabled:opacity-50"
+          className="w-full bg-transparent border-0 border-b border-gray-300 px-0 py-2.5 text-black placeholder-gray-400 focus:outline-none focus:border-black focus:ring-0 transition disabled:opacity-50"
         />
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-200 mb-2">
-          Contraseña
-        </label>
-        <div className="relative">
-          <input
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={submitting}
-            placeholder="••••••••"
-            className="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-2.5 pr-12 text-white placeholder-gray-500 focus:outline-none focus:border-eco-lime focus:ring-2 focus:ring-eco-lime/30 transition disabled:opacity-50"
-          />
+        <div className="flex items-baseline justify-between mb-2">
+          <label
+            htmlFor="password"
+            className="block text-[11px] uppercase tracking-[0.15em] text-gray-500 font-medium"
+          >
+            Contraseña
+          </label>
           <button
             type="button"
             onClick={() => setShowPassword((s) => !s)}
             tabIndex={-1}
-            className="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-eco-lime transition cursor-pointer"
-            aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+            className="text-[11px] uppercase tracking-[0.15em] text-gray-400 hover:text-black transition cursor-pointer font-medium"
           >
-            {showPassword ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            )}
+            {showPassword ? 'Ocultar' : 'Mostrar'}
           </button>
         </div>
+        <input
+          id="password"
+          type={showPassword ? 'text' : 'password'}
+          autoComplete="current-password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          disabled={submitting}
+          placeholder="••••••••"
+          className="w-full bg-transparent border-0 border-b border-gray-300 px-0 py-2.5 text-black placeholder-gray-400 focus:outline-none focus:border-black focus:ring-0 transition disabled:opacity-50"
+        />
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-500/10 border border-red-500/30 text-red-200 px-4 py-3 text-sm">
+        <div className="rounded-md bg-red-50 border-l-2 border-red-500 px-4 py-3 text-sm text-red-900">
           {error}
         </div>
       )}
@@ -151,15 +147,25 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-eco-lime text-green-950 font-bold py-3 rounded-full hover:bg-white transition duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+        className="group relative w-full bg-black text-white font-medium py-3.5 px-6 hover:bg-gray-900 transition-all duration-200 flex items-center justify-between gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer overflow-hidden"
       >
+        <span className="absolute left-0 top-0 bottom-0 w-1 bg-eco-lime transition-all duration-200 group-hover:w-2 group-disabled:w-1"></span>
+        <span className="pl-2 text-sm tracking-wide uppercase">
+          {submitting ? 'Iniciando sesión…' : 'Iniciar sesión'}
+        </span>
         {submitting ? (
-          <>
-            <span className="h-4 w-4 rounded-full border-2 border-green-950/30 border-t-green-950 animate-spin" />
-            Iniciando sesión…
-          </>
+          <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
         ) : (
-          'Iniciar sesión'
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 transition-transform group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
         )}
       </button>
     </form>
