@@ -301,8 +301,6 @@ function ServiceModal({ mode, onClose, onSaved, onError, existingCount }: Servic
     }
   }
 
-  if (!open) return null;
-
   return (
     <Modal
       open={open}
