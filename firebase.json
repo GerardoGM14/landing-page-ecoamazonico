@@ -33,7 +33,10 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "storage": {
-    "rules": "storage.rules"
-  }
+  "storage": [
+    {
+      "bucket": "eco-as.firebasestorage.app",
+      "rules": "storage.rules"
+    }
+  ]
 }

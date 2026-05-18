@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'gerardogonzalezm1403@gmail.com',
+          'admin@ecoamazonico.com'
+        ] &&
+        request.auth.token.email_verified == true;
+    }
+
+    function isValidImage() {
+      return request.resource.size < 10 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*');
+    }
+
+    match /site/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
