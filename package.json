@@ -1,34 +1,22 @@
 {
-  "name": "landing-page-ecoamazonico",
-  "type": "module",
-  "version": "0.0.1",
+  "name": "ecoamazonico-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "landing",
+    "frontend"
+  ],
   "scripts": {
-    "dev": "astro dev --host",
-    "build": "astro build",
-    "preview": "astro preview",
-    "deploy": "firebase deploy",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/poppins": "^5.2.7",
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^5.17.1",
-    "d3-geo": "^3.1.1",
-    "d3-scale": "^4.0.2",
-    "glin-profanity": "^3.3.0",
-    "prop-types": "^15.8.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-simple-maps": "^3.0.0",
-    "react-tooltip": "^5.30.0",
-    "tailwindcss": "^4.1.18"
+    "dev:landing": "npm --workspace landing run dev",
+    "dev:admin": "npm --workspace frontend run dev",
+    "build:landing": "npm --workspace landing run build",
+    "build:admin": "npm --workspace frontend run build",
+    "build:all": "npm run build:landing && npm run build:admin",
+    "deploy:landing": "npm run build:landing && firebase deploy --only hosting:landing",
+    "deploy:admin": "npm run build:admin && firebase deploy --only hosting:admin",
+    "deploy:all": "npm run build:all && firebase deploy --only hosting"
   },
   "devDependencies": {
-    "@types/react-simple-maps": "^3.0.6",
     "firebase-tools": "^15.6.0"
   }
 }

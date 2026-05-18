@@ -1,11 +1,17 @@
 # build output
 dist/
+**/dist/
 
 # generated types
 .astro/
+**/.astro/
 
 # dependencies
 node_modules/
+**/node_modules/
+
+# firebase cache
+.firebase/
 
 # logs
 npm-debug.log*

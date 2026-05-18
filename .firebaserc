@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "eco-as"
+  },
+  "targets": {
+    "eco-as": {
+      "hosting": {
+        "landing": [
+          "eco-as"
+        ],
+        "admin": [
+          "eco-as-admin"
+        ]
+      }
+    }
   }
 }
