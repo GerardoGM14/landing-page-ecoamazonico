@@ -11,7 +11,7 @@ interface Props {
   children: ReactNode;
 }
 
-const LANDING_URL = 'http://localhost:4321';
+const LANDING_URL = import.meta.env.PUBLIC_LANDING_URL ?? 'http://localhost:4321';
 
 export default function AdminShell({ current, title, eyebrow, children }: Props) {
   const auth = useRequireAuth();
