@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
   query,
+  setDoc,
   writeBatch,
 } from 'firebase/firestore';
 import { getFirebase } from '../../lib/firebase';
@@ -13,23 +15,21 @@ import TextField from '../ui/TextField';
 import TextArea from '../ui/TextArea';
 import Select from '../ui/Select';
 import ImageUploader from '../ui/ImageUploader';
-import SaveBar from '../ui/SaveBar';
+import Modal from '../ui/Modal';
 import Toast from '../ui/Toast';
 
-type DraftService = Service & { _isNew?: boolean };
-
-const ICON_SVGS: Record<Service['icon'], React.ReactNode> = {
-  clipboard: <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />,
-  search: <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />,
-  users: <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />,
-  truck: <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />,
-  key: <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />,
+const ICON_PATHS: Record<Service['icon'], string> = {
+  clipboard: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  users: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',
+  truck: 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4',
+  key: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
 };
 
 function IconSvg({ name, className = 'h-5 w-5' }: { name: Service['icon']; className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      {ICON_SVGS[name]}
+      <path strokeLinecap="round" strokeLinejoin="round" d={ICON_PATHS[name]} />
     </svg>
   );
 }
@@ -43,24 +43,25 @@ function slugify(input: string): string {
     .replace(/^-|-$/g, '') || `nuevo-${Date.now().toString(36)}`;
 }
 
+type ModalMode = { kind: 'closed' } | { kind: 'edit'; service: Service } | { kind: 'new' };
+
 export default function ServicesEditor() {
-  const [services, setServices] = useState<DraftService[]>([]);
-  const [original, setOriginal] = useState<Service[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+  const [reordering, setReordering] = useState(false);
+  const [modal, setModal] = useState<ModalMode>({ kind: 'closed' });
   const [toast, setToast] = useState<{ message: string; variant: 'success' | 'error' } | null>(null);
-  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+
+  async function reload() {
+    const { db } = getFirebase();
+    const snap = await getDocs(query(collection(db, 'services'), orderBy('order')));
+    setServices(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Service));
+  }
 
   useEffect(() => {
     (async () => {
       try {
-        const { db } = getFirebase();
-        const snap = await getDocs(query(collection(db, 'services'), orderBy('order')));
-        const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Service);
-        setServices(items);
-        setOriginal(items);
-        setSelectedId(items[0]?.id ?? null);
+        await reload();
       } catch (err) {
         console.error(err);
         setToast({ message: 'No se pudo cargar los servicios.', variant: 'error' });
@@ -70,93 +71,28 @@ export default function ServicesEditor() {
     })();
   }, []);
 
-  const selected = services.find((s) => s.id === selectedId) ?? null;
-  const selectedIdx = selected ? services.findIndex((s) => s.id === selected.id) : -1;
-
-  const dirty = useMemo(() => {
-    if (services.length !== original.length) return true;
-    return JSON.stringify(services.map(stripMeta)) !== JSON.stringify(original);
-  }, [services, original]);
-
-  function update<K extends keyof Service>(key: K, value: Service[K]) {
-    if (!selected) return;
-    setServices((prev) => prev.map((s) => (s.id === selected.id ? { ...s, [key]: value } : s)));
-  }
-
-  function addNew() {
-    const id = `nuevo-${Date.now().toString(36)}`;
-    const newService: DraftService = {
-      id,
-      order: services.length + 1,
-      title: 'Nuevo servicio',
-      shortDesc: '',
-      fullDesc: '',
-      icon: 'clipboard',
-      imageUrl: '',
-      detailImages: [],
-      _isNew: true,
-    };
-    setServices((prev) => [...prev, newService]);
-    setSelectedId(id);
-  }
-
-  function removeSelected() {
-    if (!selected) return;
-    const remaining = services.filter((s) => s.id !== selected.id);
-    setServices(remaining.map((s, i) => ({ ...s, order: i + 1 })));
-    setConfirmDelete(null);
-    setSelectedId(remaining[0]?.id ?? null);
-  }
-
-  function move(direction: -1 | 1) {
-    if (!selected) return;
-    const target = selectedIdx + direction;
+  async function move(id: string, direction: -1 | 1) {
+    const idx = services.findIndex((s) => s.id === id);
+    const target = idx + direction;
     if (target < 0 || target >= services.length) return;
-    setServices((prev) => {
-      const copy = [...prev];
-      [copy[selectedIdx], copy[target]] = [copy[target], copy[selectedIdx]];
-      return copy.map((s, i) => ({ ...s, order: i + 1 }));
-    });
-  }
 
-  function discard() {
-    setServices(original);
-    setSelectedId(original[0]?.id ?? null);
-    setConfirmDelete(null);
-  }
+    const reordered = [...services];
+    [reordered[idx], reordered[target]] = [reordered[target], reordered[idx]];
+    const updated = reordered.map((s, i) => ({ ...s, order: i + 1 }));
+    setServices(updated);
 
-  async function save() {
-    setSaving(true);
+    setReordering(true);
     try {
       const { db } = getFirebase();
       const batch = writeBatch(db);
-      const currentIds = new Set(services.map((s) => s.id));
-
-      for (const orig of original) {
-        if (!currentIds.has(orig.id)) batch.delete(doc(db, 'services', orig.id));
-      }
-
-      for (const svc of services) {
-        const finalId = svc._isNew ? slugify(svc.title) : svc.id;
-        const { id, ...data } = stripMeta({ ...svc, id: finalId });
-        batch.set(doc(db, 'services', finalId), data);
-      }
-
+      updated.forEach((s) => batch.update(doc(db, 'services', s.id), { order: s.order }));
       await batch.commit();
-
-      const snap = await getDocs(query(collection(db, 'services'), orderBy('order')));
-      const fresh = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Service);
-      setServices(fresh);
-      setOriginal(fresh);
-      if (selectedId && !fresh.find((s) => s.id === selectedId)) {
-        setSelectedId(fresh[0]?.id ?? null);
-      }
-      setToast({ message: 'Cambios guardados.', variant: 'success' });
     } catch (err) {
       console.error(err);
-      setToast({ message: 'No se pudo guardar. Revisa tu conexión o permisos.', variant: 'error' });
+      setToast({ message: 'No se pudo cambiar el orden.', variant: 'error' });
+      await reload();
     } finally {
-      setSaving(false);
+      setReordering(false);
     }
   }
 
@@ -169,241 +105,299 @@ export default function ServicesEditor() {
   }
 
   return (
-    <div className="pb-32">
-      <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-        {/* LIST PANEL */}
-        <aside className="bg-white border border-gray-200 rounded-lg overflow-hidden h-fit lg:sticky lg:top-20">
-          <div className="px-5 py-4 border-b border-gray-200 flex items-center justify-between bg-gray-50">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold">Tarjetas</p>
-              <h2 className="text-sm font-semibold text-black mt-0.5">
-                {services.length} {services.length === 1 ? 'servicio' : 'servicios'}
-              </h2>
-            </div>
-            <button
-              type="button"
-              onClick={addNew}
-              className="group flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] text-black border border-black hover:bg-black hover:text-eco-lime px-3 py-1.5 cursor-pointer font-medium transition"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-              </svg>
-              Nuevo
-            </button>
-          </div>
-
-          <ul className="divide-y divide-gray-100">
-            {services.map((svc, idx) => {
-              const isSelected = svc.id === selectedId;
-              return (
-                <li key={svc.id}>
-                  <button
-                    type="button"
-                    onClick={() => { setSelectedId(svc.id); setConfirmDelete(null); }}
-                    className={`group w-full text-left px-4 py-3 flex items-center gap-3 relative transition cursor-pointer ${
-                      isSelected ? 'bg-gray-50' : 'hover:bg-gray-50'
-                    }`}
-                  >
-                    {isSelected && <span className="absolute left-0 top-0 bottom-0 w-1 bg-eco-lime" />}
-
-                    {/* Thumbnail */}
-                    <div className={`flex-shrink-0 w-12 h-12 rounded overflow-hidden bg-gray-100 border ${isSelected ? 'border-black' : 'border-gray-200'} relative`}>
-                      {svc.imageUrl ? (
-                        <img src={svc.imageUrl} alt="" className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full grid place-items-center text-gray-300">
-                          <IconSvg name={svc.icon} className="h-4 w-4" />
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-gray-400">#{idx + 1}</span>
-                        {svc._isNew && (
-                          <span className="text-[9px] uppercase tracking-wider bg-eco-lime text-black px-1.5 py-0.5 font-bold">Nuevo</span>
-                        )}
-                      </div>
-                      <p className={`text-sm truncate mt-0.5 ${isSelected ? 'font-semibold text-black' : 'text-gray-700'}`}>
-                        {svc.title || <em className="text-gray-400 font-normal">Sin título</em>}
-                      </p>
-                    </div>
-
-                    {isSelected && (
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-black flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    )}
-                  </button>
-                </li>
-              );
-            })}
-            {services.length === 0 && (
-              <li className="px-4 py-16 text-center text-sm text-gray-400">
-                No hay servicios.<br />Crea uno para empezar.
-              </li>
-            )}
-          </ul>
-        </aside>
-
-        {/* EDITOR PANEL */}
-        <section className="bg-white border border-gray-200 rounded-lg overflow-hidden min-h-[600px]">
-          {!selected ? (
-            <div className="grid place-items-center h-full py-24 text-gray-400 text-sm">
-              Selecciona un servicio para editarlo
-            </div>
-          ) : (
-            <>
-              {/* Header */}
-              <div className="px-6 md:px-8 py-5 border-b border-gray-200 bg-gray-50">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-4 min-w-0">
-                    <div className="w-12 h-12 rounded-full bg-eco-lime grid place-items-center text-black flex-shrink-0">
-                      <IconSvg name={selected.icon} className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mb-0.5">
-                        Editando · #{selected.order}
-                      </p>
-                      <h2 className="text-lg font-bold text-black truncate" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                        {selected.title || 'Sin título'}
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-1 flex-shrink-0">
-                    <button
-                      type="button"
-                      onClick={() => move(-1)}
-                      disabled={selectedIdx === 0}
-                      className="p-2 text-gray-500 hover:text-black hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition rounded"
-                      title="Mover arriba"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => move(1)}
-                      disabled={selectedIdx === services.length - 1}
-                      className="p-2 text-gray-500 hover:text-black hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition rounded"
-                      title="Mover abajo"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Form body */}
-              <div className="px-6 md:px-8 py-8 space-y-10">
-                {/* Group: Content */}
-                <FormGroup
-                  number="01"
-                  title="Contenido"
-                  description="Texto que aparece en la card y en el modal de detalle."
-                >
-                  <TextField label="Título" value={selected.title} onChange={(v) => update('title', v)} maxLength={80} placeholder="Nombre del servicio" />
-                  <TextArea label="Descripción corta" value={selected.shortDesc} onChange={(v) => update('shortDesc', v)} rows={2} maxLength={140} hint="Frase de una línea. Aparece en vistas resumen." />
-                  <TextArea label="Descripción completa" value={selected.fullDesc} onChange={(v) => update('fullDesc', v)} rows={6} maxLength={600} hint="Se muestra en la card y en el modal cuando el usuario hace click en “Más detalles”." />
-                </FormGroup>
-
-                {/* Group: Visual */}
-                <FormGroup
-                  number="02"
-                  title="Visual"
-                  description="Cómo se ve la card en la landing."
-                >
-                  <Select label="Ícono" value={selected.icon} onChange={(v) => update('icon', v as Service['icon'])} options={SERVICE_ICONS} />
-                  <ImageUploader
-                    label="Imagen principal"
-                    value={selected.imageUrl}
-                    onChange={(url) => update('imageUrl', url)}
-                    path="site/services"
-                    aspect="16/9"
-                    hint="Aparece como fondo de la card. Formato horizontal recomendado."
-                  />
-                </FormGroup>
-
-                {/* Group: Danger zone */}
-                <FormGroup
-                  number="03"
-                  title="Zona de peligro"
-                  description="Acciones irreversibles. El cambio se aplica al guardar."
-                  danger
-                >
-                  {confirmDelete === selected.id ? (
-                    <div className="flex flex-wrap items-center gap-3 bg-red-50 border border-red-200 px-4 py-3 rounded">
-                      <span className="text-sm text-red-900 flex-1">
-                        ¿Eliminar “{selected.title}” de la lista?
-                      </span>
-                      <button
-                        type="button"
-                        onClick={removeSelected}
-                        className="text-xs uppercase tracking-[0.15em] bg-red-600 text-white px-3 py-2 hover:bg-red-700 cursor-pointer font-medium rounded"
-                      >
-                        Sí, eliminar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setConfirmDelete(null)}
-                        className="text-xs uppercase tracking-[0.15em] text-gray-600 hover:text-black px-2 py-2 cursor-pointer font-medium"
-                      >
-                        Cancelar
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setConfirmDelete(selected.id)}
-                      className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-red-600 hover:text-white hover:bg-red-600 border border-red-200 hover:border-red-600 px-4 py-2.5 cursor-pointer font-medium transition rounded"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M10 7V4a1 1 0 011-1h2a1 1 0 011 1v3" />
-                      </svg>
-                      Eliminar servicio
-                    </button>
-                  )}
-                </FormGroup>
-              </div>
-            </>
-          )}
-        </section>
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-sm text-gray-500">
+            {services.length} {services.length === 1 ? 'servicio publicado' : 'servicios publicados'} en la landing.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setModal({ kind: 'new' })}
+          className="group inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 hover:bg-eco-lime hover:text-black transition cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <span className="text-sm uppercase tracking-[0.15em] font-medium">Nuevo servicio</span>
+        </button>
       </div>
 
-      <SaveBar dirty={dirty} saving={saving} onSave={save} onDiscard={discard} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {services.map((svc, idx) => (
+          <article
+            key={svc.id}
+            className="group bg-white border border-gray-200 flex flex-col overflow-hidden hover:border-black transition"
+          >
+            <div className="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+              {svc.imageUrl ? (
+                <img src={svc.imageUrl} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full grid place-items-center text-gray-300">
+                  <IconSvg name={svc.icon} className="h-10 w-10" />
+                </div>
+              )}
+              <div className="absolute top-3 left-3 bg-white text-black text-[10px] font-mono px-2 py-1 shadow-sm">
+                #{idx + 1}
+              </div>
+              <div className="absolute top-3 right-3 flex flex-col gap-1">
+                <button
+                  type="button"
+                  onClick={() => move(svc.id, -1)}
+                  disabled={idx === 0 || reordering}
+                  className="bg-white text-black p-1.5 shadow-sm hover:bg-eco-lime disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition"
+                  title="Mover arriba"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => move(svc.id, 1)}
+                  disabled={idx === services.length - 1 || reordering}
+                  className="bg-white text-black p-1.5 shadow-sm hover:bg-eco-lime disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition"
+                  title="Mover abajo"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="p-5 flex-1 flex flex-col">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="w-9 h-9 rounded-full bg-eco-lime grid place-items-center text-black flex-shrink-0">
+                  <IconSvg name={svc.icon} className="h-4 w-4" />
+                </div>
+                <h3 className="text-base font-bold text-black leading-snug pt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  {svc.title || <em className="text-gray-400 font-normal">Sin título</em>}
+                </h3>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 flex-1">
+                {svc.shortDesc || svc.fullDesc || <em className="text-gray-300">Sin descripción</em>}
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setModal({ kind: 'edit', service: svc })}
+                className="mt-5 inline-flex items-center justify-center gap-2 border border-black text-black px-4 py-2 hover:bg-black hover:text-eco-lime transition cursor-pointer text-xs uppercase tracking-[0.15em] font-medium"
+              >
+                Editar
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </button>
+            </div>
+          </article>
+        ))}
+
+        {services.length === 0 && (
+          <div className="col-span-full border border-dashed border-gray-300 p-16 text-center text-gray-400">
+            <p className="text-sm">No hay servicios todavía.</p>
+            <button
+              type="button"
+              onClick={() => setModal({ kind: 'new' })}
+              className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-black border border-black px-4 py-2 hover:bg-black hover:text-eco-lime transition cursor-pointer font-medium"
+            >
+              Crear el primero
+            </button>
+          </div>
+        )}
+      </div>
+
+      <ServiceModal
+        mode={modal}
+        onClose={() => setModal({ kind: 'closed' })}
+        onSaved={async (msg) => {
+          setModal({ kind: 'closed' });
+          await reload();
+          setToast({ message: msg, variant: 'success' });
+        }}
+        onError={(msg) => setToast({ message: msg, variant: 'error' })}
+        existingCount={services.length}
+      />
+
       {toast && <Toast message={toast.message} variant={toast.variant} onDone={() => setToast(null)} />}
     </div>
   );
 }
 
-function FormGroup({
-  number,
-  title,
-  description,
-  danger,
-  children,
-}: {
-  number: string;
-  title: string;
-  description?: string;
-  danger?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6 md:gap-10">
-      <div className="md:pt-1">
-        <div className="flex items-baseline gap-2">
-          <span className={`text-[10px] font-mono ${danger ? 'text-red-400' : 'text-gray-300'}`}>{number}</span>
-          <h3 className={`text-sm font-semibold ${danger ? 'text-red-700' : 'text-black'}`}>{title}</h3>
-        </div>
-        {description && <p className="text-xs text-gray-500 mt-1 leading-relaxed">{description}</p>}
-      </div>
-      <div className="space-y-6 min-w-0">{children}</div>
-    </div>
-  );
+interface ServiceModalProps {
+  mode: ModalMode;
+  onClose: () => void;
+  onSaved: (message: string) => void | Promise<void>;
+  onError: (message: string) => void;
+  existingCount: number;
 }
 
-function stripMeta(s: DraftService | Service): Service {
-  const { _isNew, ...rest } = s as DraftService;
-  return rest;
+function ServiceModal({ mode, onClose, onSaved, onError, existingCount }: ServiceModalProps) {
+  const open = mode.kind !== 'closed';
+  const isNew = mode.kind === 'new';
+
+  const empty: Service = {
+    id: '',
+    order: existingCount + 1,
+    title: '',
+    shortDesc: '',
+    fullDesc: '',
+    icon: 'clipboard',
+    imageUrl: '',
+    detailImages: [],
+  };
+
+  const [draft, setDraft] = useState<Service>(empty);
+  const [saving, setSaving] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  useEffect(() => {
+    if (mode.kind === 'edit') {
+      setDraft(mode.service);
+      setConfirmDelete(false);
+    } else if (mode.kind === 'new') {
+      setDraft({ ...empty, order: existingCount + 1 });
+      setConfirmDelete(false);
+    }
+  }, [mode]);
+
+  function update<K extends keyof Service>(key: K, value: Service[K]) {
+    setDraft((d) => ({ ...d, [key]: value }));
+  }
+
+  async function handleSave() {
+    if (!draft.title.trim()) {
+      onError('El título es obligatorio.');
+      return;
+    }
+    setSaving(true);
+    try {
+      const { db } = getFirebase();
+      const id = isNew ? slugify(draft.title) : draft.id;
+      const { id: _ignore, ...data } = draft;
+      await setDoc(doc(db, 'services', id), data);
+      await onSaved(isNew ? 'Servicio creado.' : 'Cambios guardados.');
+    } catch (err) {
+      console.error(err);
+      onError('No se pudo guardar. Revisa tu conexión o permisos.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleDelete() {
+    if (mode.kind !== 'edit') return;
+    setSaving(true);
+    try {
+      const { db } = getFirebase();
+      await deleteDoc(doc(db, 'services', mode.service.id));
+      await onSaved('Servicio eliminado.');
+    } catch (err) {
+      console.error(err);
+      onError('No se pudo eliminar.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (!open) return null;
+
+  return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      eyebrow={isNew ? 'Nuevo servicio' : `Editar servicio · #${draft.order}`}
+      title={isNew ? 'Crear servicio' : draft.title || 'Sin título'}
+      footer={
+        <>
+          {!isNew && (
+            confirmDelete ? (
+              <div className="flex items-center gap-2 mr-auto bg-red-50 border border-red-200 px-3 py-1.5 rounded">
+                <span className="text-xs text-red-900">¿Eliminar?</span>
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={saving}
+                  className="text-xs uppercase tracking-[0.15em] bg-red-600 text-white px-3 py-1.5 hover:bg-red-700 cursor-pointer font-medium disabled:opacity-60"
+                >
+                  Sí
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmDelete(false)}
+                  disabled={saving}
+                  className="text-xs uppercase tracking-[0.15em] text-gray-600 px-2 py-1.5 hover:text-black cursor-pointer font-medium"
+                >
+                  No
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmDelete(true)}
+                disabled={saving}
+                className="sm:mr-auto inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-red-600 hover:text-white hover:bg-red-600 border border-red-200 hover:border-red-600 px-3 py-2 cursor-pointer font-medium transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M10 7V4a1 1 0 011-1h2a1 1 0 011 1v3" />
+                </svg>
+                Eliminar
+              </button>
+            )
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={saving}
+            className="px-4 py-2 text-sm text-gray-600 hover:text-black cursor-pointer disabled:opacity-50 transition"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saving}
+            className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 hover:bg-eco-lime hover:text-black transition cursor-pointer disabled:opacity-60 text-sm uppercase tracking-[0.15em] font-medium"
+          >
+            {saving ? (
+              <>
+                <span className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                Guardando…
+              </>
+            ) : (
+              <>
+                {isNew ? 'Crear' : 'Guardar'}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </>
+            )}
+          </button>
+        </>
+      }
+    >
+      <TextField label="Título" value={draft.title} onChange={(v) => update('title', v)} maxLength={80} placeholder="Nombre del servicio" />
+      <TextArea label="Descripción corta" value={draft.shortDesc} onChange={(v) => update('shortDesc', v)} rows={2} maxLength={140} hint="Frase de una línea." />
+      <TextArea label="Descripción completa" value={draft.fullDesc} onChange={(v) => update('fullDesc', v)} rows={6} maxLength={600} hint="Se muestra en la card y en el modal de detalle." />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Select label="Ícono" value={draft.icon} onChange={(v) => update('icon', v as Service['icon'])} options={SERVICE_ICONS} />
+        <div className="grid place-items-center md:place-items-end">
+          <div className="w-16 h-16 rounded-full bg-eco-lime grid place-items-center text-black">
+            <IconSvg name={draft.icon} className="h-7 w-7" />
+          </div>
+        </div>
+      </div>
+
+      <ImageUploader
+        label="Imagen principal"
+        value={draft.imageUrl}
+        onChange={(url) => update('imageUrl', url)}
+        path="site/services"
+        aspect="16/9"
+        hint="Aparece como fondo de la card en la landing."
+      />
+    </Modal>
+  );
 }
