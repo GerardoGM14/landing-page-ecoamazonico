@@ -27,7 +27,14 @@ import serv5_3 from '../assets/fondo_bkg.png';
 import { services } from '../data/services.js';
 import InteractiveServices from '../components/InteractiveServices';
 import FooterContent from '../components/FooterContent.tsx';
-import type { FooterContent as FooterContentType } from '../lib/types.ts';
+import ServicesPageHero from '../components/ServicesPageHero.tsx';
+import type { FooterContent as FooterContentType, ServicesPageHeroContent } from '../lib/types.ts';
+
+const servicesPageHeroFallback: ServicesPageHeroContent = {
+	title: 'Nuestros Servicios',
+	subtitle: 'Soluciones integrales para el desarrollo sostenible',
+	videoUrl: '/nuestros-servicios.mp4',
+};
 
 const footerFallback: FooterContentType = {
 	phone: '+51 945 775 810',
@@ -125,25 +132,7 @@ const servicesWithImages = services.map((service, index) => {
 
 
 		<!-- Page Header -->
-		<div class="relative bg-green-950 py-32 md:py-48 flex items-center justify-center overflow-hidden">
-			<div class="absolute inset-0 z-0">
-				<video 
-					autoplay 
-					loop 
-					muted 
-					playsinline 
-					class="w-full h-full object-cover opacity-40 object-center"
-					style="object-position: center 100%"
-				>
-					<source src="/nuestros-servicios.mp4" type="video/mp4" />
-					Your browser does not support the video tag.
-				</video>
-			</div>
-			<div class="relative z-10 text-center px-4">
-				<h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Nuestros Servicios</h1>
-				<p class="text-xl text-eco-lime/80 max-w-2xl mx-auto">Soluciones integrales para el desarrollo sostenible</p>
-			</div>
-		</div>
+		<ServicesPageHero client:load fallback={servicesPageHeroFallback} />
 
 		<!-- Services Detail Section -->
 		<section class="py-20 bg-white">

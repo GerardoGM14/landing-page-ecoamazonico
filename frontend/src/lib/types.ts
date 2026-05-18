@@ -104,6 +104,12 @@ export const SOCIAL_PLATFORMS: Array<{ value: string; label: string }> = [
   { value: 'youtube', label: 'YouTube' },
 ];
 
+export interface ServicesPageHeroContent {
+  title: string;
+  subtitle: string;
+  videoUrl: string;
+}
+
 export interface Service {
   id: string;
   order: number;
