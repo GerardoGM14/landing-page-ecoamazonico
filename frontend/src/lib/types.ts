@@ -64,6 +64,19 @@ export const STAT_ICONS: Array<{ value: string; label: string }> = [
   { value: 'globe', label: 'Globo' },
 ];
 
+export interface CertificacionItem {
+  name: string;
+  logoUrl: string;
+  description: string;
+}
+
+export interface CertificacionesContent {
+  badge: string;
+  title: string;
+  backgroundUrl: string;
+  items: CertificacionItem[];
+}
+
 export interface Service {
   id: string;
   order: number;

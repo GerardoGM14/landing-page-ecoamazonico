@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import CertificacionesEditor from '../../components/editors/CertificacionesEditor.tsx';
+---
+<AdminLayout title="Editar Certificaciones · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="certificaciones"
+    eyebrow="Página de inicio"
+    title="Editor de Certificaciones"
+  >
+    <CertificacionesEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>
