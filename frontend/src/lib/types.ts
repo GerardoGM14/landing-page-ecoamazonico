@@ -17,6 +17,30 @@ export interface NosotrosContent {
   images: string[];
 }
 
+export interface PorQueElegirnosItem {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface PorQueElegirnosContent {
+  badge: string;
+  titlePrefix: string;
+  typewriterWords: string[];
+  paragraph: string;
+  carouselImages: string[];
+  items: PorQueElegirnosItem[];
+}
+
+export const PQ_ICONS: Array<{ value: string; label: string }> = [
+  { value: 'document', label: 'Documento' },
+  { value: 'users', label: 'Personas' },
+  { value: 'briefcase', label: 'Maletín' },
+  { value: 'star', label: 'Estrella' },
+  { value: 'shield', label: 'Escudo' },
+  { value: 'leaf', label: 'Hoja' },
+];
+
 export interface Service {
   id: string;
   order: number;

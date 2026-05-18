@@ -5,10 +5,6 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
 import heroBgV1 from '../assets/hero_background.jpg';
-import carousel1 from '../assets/carousel_nosotros_1.jpg';
-import carousel2 from '../assets/carousel_nosotros_2.jpg';
-import carousel3 from '../assets/carousel_nosotros_3.jpg';
-import carousel4 from '../assets/carousel_nosotros_4.jpg';
 import certBg from '../assets/fondo_bkg.png';
 import iconInia from '../assets/icon_inia.png';
 import iconSenace from '../assets/icon_senase.png';
@@ -19,7 +15,8 @@ import ServicesGrid from '../components/ServicesGrid.tsx';
 import HeroContent from '../components/HeroContent.tsx';
 import HeroVideoLive from '../components/HeroVideoLive.tsx';
 import NosotrosSection from '../components/NosotrosSection.tsx';
-import type { Service, HeroContent as HeroContentType, NosotrosContent } from '../lib/types.ts';
+import PorQueElegirnosSection from '../components/PorQueElegirnosSection.tsx';
+import type { Service, HeroContent as HeroContentType, NosotrosContent, PorQueElegirnosContent } from '../lib/types.ts';
 
 const SEED_BUCKET = 'https://storage.googleapis.com/eco-as.firebasestorage.app/site/seed';
 
@@ -30,6 +27,19 @@ const heroFallback: HeroContentType = {
   ctaSecondary: { label: 'Conócenos', href: '#nosotros' },
   videos: ['/selva-video.mp4', '/sierra-video.mp4', '/costa-video.mp4'],
   posterUrl: `${SEED_BUCKET}/hero_background_v2.jpg`,
+};
+
+const porQueElegirnosFallback: PorQueElegirnosContent = {
+  badge: '¿Por qué elegirnos?',
+  titlePrefix: 'Soluciones integrales con',
+  typewriterWords: ['responsabilidad ambiental', 'innovación sostenible', 'compromiso social', 'excelencia técnica', 'visión de futuro'],
+  paragraph: 'ECO AMAZONICO PERU SRL. cuenta con un equipo multidisciplinario de expertos con especialidad técnica de universidades de prestigio con alto grado académico, con más de 20 años de experiencia en investigación, tecnología e innovación.',
+  carouselImages: [`${SEED_BUCKET}/carousel_nosotros_1.jpg`, `${SEED_BUCKET}/carousel_nosotros_2.jpg`, `${SEED_BUCKET}/carousel_nosotros_3.jpg`, `${SEED_BUCKET}/carousel_nosotros_4.jpg`],
+  items: [
+    { title: 'Estudios Ambientales', description: 'Elaboración de Instrumentos de Gestión Ambiental, evaluación y monitoreo de la calidad de agua, suelo y aire, Planes de Manejo Ambiental, servicios ecosistémicos y otros.', icon: 'document' },
+    { title: 'Capacitaciones Especializadas', description: 'Manejo Integrado de Plagas, gestión del suelo, innovación y resiliencia climática de cultivos amazónicos y altoandinos, Buenas Prácticas Agrícolas, formación de facilitadores y promotores, otros.', icon: 'users' },
+    { title: 'Proveeduría y Logística', description: 'Suministro de semillas, plantones, fertilizantes e insumos agropecuarios, venta de equipos, herramientas y materiales de construcción, alquiler de equipos de evaluación, monitoreo ambiental y movilidad y otros.', icon: 'briefcase' },
+  ],
 };
 
 const nosotrosFallback: NosotrosContent = {
@@ -123,81 +133,7 @@ const servicesFallback: Service[] = [
 		<!-- Detailed Info Section (Dark) -->
 		<section class="py-20 bg-[#1a1a1a] text-gray-300 overflow-hidden">
 			<div class="container mx-auto px-4">
-				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-					<!-- Left Column: Carousel -->
-					<div class="relative h-[650px] rounded-3xl overflow-hidden shadow-2xl group order-2 lg:order-1">
-						<ElegantCarousel client:load images={[carousel1.src, carousel2.src, carousel3.src, carousel4.src]} />
-					</div>
-
-					<!-- Right Column: Text Content -->
-					<div class="order-1 lg:order-2">
-						<div class="space-y-6">
-							<div>
-								<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm md:text-base font-bold uppercase tracking-wide inline-block mb-2">¿Por qué elegirnos?</span>
-								<h2 class="text-2xl md:text-3xl font-bold text-white leading-tight">
-									Soluciones integrales con <TypewriterText client:visible words={["responsabilidad ambiental", "innovación sostenible", "compromiso social", "excelencia técnica", "visión de futuro"]} className="text-eco-lime" />
-								</h2>
-							</div>
-
-							<p class="text-gray-400 text-sm md:text-base leading-relaxed text-justify">
-								ECO AMAZONICO PERU SRL. cuenta con un equipo multidisciplinario de expertos con especialidad técnica de universidades de prestigio con alto grado académico, con más de 20 años de experiencia en investigación, tecnología e innovación.
-							</p>
-
-							<div class="space-y-6 pt-4">
-								<!-- Item 1 -->
-								<div class="flex gap-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-bold text-white mb-1">Estudios Ambientales</h3>
-										<p class="text-sm md:text-base text-gray-400 leading-relaxed text-justify">
-											Elaboración de Instrumentos de Gestión Ambiental, evaluación y monitoreo de la calidad de agua, suelo y aire, Planes de Manejo Ambiental, servicios ecosistémicos y otros.
-										</p>
-									</div>
-								</div>
-
-								<!-- Item 2 -->
-								<div class="flex gap-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-bold text-white mb-1">Capacitaciones Especializadas</h3>
-										<p class="text-sm md:text-base text-gray-400 leading-relaxed text-justify">
-											Manejo Integrado de Plagas, gestión del suelo, innovación y resiliencia climática de cultivos amazónicos y altoandinos, Buenas Prácticas Agrícolas, formación de facilitadores y promotores, otros.
-										</p>
-									</div>
-								</div>
-
-								<!-- Item 3 -->
-								<div class="flex gap-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 rounded-full bg-eco-lime/10 flex items-center justify-center text-eco-lime">
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-bold text-white mb-1">Proveeduría y Logística</h3>
-										<p class="text-sm md:text-base text-gray-400 leading-relaxed text-justify">
-											Suministro de semillas, plantones, fertilizantes e insumos agropecuarios, venta de equipos, herramientas y materiales de construcción, alquiler de equipos de evaluación, monitoreo ambiental y movilidad y otros.
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<PorQueElegirnosSection client:load fallback={porQueElegirnosFallback} />
 			</div>
 		</section>
 

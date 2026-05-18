@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import PorQueElegirnosEditor from '../../components/editors/PorQueElegirnosEditor.tsx';
+---
+<AdminLayout title="Editar ¿Por qué elegirnos? · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="por-que-elegirnos"
+    eyebrow="Página de inicio"
+    title="Editor de ¿Por qué elegirnos?"
+  >
+    <PorQueElegirnosEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>

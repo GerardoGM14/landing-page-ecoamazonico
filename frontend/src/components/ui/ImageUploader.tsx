@@ -78,7 +78,9 @@ export default function ImageUploader({ label, value, onChange, path, hint, aspe
 
   return (
     <div>
-      <span className="block text-[11px] uppercase tracking-[0.15em] text-gray-500 font-medium mb-2">{label}</span>
+      {label && (
+        <span className="block text-[11px] uppercase tracking-[0.15em] text-gray-500 font-medium mb-2">{label}</span>
+      )}
 
       <div
         onDrop={onDrop}
