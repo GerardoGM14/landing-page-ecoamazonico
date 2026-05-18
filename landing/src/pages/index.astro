@@ -18,12 +18,8 @@ import HeroVideo from '../components/HeroVideo.tsx';
 import ServicesGrid from '../components/ServicesGrid.tsx';
 import HeroContent from '../components/HeroContent.tsx';
 import HeroVideoLive from '../components/HeroVideoLive.tsx';
-import type { Service, HeroContent as HeroContentType } from '../lib/types.ts';
-
-// Imágenes para la sección Sobre Nosotros
-import about1 from '../assets/about_1.jpg';
-import about2 from '../assets/about_2.jpg';
-import about3 from '../assets/about_3.jpg';
+import NosotrosSection from '../components/NosotrosSection.tsx';
+import type { Service, HeroContent as HeroContentType, NosotrosContent } from '../lib/types.ts';
 
 const SEED_BUCKET = 'https://storage.googleapis.com/eco-as.firebasestorage.app/site/seed';
 
@@ -34,6 +30,16 @@ const heroFallback: HeroContentType = {
   ctaSecondary: { label: 'Conócenos', href: '#nosotros' },
   videos: ['/selva-video.mp4', '/sierra-video.mp4', '/costa-video.mp4'],
   posterUrl: `${SEED_BUCKET}/hero_background_v2.jpg`,
+};
+
+const nosotrosFallback: NosotrosContent = {
+  badge: 'Sobre Nosotros',
+  titlePrefix: '+ de 10 años comprometidos con la',
+  typewriterWords: ['seguridad', 'calidad', 'confianza'],
+  paragraph: 'Gestionamos y ejecutamos proyectos integrales de ingeniería ambiental, desarrollo social, viabilidad económica, infraestructura educativa y otros sectores clave. Nuestra labor está respaldada por la participación de profesionales de amplia experiencia y reconocido prestigio, comprometidos con brindar soluciones de calidad en todas las regiones del país.',
+  mision: { title: 'Misión', text: 'Agregar valor de calidad a empresas, gobiernos locales y regionales y organizaciones sociales, brindando soluciones y capacidades de gerencia, estrategias y gestión de desarrollo económico innovativo y sostenible.' },
+  vision: { title: 'Visión', text: 'Ser líderes en la gestión de proyectos de desarrollo sostenible, investigación e innovación tecnológica, con inclusión y gran responsabilidad social y ambiental, en el ámbito regional, nacional e internacional.' },
+  images: [`${SEED_BUCKET}/about_1.jpg`, `${SEED_BUCKET}/about_2.jpg`, `${SEED_BUCKET}/about_3.jpg`],
 };
 const servicesFallback: Service[] = [
   { id: 'formulacion-proyectos', order: 1, title: 'Formulación y evaluación de proyectos', shortDesc: 'Desarrollo integral de proyectos agrícolas, forestales y de infraestructura.', fullDesc: 'Brindamos servicios especializados en la formulación y evaluación de proyectos en diversos sectores: Agrícolas, Agropecuarios, Forestales, Ambientales, Infraestructuras y otros. Nuestro enfoque garantiza la viabilidad técnica, económica y ambiental de cada iniciativa.', icon: 'clipboard', imageUrl: `${SEED_BUCKET}/servicio_1.jpg`, detailImages: [`${SEED_BUCKET}/servicio_1.jpg`, `${SEED_BUCKET}/carousel_nosotros_1.jpg`] },
@@ -110,73 +116,7 @@ const servicesFallback: Service[] = [
 		<!-- Nosotros Section -->
 		<section id="nosotros" class="py-16 bg-white overflow-hidden">
 			<div class="container mx-auto px-4">
-				<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-					<!-- Left Column: Text Content -->
-					<div class="space-y-4 lg:pr-16">
-						<div>
-							<span class="bg-eco-lime text-green-950 px-3 py-1 rounded-sm text-sm md:text-base font-bold uppercase tracking-wide inline-block mb-2">
-							Sobre Nosotros
-							</span>
-							<h2 class="text-xl md:text-3xl font-bold text-gray-900 leading-tight flex flex-wrap items-center gap-2">
-								+ de 10 años comprometidos con la <TypewriterText client:visible words={["seguridad", "calidad", "confianza"]} className="bg-eco-lime text-white px-2 py-1 rounded-sm" />
-							</h2>
-						</div>
-						
-						<p class="text-gray-600 text-base md:text-lg leading-relaxed text-justify">
-							Gestionamos y ejecutamos proyectos integrales de ingeniería ambiental, desarrollo social, viabilidad económica, infraestructura educativa y otros sectores clave. Nuestra labor está respaldada por la participación de profesionales de amplia experiencia y reconocido prestigio, comprometidos con brindar soluciones de calidad en todas las regiones del país.
-						</p>
-
-						<div class="space-y-3 pt-6">
-							<!-- Misión -->
-							<div class="flex gap-3">
-								<div class="flex-shrink-0">
-									<div class="w-10 h-10 rounded-full bg-eco-lime/10 flex items-center justify-center text-green-950 border border-eco-lime/20">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-										</svg>
-									</div>
-								</div>
-								<div>
-									<h3 class="text-lg md:text-lg font-bold text-gray-900 mb-1">Misión</h3>
-									<p class="text-gray-600 text-base md:text-base leading-relaxed text-justify">
-										Agregar valor de calidad a empresas, gobiernos locales y regionales y organizaciones sociales, brindando soluciones y capacidades de gerencia, estrategias y gestión de desarrollo económico innovativo y sostenible.
-									</p>
-								</div>
-							</div>
-
-							<!-- Visión -->
-							<div class="flex gap-3">
-								<div class="flex-shrink-0">
-									<div class="w-10 h-10 rounded-full bg-eco-lime/10 flex items-center justify-center text-green-950 border border-eco-lime/20">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-										</svg>
-									</div>
-								</div>
-								<div>
-									<h3 class="text-lg md:text-lg font-bold text-gray-900 mb-1">Visión</h3>
-									<p class="text-gray-600 text-base md:text-base leading-relaxed text-justify">
-										Ser líderes en la gestión de proyectos de desarrollo sostenible, investigación e innovación tecnológica, con inclusión y gran responsabilidad social y ambiental, en el ámbito regional, nacional e internacional.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Right Column: Image Grid -->
-					<div class="grid grid-cols-2 gap-2 h-full">
-						<div class="col-span-2 h-64 md:h-80 rounded-3xl overflow-hidden relative group">
-							<Image src={about1} alt="Equipo EcoAmazónico" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-							<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-						</div>
-						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
-							<Image src={about2} alt="Servicios Industriales" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-						</div>
-						<div class="h-40 md:h-56 rounded-3xl overflow-hidden relative group">
-							 <Image src={about3} alt="Mantenimiento" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-						</div>
-					</div>
-				</div>
+				<NosotrosSection client:load fallback={nosotrosFallback} />
 			</div>
 		</section>
 

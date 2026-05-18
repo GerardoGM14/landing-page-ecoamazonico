@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import NosotrosEditor from '../../components/editors/NosotrosEditor.tsx';
+---
+<AdminLayout title="Editar Sobre Nosotros · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="nosotros"
+    eyebrow="Página de inicio"
+    title="Editor de Sobre Nosotros"
+  >
+    <NosotrosEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>

@@ -7,6 +7,16 @@ export interface HeroContent {
   posterUrl: string;
 }
 
+export interface NosotrosContent {
+  badge: string;
+  titlePrefix: string;
+  typewriterWords: string[];
+  paragraph: string;
+  mision: { title: string; text: string };
+  vision: { title: string; text: string };
+  images: string[];
+}
+
 export interface Service {
   id: string;
   order: number;
