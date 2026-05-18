@@ -1,0 +1,14 @@
+{
+  "name": "ecoamazonico-scripts",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "seed": "node seed.js",
+    "upload-images": "node upload-images.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "mime-types": "^2.1.35"
+  }
+}
