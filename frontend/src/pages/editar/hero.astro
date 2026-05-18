@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import HeroEditor from '../../components/editors/HeroEditor.tsx';
+---
+<AdminLayout title="Editar Hero · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="hero"
+    eyebrow="Página de inicio"
+    title="Editor del Hero"
+  >
+    <HeroEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>

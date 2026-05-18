@@ -1,3 +1,12 @@
+export interface HeroContent {
+  title: string;
+  paragraph: string;
+  ctaPrimary: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+  videos: string[];
+  posterUrl: string;
+}
+
 export interface Service {
   id: string;
   order: number;

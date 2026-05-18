@@ -16,7 +16,9 @@ import ElegantCarousel from '../components/ElegantCarousel.tsx';
 import TypewriterText from '../components/TypewriterText.tsx';
 import HeroVideo from '../components/HeroVideo.tsx';
 import ServicesGrid from '../components/ServicesGrid.tsx';
-import type { Service } from '../lib/types.ts';
+import HeroContent from '../components/HeroContent.tsx';
+import HeroVideoLive from '../components/HeroVideoLive.tsx';
+import type { Service, HeroContent as HeroContentType } from '../lib/types.ts';
 
 // Imágenes para la sección Sobre Nosotros
 import about1 from '../assets/about_1.jpg';
@@ -24,6 +26,15 @@ import about2 from '../assets/about_2.jpg';
 import about3 from '../assets/about_3.jpg';
 
 const SEED_BUCKET = 'https://storage.googleapis.com/eco-as.firebasestorage.app/site/seed';
+
+const heroFallback: HeroContentType = {
+  title: 'Eco Amazónico Peru SRL',
+  paragraph: 'Somos una empresa que lideramos la gestión de proyectos y consultorías que promueve el desarrollo territorial con innovación tecnológica, responsabilidad social y ambiental, equidad de género e inclusión social, hacia un desarrollo sostenible.',
+  ctaPrimary: { label: 'Nuestros Servicios', href: '#servicios' },
+  ctaSecondary: { label: 'Conócenos', href: '#nosotros' },
+  videos: ['/selva-video.mp4', '/sierra-video.mp4', '/costa-video.mp4'],
+  posterUrl: `${SEED_BUCKET}/hero_background_v2.jpg`,
+};
 const servicesFallback: Service[] = [
   { id: 'formulacion-proyectos', order: 1, title: 'Formulación y evaluación de proyectos', shortDesc: 'Desarrollo integral de proyectos agrícolas, forestales y de infraestructura.', fullDesc: 'Brindamos servicios especializados en la formulación y evaluación de proyectos en diversos sectores: Agrícolas, Agropecuarios, Forestales, Ambientales, Infraestructuras y otros. Nuestro enfoque garantiza la viabilidad técnica, económica y ambiental de cada iniciativa.', icon: 'clipboard', imageUrl: `${SEED_BUCKET}/servicio_1.jpg`, detailImages: [`${SEED_BUCKET}/servicio_1.jpg`, `${SEED_BUCKET}/carousel_nosotros_1.jpg`] },
   { id: 'estudios-investigacion', order: 2, title: 'Estudios, Investigación y análisis', shortDesc: 'Investigación científica y análisis técnico en múltiples disciplinas.', fullDesc: 'Realizamos estudios exhaustivos en áreas agropecuaria, forestal, ambiental, social, educación y salud. Incluye análisis e interpretación de calidad de agua, análisis de macroinvertebrados, bioindicadores y análisis hidrobiológicos.', icon: 'search', imageUrl: `${SEED_BUCKET}/servicio_2.webp`, detailImages: [`${SEED_BUCKET}/servicio_2.webp`, `${SEED_BUCKET}/carousel_nosotros_3.jpg`] },
@@ -84,37 +95,11 @@ const servicesFallback: Service[] = [
 		<!-- Hero Section -->
 		<section id="inicio" class="relative min-h-[95dvh] md:min-h-screen flex items-end pt-20 pb-4 md:pb-32 overflow-hidden">
 			<!-- Background Video/Image -->
-			<HeroVideo 
-				client:only="react" 
-				poster={heroBg.src} 
-				videos={[
-					"/selva-video.mp4",
-					"/sierra-video.mp4",
-					"/costa-video.mp4"
-				]} 
-				maxDuration={15}
-			/>
+			<HeroVideoLive client:only="react" fallback={heroFallback} maxDuration={15} />
 
 			<div class="container mx-auto px-4 relative z-10">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-end">
-					<div class="text-left">
-						<h1 class="text-4xl md:text-4xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
-							Eco Amazónico Peru SRL
-						</h1>
-						<p class="text-base md:text-lg mb-8 md:mb-10 text-gray-200 max-w-xl drop-shadow-md">
-							Somos una empresa que lideramos la gestión de proyectos y consultorías que promueve el desarrollo territorial con innovación tecnológica, responsabilidad social y ambiental, equidad de género e inclusión social, hacia un desarrollo sostenible.						</p>
-						<div class="flex flex-col sm:flex-row gap-4">
-							<a href="#servicios" class="bg-eco-lime text-green-950 px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-900 transition duration-300 flex items-center justify-center gap-2">
-								<span>Nuestros Servicios</span>
-							</a>
-							<a href="#nosotros" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-green-950 transition duration-300 flex items-center justify-center gap-2 shadow-lg">
-								<span>Conócenos</span>
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-							</a>
-						</div>
-					</div>
-					
-					<!-- Right Side Features removed -->
+					<HeroContent client:load fallback={heroFallback} />
 					<div class="hidden"></div>
 				</div>
 			</div>
