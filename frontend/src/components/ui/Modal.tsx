@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 interface Props {
   open: boolean;
@@ -10,9 +10,28 @@ interface Props {
   size?: 'md' | 'lg';
 }
 
+const CLOSE_MS = 180;
+
 export default function Modal({ open, onClose, title, eyebrow, children, footer, size = 'lg' }: Props) {
+  const [mounted, setMounted] = useState(open);
+  const [closing, setClosing] = useState(false);
+
   useEffect(() => {
-    if (!open) return;
+    if (open) {
+      setMounted(true);
+      setClosing(false);
+    } else if (mounted) {
+      setClosing(true);
+      const t = setTimeout(() => {
+        setMounted(false);
+        setClosing(false);
+      }, CLOSE_MS);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!mounted) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -22,11 +41,13 @@ export default function Modal({ open, onClose, title, eyebrow, children, footer,
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [open, onClose]);
+  }, [mounted, onClose]);
 
-  if (!open) return null;
+  if (!mounted) return null;
 
   const maxWidth = size === 'lg' ? 'max-w-3xl' : 'max-w-xl';
+  const panelAnim = closing ? 'animate-[modalOut_0.18s_ease-in_forwards]' : 'animate-[modalIn_0.18s_ease-out]';
+  const backdropAnim = closing ? 'animate-[fadeOut_0.18s_ease-in_forwards]' : 'animate-[fadeIn_0.18s_ease-out]';
 
   return (
     <div className="fixed inset-0 z-50">
@@ -34,10 +55,10 @@ export default function Modal({ open, onClose, title, eyebrow, children, footer,
         type="button"
         aria-label="Cerrar"
         onClick={onClose}
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default"
+        className={`absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default ${backdropAnim}`}
       />
       <div className="relative h-full overflow-y-auto py-8 px-4">
-        <div className={`relative mx-auto bg-white shadow-2xl ${maxWidth} animate-[modalIn_0.18s_ease-out]`}>
+        <div className={`relative mx-auto bg-white shadow-2xl ${maxWidth} ${panelAnim}`}>
           <div className="flex items-start justify-between px-6 md:px-8 py-5 border-b border-gray-100">
             <div className="min-w-0 pr-4">
               {eyebrow && (
