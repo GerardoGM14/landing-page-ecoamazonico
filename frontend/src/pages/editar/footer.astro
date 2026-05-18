@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import FooterEditor from '../../components/editors/FooterEditor.tsx';
+---
+<AdminLayout title="Editar Contacto y oficinas · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="footer"
+    eyebrow="Global"
+    title="Contacto y oficinas"
+  >
+    <FooterEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>

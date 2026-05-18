@@ -77,6 +77,33 @@ export interface CertificacionesContent {
   items: CertificacionItem[];
 }
 
+export interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+export interface Office {
+  name: string;
+  address: string;
+  mapEmbedUrl: string;
+  primary: boolean;
+}
+
+export interface FooterContent {
+  phone: string;
+  email: string;
+  social: SocialLink[];
+  offices: Office[];
+}
+
+export const SOCIAL_PLATFORMS: Array<{ value: string; label: string }> = [
+  { value: 'facebook', label: 'Facebook' },
+  { value: 'instagram', label: 'Instagram' },
+  { value: 'tiktok', label: 'TikTok' },
+  { value: 'linkedin', label: 'LinkedIn' },
+  { value: 'youtube', label: 'YouTube' },
+];
+
 export interface Service {
   id: string;
   order: number;
