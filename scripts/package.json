@@ -5,7 +5,8 @@
   "version": "1.0.0",
   "scripts": {
     "seed": "node seed.js",
-    "upload-images": "node upload-images.js"
+    "upload-images": "node upload-images.js",
+    "verify-admins": "node verify-admins.js"
   },
   "dependencies": {
     "firebase-admin": "^12.7.0",
