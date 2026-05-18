@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminShell from '../../components/AdminShell.tsx';
+import ServicesEditor from '../../components/editors/ServicesEditor.tsx';
+---
+<AdminLayout title="Editar Servicios · EcoAmazónico Admin">
+  <AdminShell
+    client:only="react"
+    current="servicios"
+    eyebrow="Servicios"
+    title="Editor de servicios"
+  >
+    <ServicesEditor client:only="react" />
+  </AdminShell>
+</AdminLayout>
