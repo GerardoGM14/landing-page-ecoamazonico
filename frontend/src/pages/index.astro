@@ -1,0 +1,7 @@
+---
+import AdminLayout from '../layouts/AdminLayout.astro';
+import RootRedirect from '../components/RootRedirect.tsx';
+---
+<AdminLayout title="EcoAmazónico Admin">
+  <RootRedirect client:only="react" />
+</AdminLayout>
