@@ -39,6 +39,8 @@ export interface CertificacionesContent {
   title: string;
   items: Array<{ name: string; logoUrl: string; description: string }>;
   backgroundUrl: string;
+  isoButtonLabel?: string;
+  isoImages?: string[];
 }
 
 export interface FooterContent {

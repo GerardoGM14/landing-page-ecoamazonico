@@ -28,7 +28,9 @@ export function useDocEditor<T extends object>(
     const { db } = getFirebase();
     const snap = await getDoc(doc(db, collection, docId));
     if (snap.exists()) {
-      const data = snap.data() as T;
+      // Merge over `initial` so fields added after the doc was seeded
+      // (and therefore missing in Firestore) still have a defined value.
+      const data = { ...initial, ...(snap.data() as T) };
       setOriginal(data);
       setDraft(data);
     } else {

@@ -75,6 +75,8 @@ export interface CertificacionesContent {
   title: string;
   backgroundUrl: string;
   items: CertificacionItem[];
+  isoButtonLabel: string;
+  isoImages: string[];
 }
 
 export interface SocialLink {

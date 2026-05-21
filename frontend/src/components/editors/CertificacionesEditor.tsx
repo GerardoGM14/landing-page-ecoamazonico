@@ -4,6 +4,7 @@ import type { CertificacionesContent, CertificacionItem } from '../../lib/types'
 import TextField from '../ui/TextField';
 import TextArea from '../ui/TextArea';
 import ImageUploader from '../ui/ImageUploader';
+import ImageListEditor from '../ui/ImageListEditor';
 import SaveBar from '../ui/SaveBar';
 import Toast from '../ui/Toast';
 
@@ -12,6 +13,8 @@ const DEFAULT: CertificacionesContent = {
   title: 'Contamos con las siguientes certificaciones:',
   backgroundUrl: '',
   items: [],
+  isoButtonLabel: 'Ver Certificaciones ISO',
+  isoImages: [],
 };
 
 export default function CertificacionesEditor() {
@@ -169,6 +172,25 @@ export default function CertificacionesEditor() {
               ))}
             </div>
           )}
+        </Block>
+
+        <Block label="Certificaciones ISO" description="Botón que abre un carrusel a pantalla completa con los certificados ISO escaneados.">
+          <TextField
+            label="Texto del botón"
+            value={draft.isoButtonLabel}
+            onChange={(v) => editor.update('isoButtonLabel', v)}
+            maxLength={40}
+            placeholder="Ver Certificaciones ISO"
+            hint="El botón solo aparece en la landing si hay al menos una imagen cargada abajo."
+          />
+          <ImageListEditor
+            label="Imágenes de certificados ISO"
+            value={draft.isoImages}
+            onChange={(v) => editor.update('isoImages', v)}
+            path="site/certificaciones/iso"
+            aspect="3/4"
+            hint="Documentos escaneados de los certificados ISO. Se muestran completos (sin recorte) en el carrusel."
+          />
         </Block>
       </div>
 
