@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
-import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { getFirebase } from '../../lib/firebase';
+import { uploadImage, MAX_IMAGE_SIZE_MB } from '../../lib/uploadImage';
 
 interface Props {
   label: string;
@@ -13,8 +12,6 @@ interface Props {
   aspect?: string;
 }
 
-const MAX_SIZE_MB = 10;
-
 export default function ImageUploader({ label, value, onChange, path, hint, aspect = '16/9' }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -23,45 +20,22 @@ export default function ImageUploader({ label, value, onChange, path, hint, aspe
 
   async function handleFile(file: File) {
     setError(null);
-
-    if (!file.type.startsWith('image/')) {
-      setError('Solo se permiten imágenes.');
-      return;
-    }
-    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-      setError(`La imagen supera ${MAX_SIZE_MB}MB.`);
-      return;
-    }
-
     setUploading(true);
-    setProgress(20);
+    setProgress(40);
 
-    try {
-      const { storage } = getFirebase();
-      const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
-      const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-      const objectRef = storageRef(storage, `${path}/${safeName}`);
+    const result = await uploadImage(file, path);
 
-      setProgress(50);
-      await uploadBytes(objectRef, file, {
-        contentType: file.type,
-        cacheControl: 'public, max-age=31536000',
-      });
-
-      setProgress(85);
-      const url = await getDownloadURL(objectRef);
-
+    if (result.ok) {
       setProgress(100);
-      onChange(url);
-    } catch (err) {
-      console.error(err);
-      setError('No se pudo subir la imagen. Intenta de nuevo.');
-    } finally {
-      setTimeout(() => {
-        setUploading(false);
-        setProgress(0);
-      }, 400);
+      onChange(result.url);
+    } else {
+      setError(result.error);
     }
+
+    setTimeout(() => {
+      setUploading(false);
+      setProgress(0);
+    }, 400);
   }
 
   function onPick(e: React.ChangeEvent<HTMLInputElement>) {
@@ -110,11 +84,11 @@ export default function ImageUploader({ label, value, onChange, path, hint, aspe
             className="absolute inset-0 grid place-items-center text-gray-400 hover:text-black hover:bg-gray-100 transition cursor-pointer disabled:cursor-wait"
           >
             <div className="text-center px-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
               </svg>
-              <p className="text-xs uppercase tracking-[0.15em] font-medium">Subir o arrastrar</p>
-              <p className="text-[11px] mt-1 text-gray-400 normal-case tracking-normal">JPG, PNG, WEBP · máx {MAX_SIZE_MB}MB</p>
+              <p className="text-[10px] uppercase tracking-[0.15em] font-medium">Subir o arrastrar</p>
+              <p className="text-[10px] mt-0.5 text-gray-400 normal-case tracking-normal">máx {MAX_IMAGE_SIZE_MB}MB</p>
             </div>
           </button>
         )}
