@@ -141,8 +141,8 @@ const siteContent = {
       },
       {
         name: 'Oficina en Junín',
-        address: 'Dirección por confirmar',
-        mapEmbedUrl: 'https://maps.google.com/maps?q=Junin+Peru&t=&z=9&ie=UTF8&iwloc=&output=embed',
+        address: 'Sector Las Flores Mz. C Lt. N1, San Ramón - Chanchamayo - Junín',
+        mapEmbedUrl: 'https://maps.google.com/maps?q=Sector+Las+Flores+San+Ramon+Chanchamayo+Junin+Peru&t=&z=15&ie=UTF8&iwloc=&output=embed',
         primary: false,
       },
     ],
