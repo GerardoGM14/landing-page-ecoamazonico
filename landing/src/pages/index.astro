@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CreditsBar from '../components/CreditsBar.astro';
 import PeruMap from '../components/PeruMap.tsx';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
@@ -241,6 +242,7 @@ const servicesFallback: Service[] = [
 				<FooterContent client:load fallback={footerFallback} logoSrc={logoImg.src} />
 			</div>
 		</footer>
+		<CreditsBar />
 	</main>
 
 	<script>

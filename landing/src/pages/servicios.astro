@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CreditsBar from '../components/CreditsBar.astro';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo_ecoamazonico.png';
 import heroBg from '../assets/hero_background_v2.jpg';
@@ -150,6 +151,7 @@ const servicesWithImages = services.map((service, index) => {
 				<FooterContent client:load fallback={footerFallback} logoSrc={logoImg.src} />
 			</div>
 		</footer>
+		<CreditsBar />
 	</main>
 
 	<script>
