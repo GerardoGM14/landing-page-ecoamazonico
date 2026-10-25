@@ -9,17 +9,96 @@ import '@fontsource/inter/600.css';
 import CookieConsent from '../components/CookieConsent.astro';
 import WhatsAppButton from '../components/WhatsAppButton';
 import whatsappIcon from '../assets/icono_whatsapp.svg';
+import { getImage } from 'astro:assets';
+import ogBackground from '../assets/hero_background_v2.jpg';
+import logoImg from '../assets/logo_ecoamazonico.png';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Eco Amazónico Perú SRL | Proyectos agropecuarios, forestales y ambientales',
+	description = 'Eco Amazónico Perú SRL: formulación de proyectos, estudios ambientales, capacitación, venta de semillas e insumos agropecuarios y alquiler de equipos de monitoreo ambiental en todo el Perú.',
+} = Astro.props;
+
+// Las URLs canónicas no llevan barra final, igual que las sirve Firebase
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonicalURL = new URL(pathname, Astro.site);
+
+const ogImage = await getImage({ src: ogBackground, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
+const ogImageURL = new URL(ogImage.src, Astro.site);
+const logoURL = new URL((await getImage({ src: logoImg, format: 'png' })).src, Astro.site);
+
+const siteURL = new URL('/', Astro.site).href;
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'LocalBusiness',
+	'@id': `${siteURL}#organizacion`,
+	name: 'Eco Amazónico Perú SRL',
+	alternateName: 'EcoAmazónico',
+	url: siteURL,
+	logo: logoURL.href,
+	image: ogImageURL.href,
+	description,
+	telephone: '+51945775810',
+	email: 'ecoamazonicoperusrl@gmail.com',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Av. Insurgentes 594',
+		addressLocality: 'San Miguel',
+		addressRegion: 'Lima',
+		addressCountry: 'PE',
+	},
+	areaServed: { '@type': 'Country', name: 'Perú' },
+	knowsAbout: [
+		'Formulación y evaluación de proyectos',
+		'Estudios e investigación ambiental',
+		'Capacitación agropecuaria y forestal',
+		'Semillas certificadas e insumos agropecuarios',
+		'Alquiler de equipos de monitoreo ambiental',
+	],
+};
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>EcoAmazónico - Landing Page |</title>
+
+		<!-- SEO -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_PE" />
+		<meta property="og:site_name" content="Eco Amazónico Perú SRL" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Eco Amazónico Perú SRL" />
+
+		<!-- Twitter / X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<!-- Datos estructurados (Google) -->
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	</head>
 	<body>
 		<!-- Loader -->
